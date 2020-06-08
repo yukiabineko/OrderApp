@@ -4,6 +4,7 @@ import './Main.css';
 import Menu from './Menu';
 import AddForm from './AddForm';
 
+
 const Main = ()=>{
   const closeMenu = ()=>{
    let check = document.getElementById('drower');
@@ -20,7 +21,6 @@ const Main = ()=>{
           <div id="content" className="mt-5">
             <AddForm  parentCloseMenu={closeMenu}/>
           </div>
-    
           <br/><br/>
           <Menu />
         </div>

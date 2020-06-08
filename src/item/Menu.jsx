@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import Item from './Item';
+import ModalWindow from '../ModalWindow';
+
 
 const Menu = (props)=>{
+  const childRef = useRef();
+
+  let parentModal = (num)=>{
+     childRef.current.openModal();
+  }
   let items = props.mode === 'default' ?
    props.data.map((value, i)=>(
-     <Item key={value.message} value={value} index={i} />
+     <Item key={value.message} value={value} index={i} parent={(num)=>parentModal(num)} />
    ))
    :
    props.fdata.map((value, i)=>(
-    <Item key={value.message} value={value} index={i} />
+    <Item key={value.message} value={value} index={i} parent={(num)=>parentModal(num)} />
   ))
+  
   return(
     <div>
       <p>{props.message}</p>
+      <ModalWindow  ref={childRef} />
       <table className="table table-bordered">
         <thead>
           <tr>
