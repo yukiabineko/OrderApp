@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import Item from './Item';
-import ModalWindow from '../ModalWindow';
+
 
 
 const Menu = (props)=>{
@@ -22,7 +22,7 @@ const Menu = (props)=>{
   return(
     <div>
       <p>{props.message}</p>
-      <ModalWindow  ref={childRef} />
+     
       <table className="table table-bordered">
         <thead>
           <tr>
