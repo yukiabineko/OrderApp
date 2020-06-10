@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './Main.css';
 import Menu from './Menu';
 import AddForm from './AddForm';
+import FindForm from './FindForm';
 
 
 const Main = ()=>{
@@ -13,6 +14,7 @@ const Main = ()=>{
   return(
     <div>
       <div className="text-center text-dark h1 mb-3 mt-5">商品一覧</div>
+      
       <div className="row">
         <div className="col-md-10 offset-1 bg-light shadow p-5">
           <input type="checkbox" id="drower" />
@@ -21,6 +23,7 @@ const Main = ()=>{
           <div id="content" className="mt-5">
             <AddForm  parentCloseMenu={closeMenu}/>
           </div>
+          <FindForm />
           <br/><br/>
           <Menu />
         </div>

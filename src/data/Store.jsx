@@ -17,6 +17,8 @@ const foodReducer = (state = init_data, action)=>{
       return deleteReducer(state, action);
     case 'EDIT':
       return editReducer(state, action);
+    case 'FIND':
+       return findReducer(state, action);
     default:
       return state;
   }
@@ -68,6 +70,45 @@ const editReducer = (state, action)=>{
     fdata: []
   }
 }
+/*検索*/
+
+const findReducer =(state, action)=>{
+  let data = state.data.slice();
+  let fdata =[];
+  switch (action.id) {
+    case '1':
+      data.forEach((value)=>{
+        if(value.price === action.param){
+          fdata.push(value);
+        }
+      });
+    break;
+    case '2':
+      data.forEach((value)=>{
+        if(value.category === action.param){
+          fdata.push(value);
+        }
+      });
+    break;
+    case '3':
+      data.forEach((value)=>{
+        if(value.name.indexOf(action.param)>=0){
+          fdata.push(value);
+        }
+      });
+    break;
+  
+    default:
+      break;
+  }
+  
+  return{
+    data: state.data,
+    message: '検索しました。',
+    mode: 'find',
+    fdata: fdata,
+  }
+}
 /*********************************************************************************************************************** */
 /*export 追加*/
 
@@ -97,6 +138,15 @@ export  const editmemo =(i, nm, pr, ct)=>{
     name: nm,
     price: pr,
     category: ct
+  }
+}
+/*export 検索価格*/
+
+export  const searchmemo =(data,categoryId)=>{
+  return{
+    type: 'FIND',
+    id: categoryId,
+    param: data
   }
 }
 export default createStore(foodReducer);

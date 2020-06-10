@@ -22,8 +22,29 @@ const Menu = (props)=>{
   return(
     <div>
       <p>{props.message}</p>
-     
-      <table className="table table-bordered">
+      {props.mode === 'default'? 
+        props.data.length === 0 ? 
+        <div className="bg-secondary text-light p-5">データがありません。</div>
+          : 
+          <table className="table table-bordered">
+            <thead>
+              <tr>
+                <th className="bg-dark text-white text-center">NO</th>
+                <th className="bg-dark text-white text-center">商品名</th>
+                <th className="bg-dark text-white text-center">価格</th>
+                <th className="bg-dark text-white text-center">カテゴリー</th>
+                <th className="bg-dark text-white text-center"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {items}
+            </tbody>
+          </table>
+          :
+          props.fdata.length === 0 ? 
+          <div className="bg-secondary text-light p-5">データがありません。</div>
+           : 
+        <table className="table table-bordered">
         <thead>
           <tr>
             <th className="bg-dark text-white text-center">NO</th>
@@ -37,6 +58,7 @@ const Menu = (props)=>{
           {items}
         </tbody>
       </table>
+      }
     </div>
   );
 }
