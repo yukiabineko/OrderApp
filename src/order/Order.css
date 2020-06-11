@@ -1,0 +1,51 @@
+#ordercheck{
+  display: none;
+}
+#orderBack{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left:0;
+  opacity: 0.5;
+  background: #000;
+  z-index: 99;
+  display: none;
+}
+#orderArea{
+  position: fixed;
+  width: 30%;
+  height: 100%;
+  top: 0;
+  left:0;
+  background: #fff;
+  z-index: 9999;
+  transform: translateX(-100%);
+  transition: 0.3s ease-in-out;
+}
+#orderModal{
+  position: fixed;
+  width: 40%;
+  height: 40%;
+  top: 10%;
+  left:40%;
+  background: #fff;
+  z-index: 9999;
+  transform: translateY(-150%);
+  transition: 0.3s ease-in-out;
+}
+#ordercheck:checked ~ #orderBack{
+  display: block;
+}
+#ordercheck:checked ~ #orderArea{
+  transform: translateX(0%);
+  transition: 0.3s ease-in-out;
+}
+#ordercheck:checked ~ #orderModal{
+  transform: translateY(0%);
+  transition: 0.3s ease-in-out;
+}
+.btArea{
+  width: 100%;
+  max-width: 90%;
+}
