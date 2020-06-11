@@ -11,10 +11,11 @@ const App = ()=>{
       <nav className="navbar navbar-expand-lg navbar-light bg-warning font-weight-bold">
         <a className="navbar-brand" href="#">オーダーアプリ</a>
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item"><Link to="/" className="font-weight-bold">商品登録</Link></li>
+        <li className="nav-item"><Link to="/" className="font-weight-bold">オーダー</Link></li>
+          <li className="nav-item"><Link to="/item" className="font-weight-bold">商品登録</Link></li>
         </ul>
       </nav>
-      <Route exact path="/" component={ItemMain} />
+      <Route exact path="/item" component={ItemMain} />
    </BrowserRouter>
   );
 }
