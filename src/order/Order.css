@@ -58,3 +58,11 @@
   height: 300px;
   padding: 2%;
 }
+.no_order{
+  margin-top: 25%;
+}
+.wait_area{
+  overflow: scroll;
+  width: 100%;
+  height: 500px;
+}

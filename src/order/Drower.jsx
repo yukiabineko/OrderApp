@@ -29,7 +29,7 @@ const Drower = (props)=>{
   //親コンポーネントに送信
   const sendData = (event)=>{
     event.preventDefault();
-    props.parentData({name: state.name, price: state.price});
+    if(!(state.name ==='')){ props.parentData({name: state.name, price: state.price});}
   }
 
   return(
