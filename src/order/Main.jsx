@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Drower from './Drower';
 import { useState } from 'react';
 import Wait from './Wait';
+import Drower2 from './Drower2';
+import Accounting from './Accounting';
 
 var itemArray =[];  　　　　//選択された時に追加する配列
 var globalItems = [];　　　//上の配列を追加する配列
@@ -13,12 +15,13 @@ const Main = ()=>{
   const[state, setState] = useState({
     data: [],
     items: [],
-  
+ 
+   
   });
-  const addData = (data)=>{
+  const addData = (data)=>{    //左のパネルから商品追加
     let sendData = state.data.slice();
-    sendData.push({name: data.name, price: data.price});
-    itemArray.push({name: data.name, price: data.price});
+    sendData.push({name: data.name, price: data.price, date: new Date});
+    itemArray.push({name: data.name, price: data.price, date: new Date});
     
     setState({data: sendData, items: state.items});
 
@@ -33,7 +36,7 @@ const Main = ()=>{
     globalItems.forEach((value)=>{　　　//複数オーダー配列ステート格納
       stateItems.push(value);
     })
-
+   
     
     let newdata = state.data.slice();    //モーダル内のデータ管理
     newdata.splice(0);
@@ -46,7 +49,10 @@ const Main = ()=>{
      <input type="checkbox" id="ordercheck" />
      <label for="ordercheck" className="text-primary h3" id="oderOpen">㊉New</label>
      <label for="ordercheck" className="text-primary h3" id="orderBack"></label>
-     <div id="orderArea"><Drower parentData={addData} /></div>
+     <div id="orderArea">
+       <Drower parentData={addData} />
+       <Drower2 parentData={addData} />
+    </div>
      <div id="orderModal">
        <div className="text-center h4 font-weight-bold mt-2 mb-2">[商品オーダーパネル]</div>
        <div className="border-top mb-3"></div>
@@ -89,7 +95,10 @@ const Main = ()=>{
 
 
      <div className="row">
-       <div className="col-md-7 bg-light p-5"></div>
+       <div className="col-md-7 bg-light p-5">
+         <Accounting 
+            viewData={state.items} 
+         /></div>
        {/*.....*/}
        <div className="col-md-5 bg-light p-5 border-left"><Wait orderData={state.items}></Wait></div>
      </div>
