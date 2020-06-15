@@ -1,9 +1,7 @@
 import React from 'react';
 import './Order.css';
 import { connect } from 'react-redux';
-import { foodData, drinkData } from '../data/Search';
-import DrinkButton from './DrinkButton';
-import FoodButton from './FoodButton';
+import { drinkData } from '../data/Search';
 import { useState } from 'react';
 
 
@@ -50,17 +48,6 @@ const Drower2 = (props)=>{
        </select>
        <input type="submit" value="追加" className="btn btn-primary" />
      </form>
-      {/*...ボタン入力エリア...*/}
-
-     <div className="border border-top mb-1"></div>
-     <p className="h5 mb-5">ボタンで入力</p>
-     <div className="row btArea">
-       <div className="col-md-6"><DrinkButton /></div>
-       <div className="col-md-6 border-left"><FoodButton /></div>
-
-     </div>
-
-    
    </div>
   );
 }

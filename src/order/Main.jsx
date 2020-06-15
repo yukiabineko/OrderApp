@@ -6,6 +6,8 @@ import { useState } from 'react';
 import Wait from './Wait';
 import Drower2 from './Drower2';
 import Accounting from './Accounting';
+import DrinkButton from './DrinkButton';
+import FoodButton from './FoodButton';
 
 var itemArray =[];  　　　　//選択された時に追加する配列
 var globalItems = [];　　　//上の配列を追加する配列
@@ -26,6 +28,8 @@ const Main = ()=>{
     setState({data: sendData, items: state.items});
 
   }
+  //モーダルのsubmitボタン押した際オーダー待ち追加の処理
+
   const AddOrder = ()=>{
     globalItems.push(itemArray);　//複数のオーダー格納
     itemArray = [];　　　　　　　　　//個々のオーダー初期化
@@ -36,11 +40,16 @@ const Main = ()=>{
     globalItems.forEach((value)=>{　　　//複数オーダー配列ステート格納
       stateItems.push(value);
     })
-   
-    
     let newdata = state.data.slice();    //モーダル内のデータ管理
     newdata.splice(0);
     setState({data: newdata, items: stateItems});
+  }
+  //モーダル内の各削除ボタン押した際処理削除処理
+
+  const modalOrderDelete = (i)=>{
+     let changedata = state.data.slice();
+     changedata.splice(i, 1);
+     setState({data: changedata, items: state.items})
   }
   return(
    <div　className="mt-5">
@@ -49,9 +58,19 @@ const Main = ()=>{
      <input type="checkbox" id="ordercheck" />
      <label for="ordercheck" className="text-primary h3" id="oderOpen">㊉New</label>
      <label for="ordercheck" className="text-primary h3" id="orderBack"></label>
+
+     {/*. ドロワーのエリアView..*/}
      <div id="orderArea">
        <Drower parentData={addData} />
        <Drower2 parentData={addData} />
+       {/*...ドロワーボタン入力エリア...*/}
+
+        <div className="border border-top mb-1"></div>
+        <p className="h5 mb-5">ボタンで入力</p>
+        <div className="row btArea">
+          <div className="col-md-6"><DrinkButton sendDrinkData={addData} /></div>
+          <div className="col-md-6 border-left"><FoodButton /></div>
+        </div>
     </div>
      <div id="orderModal">
        <div className="text-center h4 font-weight-bold mt-2 mb-2">[商品オーダーパネル]</div>
@@ -70,14 +89,16 @@ const Main = ()=>{
                   </tr>
                 </thead>
                 <tbody>
-                  {state.data.map((value)=>(
+                  {state.data.map((value,i)=>(
                     <tr>
                     <td className="font-weight-bold bg-white"> 
                       <h5>{value.name}</h5>
                       <div className="border-top border-primary mb-2"></div>
                       <h6>価格:{value.price}<span className="text-danger">円</span></h6>
                     </td>
-                    <td className="font-weight-bold bg-white"><button className="btn btn-danger btn-block">削除</button></td>
+                    <td className="font-weight-bold bg-white">
+                      <button className="btn btn-danger btn-block" onClick={()=>modalOrderDelete(i)}>削除</button>
+                    </td>
                   </tr>
                   ))}
                 </tbody>

@@ -2,8 +2,6 @@ import React from 'react';
 import './Order.css';
 import { connect } from 'react-redux';
 import { foodData, drinkData } from '../data/Search';
-import DrinkButton from './DrinkButton';
-import FoodButton from './FoodButton';
 import { useState } from 'react';
 
 
@@ -13,7 +11,6 @@ const Drower = (props)=>{
     price: '',
   })
   const foods = foodData(props.data);
-  const drinks = drinkData(props.data);
   //ステートに追加
 
   const addItem = (event)=>{
