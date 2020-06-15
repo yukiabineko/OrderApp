@@ -47,9 +47,17 @@ const Main = ()=>{
   //モーダル内の各削除ボタン押した際処理削除処理
 
   const modalOrderDelete = (i)=>{
-     let changedata = state.data.slice();
-     changedata.splice(i, 1);
-     setState({data: changedata, items: state.items})
+     let statedata = state.data.slice();
+     statedata.splice(i, 1);
+     setState({data :statedata, items: state.items})
+  }
+  //オーダー待ちエリア個別削除処理
+
+  const sendWaitOderDelete = (i)=>{
+    let stateItems = state.items.slice();
+    stateItems.splice(i, 1);
+    setState({data: state.data, items: stateItems});
+    globalItems.splice(i, 1);
   }
   return(
    <div　className="mt-5">
@@ -121,7 +129,9 @@ const Main = ()=>{
             viewData={state.items} 
          /></div>
        {/*.....*/}
-       <div className="col-md-5 bg-light p-5 border-left"><Wait orderData={state.items}></Wait></div>
+       <div className="col-md-5 bg-light p-5 border-left">
+         <Wait orderData={state.items} sendParentDelete={sendWaitOderDelete}>
+          </Wait></div>
      </div>
    </div>
   );

@@ -2,7 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const Wait = (props)=>{
-  
+
+  //オーダー待ちアイテムの削除
+  const waitOrderDelete = (i)=>{
+      props.sendParentDelete(i);
+  }
   return(
     <div className="wait_area">
       <h3 className="text-center text-Dark font-weight-bold">オーダー一覧</h3>
@@ -33,7 +37,7 @@ const Wait = (props)=>{
           </table>
           <div className="text-light">
             <label className="text-dark font-weight-bold mr-2">{'受付時間:' + val[0].date.getHours() + '時' + val[0].date.getMinutes() +'分' }</label>
-            <button className="btn btn-danger mb-2">削除する</button>
+            <button className="btn btn-danger mb-2" onClick={()=>waitOrderDelete(i)}>削除する</button>
           </div>
           <div className="border-top  pt-4 pb-4"></div>
          </div>
