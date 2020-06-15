@@ -19,15 +19,21 @@ const Main = ()=>{
     data: [],
     items: [],
     waitNO: 0
- 
    
   });
+  //ドロワーを閉じる
+
+  const drowerClose = ()=>{
+    let drower = document.getElementById('ordercheck');
+    drower.checked = false; 
+  }
   const addData = (data)=>{    //左のパネルから商品追加
     let sendData = state.data.slice();
     sendData.push({name: data.name, price: data.price, date: new Date});
     itemArray.push({name: data.name, price: data.price, date: new Date});
     
     setState({data: sendData, items: state.items, waitNO: state.waitNO});
+   
 
   }
   //モーダルのsubmitボタン押した際オーダー待ち追加の処理
@@ -45,6 +51,8 @@ const Main = ()=>{
     let newdata = state.data.slice();    //モーダル内のデータ管理
     newdata.splice(0);
     setState({data: newdata, items: stateItems, waitNO: state.waitNO});
+
+    drowerClose(); //ドロワーを閉じる
   }
   //モーダル内の各削除ボタン押した際処理削除処理
 
@@ -66,6 +74,7 @@ const Main = ()=>{
   const sendAccounting = (i)=>{
     setState({data: state.data, items: state.items, waitNO: i});
   }
+  /******************************************* JSX ************************************************************************************ */
   return(
    <div　className="mt-5">
      <div className="text-center text-dark h1 font-weight-bold mb-5">オーダー詳細</div>
