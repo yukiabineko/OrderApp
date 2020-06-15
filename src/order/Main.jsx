@@ -12,11 +12,13 @@ import FoodButton from './FoodButton';
 var itemArray =[];  　　　　//選択された時に追加する配列
 var globalItems = [];　　　//上の配列を追加する配列
 
+
 const Main = ()=>{
 
   const[state, setState] = useState({
     data: [],
     items: [],
+    waitNO: 0
  
    
   });
@@ -25,7 +27,7 @@ const Main = ()=>{
     sendData.push({name: data.name, price: data.price, date: new Date});
     itemArray.push({name: data.name, price: data.price, date: new Date});
     
-    setState({data: sendData, items: state.items});
+    setState({data: sendData, items: state.items, waitNO: state.waitNO});
 
   }
   //モーダルのsubmitボタン押した際オーダー待ち追加の処理
@@ -42,22 +44,27 @@ const Main = ()=>{
     })
     let newdata = state.data.slice();    //モーダル内のデータ管理
     newdata.splice(0);
-    setState({data: newdata, items: stateItems});
+    setState({data: newdata, items: stateItems, waitNO: state.waitNO});
   }
   //モーダル内の各削除ボタン押した際処理削除処理
 
   const modalOrderDelete = (i)=>{
      let statedata = state.data.slice();
      statedata.splice(i, 1);
-     setState({data :statedata, items: state.items})
+     setState({data :statedata, items: state.items, waitNO: state.waitNO})
   }
   //オーダー待ちエリア個別削除処理
 
   const sendWaitOderDelete = (i)=>{
     let stateItems = state.items.slice();
     stateItems.splice(i, 1);
-    setState({data: state.data, items: stateItems});
+    setState({data: state.data, items: stateItems, waitNO: 0});
     globalItems.splice(i, 1);
+  }
+  //会計エリアのオーダー表示処理
+
+  const sendAccounting = (i)=>{
+    setState({data: state.data, items: state.items, waitNO: i});
   }
   return(
    <div　className="mt-5">
@@ -77,7 +84,7 @@ const Main = ()=>{
         <p className="h5 mb-5">ボタンで入力</p>
         <div className="row btArea">
           <div className="col-md-6"><DrinkButton sendDrinkData={addData} /></div>
-          <div className="col-md-6 border-left"><FoodButton /></div>
+          <div className="col-md-6 border-left"><FoodButton sendFoodData={addData} /></div>
         </div>
     </div>
      <div id="orderModal">
@@ -127,11 +134,16 @@ const Main = ()=>{
        <div className="col-md-7 bg-light p-5">
          <Accounting 
             viewData={state.items} 
+            waitno={state.waitNO}
          /></div>
        {/*.....*/}
        <div className="col-md-5 bg-light p-5 border-left">
-         <Wait orderData={state.items} sendParentDelete={sendWaitOderDelete}>
-          </Wait></div>
+         <Wait 
+           orderData={state.items} 
+           sendParentDelete={sendWaitOderDelete}
+           sendParentAccounting={sendAccounting}>
+        </Wait>
+       </div>
      </div>
    </div>
   );

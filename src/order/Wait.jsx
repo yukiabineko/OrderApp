@@ -7,6 +7,10 @@ const Wait = (props)=>{
   const waitOrderDelete = (i)=>{
       props.sendParentDelete(i);
   }
+  //オーダー待ちを会計エリアに送信
+  const accountingNoSend = (i)=>{
+     props.sendParentAccounting(i);
+  }
   return(
     <div className="wait_area">
       <h3 className="text-center text-Dark font-weight-bold">オーダー一覧</h3>
@@ -16,7 +20,7 @@ const Wait = (props)=>{
        props.orderData.map((val,i)=>(
          <div>
           <span>
-            <button className="btn btn-success mr-2">会計する</button>
+            <button className="btn btn-success mr-2" onClick={()=>accountingNoSend(i)}>会計する</button>
             <label className="text-dark font-weight-bold mr-2">{'注文NO:' + (i+1)}</label>
           </span>
           <table className="table table-bordered mb-2 mt-1">

@@ -17,12 +17,22 @@ const Accounting = (props)=>{
           </tr>
         </thead>
         <tbody>
-        {props.viewData[0].map((value)=>(
-           <tr>
-             <td className="font-weight-bold text-center bg-white">{value.name}</td>
-             <td className="font-weight-bold text-center bg-white">{value.price}</td>
-           </tr>
-         ))}
+        {props.viewData[0] ===null ?
+          props.viewData[0].map((value)=>(
+            <tr>
+              <td className="font-weight-bold text-center bg-white">{value.name}</td>
+              <td className="font-weight-bold text-center bg-white">{value.price}</td>
+            </tr>
+          ))
+          : 
+          props.viewData[props.waitno].map((value)=>(
+            <tr>
+              <td className="font-weight-bold text-center bg-white">{value.name}</td>
+              <td className="font-weight-bold text-center bg-white">{value.price}</td>
+            </tr>
+          ))
+        }
+        
         </tbody>
       </table>
       }

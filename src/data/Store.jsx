@@ -3,7 +3,7 @@ import { createStore } from "redux";
 
 
 const init_data = {
-  data:[{name: 'コーヒー',price: '200', category: '飲み物' }],
+  data:[{name: 'コーヒー',price: '350', category: '飲み物' },{name: 'トースト',price: '250', category: '軽食' }],
   message: 'おはようございます。',
   mode: 'default',
   fdata: []
