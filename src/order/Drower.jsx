@@ -1,7 +1,7 @@
 import React from 'react';
 import './Order.css';
 import { connect } from 'react-redux';
-import { foodData, drinkData } from '../data/Search';
+import { foodData } from '../data/Search';
 import { useState } from 'react';
 
 

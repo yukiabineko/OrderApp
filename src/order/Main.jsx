@@ -8,6 +8,8 @@ import Drower2 from './Drower2';
 import Accounting from './Accounting';
 import DrinkButton from './DrinkButton';
 import FoodButton from './FoodButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 var itemArray =[];  　　　　//選択された時に追加する配列
 var globalItems = [];　　　//上の配列を追加する配列
@@ -90,7 +92,8 @@ const Main = ()=>{
        {/*...ドロワーボタン入力エリア...*/}
 
         <div className="border border-top mb-1"></div>
-        <p className="h5 mb-5">ボタンで入力</p>
+       
+        <p className="h5 mb-5">ボタンで入力 <FontAwesomeIcon icon={faCoffee} size="lg"/> </p>
         <div className="row btArea">
           <div className="col-md-6"><DrinkButton sendDrinkData={addData} /></div>
           <div className="col-md-6 border-left"><FoodButton sendFoodData={addData} /></div>
