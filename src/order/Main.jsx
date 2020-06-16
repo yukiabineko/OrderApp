@@ -9,7 +9,7 @@ import Accounting from './Accounting';
 import DrinkButton from './DrinkButton';
 import FoodButton from './FoodButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faCartPlus } from '@fortawesome/free-solid-svg-icons'
 
 var itemArray =[];  　　　　//選択された時に追加する配列
 var globalItems = [];　　　//上の配列を追加する配列
@@ -82,7 +82,9 @@ const Main = ()=>{
      <div className="text-center text-dark h1 font-weight-bold mb-5">オーダー詳細</div>
 
      <input type="checkbox" id="ordercheck" />
-     <label for="ordercheck" className="text-primary h3" id="oderOpen">㊉New</label>
+     <label for="ordercheck" className="h3" id="oderOpen">
+       <FontAwesomeIcon icon={faCartPlus} size="2x" /> 新規オーダー
+     </label>
      <label for="ordercheck" className="text-primary h3" id="orderBack"></label>
 
      {/*. ドロワーのエリアView..*/}
@@ -141,8 +143,7 @@ const Main = ()=>{
            }
      </div>
 
-
-     <div className="row">
+     <div className="row mt-2">
        <div className="col-md-7 bg-light p-5">
          <Accounting 
             viewData={state.items} 

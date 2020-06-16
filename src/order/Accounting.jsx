@@ -1,19 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee, faCartPlus, faCashRegister } from '@fortawesome/free-solid-svg-icons'
 
 const Accounting = (props)=>{
   
   return(
     <div>
-      <div className="text-center h2 text-primary font-weight-bold mb-5">商品精算</div>
+      <div className="text-center h2 text-primary font-weight-bold mb-5">
+         <FontAwesomeIcon icon={faCashRegister} /> 商品精算
+      </div>
       
       {props.viewData.length === 0? 
         <div className="bg-secondary text-white h3 font-weight-bold p-5">精算するオーダーがありません。</div>
         :
         <div>
           <div className="row">
-            <div className="col-md-2 mt-1 font-weight-bold">合計金額:</div>
-            <div className="col-md-8 p-2 bg-dark text-warning h3 font-weight-bold text-right">1000<span className="font-weight-bold text-white">円</span></div>
+            <div className="col-md-2 mt-2 h5 font-weight-bold"> 合計金額:</div>
+            <div className="col-md-8 p-2 mr-5 bg-dark text-warning h3 font-weight-bold text-right rounded">1000<span className="font-weight-bold text-white">円</span></div>
           </div>
           <div className="border-bottom p-1 m-3"></div>
           <button className="btn btn-primary w-50 border-white p-3 font-weight-bold">精算</button>

@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee, faCartPlus, faClipboardList } from '@fortawesome/free-solid-svg-icons'
 
 const Wait = (props)=>{
 
@@ -12,8 +14,10 @@ const Wait = (props)=>{
      props.sendParentAccounting(i);
   }
   return(
-    <div className="wait_area">
-      <h3 className="text-center text-Dark font-weight-bold">オーダー一覧</h3>
+    <div className="wait_area mt-1">
+      <h3 className="text-center text-success font-weight-bold">
+        <FontAwesomeIcon icon={faClipboardList} /> オーダー待ち覧
+      </h3>
       {props.orderData.length === 0 ?
        <div className="text-center font-weight-bold h5 mt-5 text-white bg-secondary p-5">オーダーなし</div>
        : 

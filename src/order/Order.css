@@ -1,6 +1,18 @@
 #ordercheck{
   display: none;
 }
+#oderOpen{
+  border-radius: 7px;
+  color: #fff;
+  font-weight: bold;
+  padding: 2%;
+  padding-bottom: 3%;
+  margin-left: 1%;
+  background: #3d3de4;
+}
+#oderOpen:hover{
+  background-color: #0000bb;
+}
 #orderBack{
   position: fixed;
   width: 100%;
