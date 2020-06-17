@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { drinkData } from '../data/Search';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const DrinkButton = (props)=>{
   const drinks = drinkData(props.data);
@@ -9,7 +11,7 @@ const DrinkButton = (props)=>{
   } 
   return(
     <div>
-      <p>飲み物一覧</p>
+      <p className="font-weight-bold"><span className="text-primary mr-1"><FontAwesomeIcon icon={faCoffee} size="lg" /></span>飲み物一覧</p>
       {drinks.map((value, i)=>(
         <button
          key={'bt'+i} 

@@ -9,7 +9,7 @@ import Accounting from './Accounting';
 import DrinkButton from './DrinkButton';
 import FoodButton from './FoodButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faCartPlus } from '@fortawesome/free-solid-svg-icons'
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
 
 var itemArray =[];  　　　　//選択された時に追加する配列
 var globalItems = [];　　　//上の配列を追加する配列
@@ -31,8 +31,8 @@ const Main = ()=>{
   }
   const addData = (data)=>{    //左のパネルから商品追加
     let sendData = state.data.slice();
-    sendData.push({name: data.name, price: data.price, date: new Date});
-    itemArray.push({name: data.name, price: data.price, date: new Date});
+    sendData.push({name: data.name, price: data.price, date: new Date()});
+    itemArray.push({name: data.name, price: data.price, date: new Date()});
     
     setState({data: sendData, items: state.items, waitNO: state.waitNO});
    
@@ -95,7 +95,7 @@ const Main = ()=>{
 
         <div className="border border-top mb-1"></div>
        
-        <p className="h5 mb-5">ボタンで入力 <FontAwesomeIcon icon={faCoffee} size="lg"/> </p>
+        <p className="h5 mb-5">ボタンで入力</p>
         <div className="row btArea">
           <div className="col-md-6"><DrinkButton sendDrinkData={addData} /></div>
           <div className="col-md-6 border-left"><FoodButton sendFoodData={addData} /></div>

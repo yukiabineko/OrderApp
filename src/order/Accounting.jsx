@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faCartPlus, faCashRegister } from '@fortawesome/free-solid-svg-icons'
+import { faCashRegister } from '@fortawesome/free-solid-svg-icons'
 
 const Accounting = (props)=>{
   

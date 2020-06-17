@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { foodData } from '../data/Search';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHamburger } from '@fortawesome/free-solid-svg-icons';
 
 const FoodButton = (props)=>{
   const foods = foodData(props.data);
@@ -9,7 +11,7 @@ const FoodButton = (props)=>{
  } 
   return(
     <div>
-      <p>軽食一覧</p>
+      <p className="font-weight-bold text-primary"><span className="text-primary mr-1"><FontAwesomeIcon icon={faHamburger} size="lg" /></span>軽食一覧</p>
       {foods.map((value, i)=>(
         <button 
           key={'bt'+i} 

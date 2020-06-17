@@ -3,6 +3,8 @@ import './Order.css';
 import { connect } from 'react-redux';
 import { drinkData } from '../data/Search';
 import { useState } from 'react';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Drower2 = (props)=>{
@@ -35,11 +37,13 @@ const Drower2 = (props)=>{
 
   return(
    <div>
-     <p className="h5 mb-5">選択して入力</p>
      {/*...飲み物selectbox...*/}
 
      <form className="form-inline bg-light" onSubmit={sendData} >
-       <label className="mr-3 font-weight-bold pt-4 pb-4">飲物:</label>
+       <label className="mr-3 font-weight-bold pt-4 pb-4">
+         <FontAwesomeIcon icon={faCoffee}className="mr-1" size="lg" /> 
+         飲物:
+       </label>
        <select className="form-control mr-3 w-50" onChange={addItem}   >
          <option></option>
          {drinks.map((value,i)=>(
