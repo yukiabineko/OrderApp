@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClipboardList } from '@fortawesome/free-solid-svg-icons'
+import { faClipboardList, faHamburger, faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 const Wait = (props)=>{
 
@@ -30,15 +30,29 @@ const Wait = (props)=>{
           <table className="table table-bordered mb-2 mt-1">
             <thead>
               <tr>
-                <td className="bg-primary text-white text-center">NO</td>
-                <td className="bg-primary text-white text-center">名前</td>
+                <td className="bg-primary text-white text-center ">カテゴリー</td>
+                <td className="bg-primary text-white text-center w-75">名前</td>
               </tr>
             </thead>
             <tbody>
               {val.map((value)=>(
                 <tr>
-                  <td className="text-center bg-white font-weight-bold"></td>
-                  <td className="text-center bg-white font-weight-bold">{value.name}</td>
+                  {value.category === '軽食'? 
+                   <td className="text-center bg-white font-weight-bold">
+                     <FontAwesomeIcon icon={faHamburger} size="2x"/><p></p>
+                     <label>{value.category}</label>
+                   </td>
+                  : 
+                  <td className="text-center bg-white font-weight-bold">
+                     <FontAwesomeIcon icon={faCoffee} size="2x"/><p></p>
+                     <label>{value.category}</label>
+                  </td>
+                  }
+                
+                  <td className="text-center bg-white font-weight-bold align-middle">
+                    <h4 className="font-weight-bold">{value.name}</h4>
+                    <p className="text-primary">価格: <span className="text-danger">{value.price}</span>円</p>
+                  </td>
                 </tr>
               ))}
             </tbody>

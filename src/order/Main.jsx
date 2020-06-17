@@ -9,13 +9,14 @@ import Accounting from './Accounting';
 import DrinkButton from './DrinkButton';
 import FoodButton from './FoodButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
+import { faCartPlus, faYenSign, faDollarSign } from '@fortawesome/free-solid-svg-icons'
 
 var itemArray =[];  　　　　//選択された時に追加する配列
 var globalItems = [];　　　//上の配列を追加する配列
-
+var modalViewPrice = 0    //モーダル内合計金額
 
 const Main = ()=>{
+  
 
   const[state, setState] = useState({
     data: [],
@@ -31,11 +32,11 @@ const Main = ()=>{
   }
   const addData = (data)=>{    //左のパネルから商品追加
     let sendData = state.data.slice();
-    sendData.push({name: data.name, price: data.price, date: new Date()});
-    itemArray.push({name: data.name, price: data.price, date: new Date()});
+    sendData.push({name: data.name, price: data.price, category: data.category, date: new Date()});
+    itemArray.push({name: data.name, price: data.price, category: data.category, date: new Date()});
     
     setState({data: sendData, items: state.items, waitNO: state.waitNO});
-   
+    modalViewPrice += Number(data.price);  //モーダル表示価格
 
   }
   //モーダルのsubmitボタン押した際オーダー待ち追加の処理
@@ -53,6 +54,7 @@ const Main = ()=>{
     let newdata = state.data.slice();    //モーダル内のデータ管理
     newdata.splice(0);
     setState({data: newdata, items: stateItems, waitNO: state.waitNO});
+    modalViewPrice = 0;       //モーダルの価格覧リセット
 
     drowerClose(); //ドロワーを閉じる
   }
@@ -110,6 +112,10 @@ const Main = ()=>{
              <div className="text-center text-primary h4 font-weight-bold no_order">まだオーダーがありません。</div> 
              :
             <div>
+            <div className="mb-2 round font-weight-bold">
+              <span className="bg-dark text-white p-2 rounded-left"><FontAwesomeIcon icon={faDollarSign} size="lg" />合計金額:</span>
+              <span className="text-warning bg-dark p-2 rounded-right">{modalViewPrice}円</span>
+            </div>
             <table className="table table-bordered">
                 <thead>
                   <tr>

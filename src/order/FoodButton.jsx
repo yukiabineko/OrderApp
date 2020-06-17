@@ -6,8 +6,8 @@ import { faHamburger } from '@fortawesome/free-solid-svg-icons';
 
 const FoodButton = (props)=>{
   const foods = foodData(props.data);
-  const sendData = (name, price)=>{
-    props.sendFoodData({name: name, price: price});
+  const sendData = (name, price, category)=>{
+    props.sendFoodData({name: name, price: price, category: category});
  } 
   return(
     <div>
@@ -16,7 +16,7 @@ const FoodButton = (props)=>{
         <button 
           key={'bt'+i} 
           className="btn btn-primary btn-block mb-3"
-          onClick={()=>sendData(value.name, value.price)}
+          onClick={()=>sendData(value.name, value.price, value.category)}
           >{value.name}</button>
       ))}
     </div>

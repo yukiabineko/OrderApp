@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const DrinkButton = (props)=>{
   const drinks = drinkData(props.data);
-  const sendData = (name, price)=>{
-     props.sendDrinkData({name: name, price: price});
+  const sendData = (name, price, category)=>{
+     props.sendDrinkData({name: name, price: price, category: category});
   } 
   return(
     <div>
@@ -16,7 +16,7 @@ const DrinkButton = (props)=>{
         <button
          key={'bt'+i} 
          className="btn btn-primary btn-block mb-3"
-         onClick={()=>sendData(value.name, value.price)}
+         onClick={()=>sendData(value.name, value.price, value.category)}
          >{value.name}</button>
       ))}
     </div>

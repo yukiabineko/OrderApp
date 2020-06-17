@@ -11,6 +11,7 @@ const Drower2 = (props)=>{
   const[state, setState] = useState({
     name: '',
     price: '',
+    category: ''
   })
   const drinks = drinkData(props.data);
   //ステートに追加
@@ -19,9 +20,11 @@ const Drower2 = (props)=>{
     let data = event.target.value;
     let name = data.split(',')[0];
     let price = data.split(',')[1];
+    let category = data.split(',')[2];
     setState({
       name: name,
-      price: price
+      price: price,
+      category: category
     })
 
   }
@@ -29,7 +32,7 @@ const Drower2 = (props)=>{
   const sendData = (event)=>{
     event.preventDefault();
     if(!(state.name ==='')){ 
-      props.parentData({name: state.name, price: state.price});
+      props.parentData({name: state.name, price: state.price, category: state.category});
       
     }
     
@@ -47,7 +50,7 @@ const Drower2 = (props)=>{
        <select className="form-control mr-3 w-50" onChange={addItem}   >
          <option></option>
          {drinks.map((value,i)=>(
-           <option key={'drink'+i} value={value.name + ',' + value.price}>{value.name}</option>
+           <option key={'drink'+i} value={value.name + ',' + value.price + ',' + value.category}>{value.name}</option>
          ))}
        </select>
        <input type="submit" value="追加" className="btn btn-primary" />
