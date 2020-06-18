@@ -9,11 +9,12 @@ import Accounting from './Accounting';
 import DrinkButton from './DrinkButton';
 import FoodButton from './FoodButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartPlus, faYenSign, faDollarSign } from '@fortawesome/free-solid-svg-icons'
+import { faCartPlus, faDollarSign } from '@fortawesome/free-solid-svg-icons'
 
 var itemArray =[];  　　　　//選択された時に追加する配列
 var globalItems = [];　　　//上の配列を追加する配列
 var modalViewPrice = 0    //モーダル内合計金額
+var accountingPrice = 0; 
 
 const Main = ()=>{
   
@@ -56,6 +57,8 @@ const Main = ()=>{
     setState({data: newdata, items: stateItems, waitNO: state.waitNO});
     modalViewPrice = 0;       //モーダルの価格覧リセット
 
+    totalAccounting(0);  //会計エリア合計
+
     drowerClose(); //ドロワーを閉じる
   }
   //モーダル内の各削除ボタン押した際処理削除処理
@@ -72,11 +75,21 @@ const Main = ()=>{
     stateItems.splice(i, 1);
     setState({data: state.data, items: stateItems, waitNO: 0});
     globalItems.splice(i, 1);
+    totalAccounting(0);  //会計エリア合計
+  }
+  ////会計エリア合計処理
+
+  const totalAccounting = (i)=>{
+    accountingPrice = 0;
+    globalItems[i].forEach((value)=>{
+      accountingPrice += Number(value.price);
+    });
   }
   //会計エリアのオーダー表示処理
 
   const sendAccounting = (i)=>{
     setState({data: state.data, items: state.items, waitNO: i});
+    totalAccounting(i);  //会計エリア合計
   }
   /******************************************* JSX ************************************************************************************ */
   return(
@@ -154,6 +167,7 @@ const Main = ()=>{
          <Accounting 
             viewData={state.items} 
             waitno={state.waitNO}
+            totalPrice={accountingPrice}
          /></div>
        {/*.....*/}
        <div className="col-md-5 bg-light p-5 border-left">
