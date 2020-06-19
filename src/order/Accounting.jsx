@@ -1,22 +1,21 @@
 import React from 'react';
+import './Order.css';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCashRegister, faHamburger, faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 
 const Accounting = (props)=>{
- 
+  const pareantOpenModal = ()=>{
+    let modal = document.getElementById('AcoountingModal');
+    modal.style.transition="0.3s ease-in-out";
+    modal.style.transform="translateY(0%)";
 
-  const itemPrice = ()=>{
-    let accountingPrice = 0;
-    props.viewData[props.waitno].forEach((data)=>{
-    accountingPrice += Number(data.price);
-    });
-    return accountingPrice;
-    
+    let backArea = document.getElementById('orderBack2');
+    backArea.style.display = 'block';
+
   }
   return(
-    
     <div>
       <div className="text-center h2 text-primary font-weight-bold mb-5">
          <FontAwesomeIcon icon={faCashRegister} /> 商品精算
@@ -32,7 +31,7 @@ const Accounting = (props)=>{
           </div>
           <div className="border-bottom p-1 m-3"></div>
           <div className="text-center h3 font-weight-bold">お買い上げ商品</div>
-          <button className="btn btn-primary w-50 border-white p-3 font-weight-bold">精算</button>
+          <button className="btn btn-primary w-50 border-white p-3 font-weight-bold" onClick={pareantOpenModal}>精算</button>
           <label className="ml-3 mt-5 font-weight-bold">買上点数<span className="text-danger">5</span>点</label>
         
           <table className="table mt-2">

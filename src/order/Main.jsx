@@ -10,6 +10,7 @@ import DrinkButton from './DrinkButton';
 import FoodButton from './FoodButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus, faDollarSign } from '@fortawesome/free-solid-svg-icons'
+import PayoffArea from './PayoffArea';
 
 var itemArray =[];  　　　　//選択された時に追加する配列
 var globalItems = [];　　　//上の配列を追加する配列
@@ -101,6 +102,7 @@ const Main = ()=>{
        <FontAwesomeIcon icon={faCartPlus} size="2x" /> 新規オーダー
      </label>
      <label for="ordercheck" className="text-primary h3" id="orderBack"></label>
+     <label className="text-primary h3" id="orderBack2"></label>
 
      {/*. ドロワーのエリアView..*/}
      <div id="orderArea">
@@ -161,7 +163,16 @@ const Main = ()=>{
            </div>   
            }
      </div>
+     {/***会計用モーダル */}
 
+
+     <div id="AcoountingModal">
+      <PayoffArea />
+     </div>
+
+
+
+     {/*** メインエリア ****/}
      <div className="row mt-2">
        <div className="col-md-7 bg-light p-5">
          <Accounting 
