@@ -17,15 +17,15 @@ var itemArray =[];  　　　　//選択された時に追加する配列
 var globalItems = [];　　　//上の配列を追加する配列
 var modalViewPrice = 0    //モーダル内合計金額
 var accountingPrice = 0; 
-var changeMoney = 0;     //お釣り
 
 const Main = ()=>{
   
 
   const[state, setState] = useState({
-    data: [],
-    items: [],
-    waitNO: 0
+    data: [],   //追加中のオーダーリスト
+    items: [],  //オーダー待ちリスト
+    waitNO: 0,  //オーダー待ちNO
+    changeMoney: 0  //お釣り
    
   });
   //ドロワーを閉じる
@@ -39,7 +39,7 @@ const Main = ()=>{
     sendData.push({name: data.name, price: data.price, category: data.category, date: new Date()});
     itemArray.push({name: data.name, price: data.price, category: data.category, date: new Date()});
     
-    setState({data: sendData, items: state.items, waitNO: state.waitNO});
+    setState({data: sendData, items: state.items, waitNO: state.waitNO, changeMoney: state.changeMoney});
     modalViewPrice += Number(data.price);  //モーダル表示価格
 
   }
@@ -57,7 +57,7 @@ const Main = ()=>{
     })
     let newdata = state.data.slice();    //モーダル内のデータ管理
     newdata.splice(0);
-    setState({data: newdata, items: stateItems, waitNO: state.waitNO});
+    setState({data: newdata, items: stateItems, waitNO: state.waitNO, changeMoney: state.changeMoney});
     modalViewPrice = 0;       //モーダルの価格覧リセット
 
     totalAccounting(0);  //会計エリア合計
@@ -69,7 +69,7 @@ const Main = ()=>{
   const modalOrderDelete = (i)=>{
      let statedata = state.data.slice();
      statedata.splice(i, 1);
-     setState({data :statedata, items: state.items, waitNO: state.waitNO})
+     setState({data :statedata, items: state.items, waitNO: state.waitNO, changeMoney: state.changeMoney})
   }
   //オーダー待ちエリア個別削除処理
 
@@ -91,13 +91,39 @@ const Main = ()=>{
   //会計エリアのオーダー表示処理
 
   const sendAccounting = (i)=>{
-    setState({data: state.data, items: state.items, waitNO: i});
+    setState({data: state.data, items: state.items, waitNO: i,changeMoney: state.changeMoney});
     totalAccounting(i);  //会計エリア合計
   }
   // 会計処理モーダルからのsubmit
 
   const AccountingSubmit = (change) =>{
-     changeMoney = change;  //お釣りのセッティング
+   setState({    //お釣りのセッティング
+      data: state.data,
+      items: state.items,
+      waitNO: state.waitNO,
+      changeMoney: change
+   })  
+  }
+   //お釣りのリセット
+
+  const resetChange = ()=>{
+    setState({
+      data: state.data,
+      items: state.items,
+      waitNO: state.waitNO,
+      changeMoney: 0
+    })
+  }
+  //会計終了時当該データ削除
+  const deletOrderData = ()=>{
+    let newitems = state.items.slice();
+    newitems.splice(state.waitNO, 1);
+    setState({
+      data: state.data,
+      items: newitems,
+      waitNO: 0,                      //一旦最初の要素に戻す。
+      changeMoney: state.changeMoney
+    });
   }
   /******************************************* JSX ************************************************************************************ */
   return(
@@ -182,7 +208,11 @@ const Main = ()=>{
 
      {/***お釣り用モーダル */}
      <div id="changeModal">
-      <ChangeMoney sendChangeMoney={changeMoney}/>
+      <ChangeMoney
+       sendChangeMoney={state.changeMoney} //お釣りの子コンポーネント送信
+       parentResetCahange={resetChange}    //親コンポーネントお釣りリセット
+       parentOderDelete={deletOrderData}
+       />
      </div>
 
 

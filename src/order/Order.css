@@ -86,7 +86,7 @@
   background: #fff;
   transform: translatex(200%);
   z-index: 9999;
-  transition: 0.3s ease-in-out;
+  transition: 0.7s ease-in-out;
 }
 #ordercheck:checked ~ #orderBack{
   display: block;

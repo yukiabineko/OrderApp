@@ -12,11 +12,13 @@ const PayoffArea = (props)=>{
       inputPrice: event.target.value
     });
   }
-  const closeModal =()=>{
+  const MoveModal = ()=>{
     let modal = document.getElementById('AcoountingModal');
     modal.style.transition="0.3s ease-in-out";
     modal.style.transform="translateY(-150%)";
-
+  }
+  const closeModal =()=>{
+    MoveModal();
     let backArea = document.getElementById('orderBack2');
     backArea.style.display = 'none';
     setstate({
@@ -25,13 +27,15 @@ const PayoffArea = (props)=>{
   }
   const sendEarnings = (event)=>{
     event.preventDefault();
-    closeModal();
+    MoveModal();
+    
     let changeModal  = document.getElementById('changeModal');
-    changeModal.style.transition="0.3s ease-in-out";
-    changeModal.style.transform="translateY(0%)";
+    changeModal.style.transition="0.7s ease-in-out";
+    changeModal.style.transform="translateX(0%)";
 
-    let changeMoney    = Number(state.inputPrice) -  Number(props.sendModalTotalMoney);
+    let changeMoney = Number(state.inputPrice) -  Number(props.sendModalTotalMoney);
     props.sendAccountingSubmit(changeMoney);  //親コンポーネントへ。
+    setstate({inputPrice: ''});
     
   }
   return(
