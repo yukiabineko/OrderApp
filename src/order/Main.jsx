@@ -9,14 +9,15 @@ import Accounting from './Accounting';
 import DrinkButton from './DrinkButton';
 import FoodButton from './FoodButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartPlus, faDollarSign } from '@fortawesome/free-solid-svg-icons'
+import { faCartPlus, faDollarSign, faFileSignature } from '@fortawesome/free-solid-svg-icons'
 import PayoffArea from './PayoffArea';
 import ChangeMoney from './ChangeMoney';
 
 var itemArray =[];  　　　　//選択された時に追加する配列
 var globalItems = [];　　　//上の配列を追加する配列
 var modalViewPrice = 0    //モーダル内合計金額
-var accountingPrice = 0; 
+var accountingPrice = 0;  //オーダー金額
+var todaySale = 0;        //本日売上げ
 
 const Main = ()=>{
   
@@ -84,9 +85,11 @@ const Main = ()=>{
 
   const totalAccounting = (i)=>{
     accountingPrice = 0;
-    globalItems[i].forEach((value)=>{
-      accountingPrice += Number(value.price);
-    });
+    if(globalItems[i]){
+      globalItems[i].forEach((value)=>{
+        accountingPrice += Number(value.price);
+      });
+    }
   }
   //会計エリアのオーダー表示処理
 
@@ -124,11 +127,21 @@ const Main = ()=>{
       waitNO: 0,                      //一旦最初の要素に戻す。
       changeMoney: state.changeMoney
     });
+    globalItems.splice(state.waitNO, 1);  //グローバル合計も変更
+    totalAccounting(0);    //精算エリアの合計を要素１のtotalに
   }
   /******************************************* JSX ************************************************************************************ */
   return(
    <div　className="mt-5">
+     <div className="text-right text-white">
+       <span className="bg-dark p-2 rounded-pill font-weight-bold">
+         <FontAwesomeIcon icon={faFileSignature} size="lg" />
+           売上げ：
+           <span className="text-warning">{todaySale}</span>円
+      </span>
+    </div>
      <div className="text-center text-dark h1 font-weight-bold mb-5">オーダー詳細</div>
+     
 
      <input type="checkbox" id="ordercheck" />
      <label for="ordercheck" className="h3" id="oderOpen">

@@ -27,15 +27,18 @@ const PayoffArea = (props)=>{
   }
   const sendEarnings = (event)=>{
     event.preventDefault();
-    MoveModal();
-    
-    let changeModal  = document.getElementById('changeModal');
-    changeModal.style.transition="0.7s ease-in-out";
-    changeModal.style.transform="translateX(0%)";
-
+  
     let changeMoney = Number(state.inputPrice) -  Number(props.sendModalTotalMoney);
-    props.sendAccountingSubmit(changeMoney);  //親コンポーネントへ。
-    setstate({inputPrice: ''});
+    if(changeMoney >=0){
+      props.sendAccountingSubmit(changeMoney);  //親コンポーネントへ。
+      setstate({inputPrice: ''});
+      MoveModal();
+    
+      let changeModal  = document.getElementById('changeModal');
+      changeModal.style.transition="0.7s ease-in-out";
+      changeModal.style.transform="translateX(0%)";
+    }
+    else{alert('お金がたりません。');}
     
   }
   return(
