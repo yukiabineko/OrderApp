@@ -30,7 +30,7 @@
   height: 100%;
   top: 0;
   left:0;
-  opacity: 0.5;
+  opacity: 0.7;
   background: #000;
   z-index: 99;
   display: none;
@@ -63,7 +63,7 @@
 #AcoountingModal{
   position: fixed;
   width: 30%;
-  height: 40%;
+  height: 55%;
   overflow: scroll;
   top: 20%;
   left:30%;
@@ -71,6 +71,20 @@
   box-shadow: 1px 1px 1px 1px #d0d0d0;
   background: #fff;
   transform: translateY(-150%);
+  z-index: 9999;
+  transition: 0.3s ease-in-out;
+}
+#changeModal{
+  position: fixed;
+  width: 40%;
+  height: 30%;
+  overflow: scroll;
+  top: 20%;
+  left:30%;
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px 1px #d0d0d0;
+  background: #fff;
+  transform: translatex(200%);
   z-index: 9999;
   transition: 0.3s ease-in-out;
 }

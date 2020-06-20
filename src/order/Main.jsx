@@ -11,11 +11,13 @@ import FoodButton from './FoodButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus, faDollarSign } from '@fortawesome/free-solid-svg-icons'
 import PayoffArea from './PayoffArea';
+import ChangeMoney from './ChangeMoney';
 
 var itemArray =[];  　　　　//選択された時に追加する配列
 var globalItems = [];　　　//上の配列を追加する配列
 var modalViewPrice = 0    //モーダル内合計金額
 var accountingPrice = 0; 
+var changeMoney = 0;     //お釣り
 
 const Main = ()=>{
   
@@ -92,6 +94,11 @@ const Main = ()=>{
     setState({data: state.data, items: state.items, waitNO: i});
     totalAccounting(i);  //会計エリア合計
   }
+  // 会計処理モーダルからのsubmit
+
+  const AccountingSubmit = (change) =>{
+     changeMoney = change;  //お釣りのセッティング
+  }
   /******************************************* JSX ************************************************************************************ */
   return(
    <div　className="mt-5">
@@ -167,7 +174,15 @@ const Main = ()=>{
 
 
      <div id="AcoountingModal">
-      <PayoffArea />
+      <PayoffArea 
+      sendModalTotalMoney={accountingPrice} 
+      sendAccountingSubmit={AccountingSubmit}
+      />
+     </div>
+
+     {/***お釣り用モーダル */}
+     <div id="changeModal">
+      <ChangeMoney sendChangeMoney={changeMoney}/>
      </div>
 
 
