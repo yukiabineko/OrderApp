@@ -149,11 +149,11 @@ const Main = ()=>{
            <span className="text-warning">{state.todaySale}</span>円
       </span>
     </div>
-     <div className="text-center text-dark h1 font-weight-bold mb-5">オーダー詳細</div>
+     <div className="text-center text-dark h3 font-weight-bold mb-5">オーダー詳細</div>
      
 
      <input type="checkbox" id="ordercheck" />
-     <label for="ordercheck" className="h3" id="oderOpen">
+     <label for="ordercheck" className="h5" id="oderOpen">
        <FontAwesomeIcon icon={faCartPlus} size="2x" /> 新規オーダー
      </label>
      <label for="ordercheck" className="text-primary h3" id="orderBack"></label>
@@ -247,14 +247,14 @@ const Main = ()=>{
 
      {/*** メインエリア ****/}
      <div className="row mt-2">
-       <div className="col-md-7 bg-light p-5">
+       <div className="col-md-7 bg-light pt-3">
          <Accounting 
             viewData={state.items} 
             waitno={state.waitNO}
             totalPrice={accountingPrice}
          /></div>
        {/*.....*/}
-       <div className="col-md-5 bg-light p-5 border-left">
+       <div className="col-md-5 bg-light border-left pt-3">
          <Wait 
            orderData={state.items} 
            sendParentDelete={sendWaitOderDelete}

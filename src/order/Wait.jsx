@@ -19,7 +19,7 @@ const Wait = (props)=>{
         <FontAwesomeIcon icon={faClipboardList} /> オーダー待ち覧
       </h3>
       {props.orderData.length === 0 ?
-       <div className="text-center font-weight-bold h5 mt-5 text-white bg-secondary p-5">オーダーなし</div>
+       <div className="text-center font-weight-bold h5 mt-3 text-white bg-secondary p-5">オーダーなし</div>
        : 
        props.orderData.map((val,i)=>(
          <div>
