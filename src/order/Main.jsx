@@ -17,7 +17,6 @@ var itemArray =[];  　　　　//選択された時に追加する配列
 var globalItems = [];　　　//上の配列を追加する配列
 var modalViewPrice = 0    //モーダル内合計金額
 var accountingPrice = 0;  //オーダー金額
-var todaySale = 0;        //本日売上げ
 
 const Main = ()=>{
   
@@ -26,8 +25,9 @@ const Main = ()=>{
     data: [],   //追加中のオーダーリスト
     items: [],  //オーダー待ちリスト
     waitNO: 0,  //オーダー待ちNO
-    changeMoney: 0  //お釣り
-   
+    changeMoney: 0,  //お釣り
+    todaySale: 0,     //本日売上げ
+  
   });
   //ドロワーを閉じる
 
@@ -40,7 +40,7 @@ const Main = ()=>{
     sendData.push({name: data.name, price: data.price, category: data.category, date: new Date()});
     itemArray.push({name: data.name, price: data.price, category: data.category, date: new Date()});
     
-    setState({data: sendData, items: state.items, waitNO: state.waitNO, changeMoney: state.changeMoney});
+    setState({data: sendData, items: state.items, waitNO: state.waitNO, changeMoney: state.changeMoney,todaySale: state.todaySale});
     modalViewPrice += Number(data.price);  //モーダル表示価格
 
   }
@@ -58,7 +58,7 @@ const Main = ()=>{
     })
     let newdata = state.data.slice();    //モーダル内のデータ管理
     newdata.splice(0);
-    setState({data: newdata, items: stateItems, waitNO: state.waitNO, changeMoney: state.changeMoney});
+    setState({data: newdata, items: stateItems, waitNO: state.waitNO, changeMoney: state.changeMoney,todaySale: state.todaySale});
     modalViewPrice = 0;       //モーダルの価格覧リセット
 
     totalAccounting(0);  //会計エリア合計
@@ -70,7 +70,7 @@ const Main = ()=>{
   const modalOrderDelete = (i)=>{
      let statedata = state.data.slice();
      statedata.splice(i, 1);
-     setState({data :statedata, items: state.items, waitNO: state.waitNO, changeMoney: state.changeMoney})
+     setState({data :statedata, items: state.items, waitNO: state.waitNO, changeMoney: state.changeMoney,todaySale: state.todaySale})
   }
   //オーダー待ちエリア個別削除処理
 
@@ -94,7 +94,7 @@ const Main = ()=>{
   //会計エリアのオーダー表示処理
 
   const sendAccounting = (i)=>{
-    setState({data: state.data, items: state.items, waitNO: i,changeMoney: state.changeMoney});
+    setState({data: state.data, items: state.items, waitNO: i,changeMoney: state.changeMoney,todaySale: state.todaySale});
     totalAccounting(i);  //会計エリア合計
   }
   // 会計処理モーダルからのsubmit
@@ -104,7 +104,8 @@ const Main = ()=>{
       data: state.data,
       items: state.items,
       waitNO: state.waitNO,
-      changeMoney: change
+      changeMoney: change,
+      todaySale: state.todaySale
    })  
   }
    //お釣りのリセット
@@ -114,30 +115,38 @@ const Main = ()=>{
       data: state.data,
       items: state.items,
       waitNO: state.waitNO,
-      changeMoney: 0
-    })
+      changeMoney: 0,
+      todaySale: state.todaySale
+    });
+
   }
   //会計終了時当該データ削除
   const deletOrderData = ()=>{
     let newitems = state.items.slice();
     newitems.splice(state.waitNO, 1);
-    setState({
+    
+    totalAccounting(0);                     //精算エリアの合計を要素１のtotalに
+    let price = state.todaySale;
+    price += accountingPrice                //当日売り上げ加算
+
+    globalItems.splice(state.waitNO, 1);    //グローバル合計も変更
+    setState({      
       data: state.data,
       items: newitems,
-      waitNO: 0,                      //一旦最初の要素に戻す。
-      changeMoney: state.changeMoney
+      waitNO: 0,                           //一旦最初の要素に戻す。
+      changeMoney: state.changeMoney,                    
+      todaySale: price           
     });
-    globalItems.splice(state.waitNO, 1);  //グローバル合計も変更
-    totalAccounting(0);    //精算エリアの合計を要素１のtotalに
+          
   }
   /******************************************* JSX ************************************************************************************ */
   return(
    <div　className="mt-5">
-     <div className="text-right text-white">
+     <div className="text-right text-white uriage">
        <span className="bg-dark p-2 rounded-pill font-weight-bold">
          <FontAwesomeIcon icon={faFileSignature} size="lg" />
            売上げ：
-           <span className="text-warning">{todaySale}</span>円
+           <span className="text-warning">{state.todaySale}</span>円
       </span>
     </div>
      <div className="text-center text-dark h1 font-weight-bold mb-5">オーダー詳細</div>
@@ -164,19 +173,25 @@ const Main = ()=>{
           <div className="col-md-6 border-left"><FoodButton sendFoodData={addData} /></div>
         </div>
     </div>
-     <div id="orderModal">
-       <div className="text-center h4 font-weight-bold mt-2 mb-2">[商品オーダーパネル]</div>
-       <div className="border-top mb-3"></div>
+     <div id="orderModal" className="pb-2">
+        <div className="text-center h4 font-weight-bold mt-2 mb-2">[商品オーダーパネル]</div>
+        <div className="border-top mb-3"></div>
+        {state.data.length === 0 ?
+         '' 
+         : 
+         <div className="mb-2 round font-weight-bold">
+          <span className="bg-dark text-white p-2 rounded-left ml-2"><FontAwesomeIcon icon={faDollarSign} size="lg" />合計金額:</span>
+          <span className="text-warning bg-dark p-2 rounded-right">{modalViewPrice}円</span>
+       </div>
+        }
+        
        <div className="row">
          <div className="col-md-10 offset-1 table_area">
            {state.data.length === 0 ? 
              <div className="text-center text-primary h4 font-weight-bold no_order">まだオーダーがありません。</div> 
              :
             <div>
-            <div className="mb-2 round font-weight-bold">
-              <span className="bg-dark text-white p-2 rounded-left"><FontAwesomeIcon icon={faDollarSign} size="lg" />合計金額:</span>
-              <span className="text-warning bg-dark p-2 rounded-right">{modalViewPrice}円</span>
-            </div>
+            
             <table className="table table-bordered">
                 <thead>
                   <tr>

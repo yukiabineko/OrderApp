@@ -11,7 +11,7 @@ const DrinkButton = (props)=>{
   } 
   return(
     <div>
-      <p className="font-weight-bold"><span className="text-primary mr-1"><FontAwesomeIcon icon={faCoffee} size="lg" /></span>飲み物一覧</p>
+      <p className="font-weight-bold"><span className="text-primary mr-1"><FontAwesomeIcon icon={faCoffee} size="lg" /></span>飲物一覧</p>
       {drinks.map((value, i)=>(
         <button
          key={'bt'+i} 

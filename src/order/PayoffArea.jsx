@@ -15,7 +15,7 @@ const PayoffArea = (props)=>{
   const MoveModal = ()=>{
     let modal = document.getElementById('AcoountingModal');
     modal.style.transition="0.3s ease-in-out";
-    modal.style.transform="translateY(-150%)";
+    modal.style.transform="translateY(-200%)";
   }
   const closeModal =()=>{
     MoveModal();

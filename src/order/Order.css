@@ -50,34 +50,33 @@
 #orderModal{
   position: fixed;
   width: 40%;
-  height: 60%;
-  overflow: scroll;
+  height: 62%;
   top: 10%;
   left:40%;
   border-radius: 6px;
   background: #fff;
   z-index: 9999;
-  transform: translateY(-150%);
+  transform: translateY(-200%);
   transition: 0.3s ease-in-out;
 }
 #AcoountingModal{
   position: fixed;
   width: 30%;
-  height: 55%;
+  height: 40%;
   overflow: scroll;
   top: 20%;
   left:30%;
   border-radius: 6px;
   box-shadow: 1px 1px 1px 1px #d0d0d0;
   background: #fff;
-  transform: translateY(-150%);
+  transform: translateY(-200%);
   z-index: 9999;
   transition: 0.3s ease-in-out;
 }
 #changeModal{
   position: fixed;
   width: 40%;
-  height: 40%;
+  height: 30%;
   overflow: scroll;
   top: 20%;
   left:30%;
@@ -117,4 +116,19 @@
   overflow: scroll;
   width: 100%;
   height: 500px;
+}
+.uriage{
+  position: fixed;
+  top:10%;
+  left: 85%;
+  z-index: 12;
+}
+.main{
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+}
+.item-table{
+ overflow: scroll;
+ height: 500px;
 }
