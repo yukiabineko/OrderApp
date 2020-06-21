@@ -173,7 +173,7 @@ const Main = ()=>{
           <div className="col-md-6 border-left"><FoodButton sendFoodData={addData} /></div>
         </div>
     </div>
-     <div id="orderModal" className="pb-2">
+     <div id="orderModal" className="pb-5">
         <div className="text-center h4 font-weight-bold mt-2 mb-2">[商品オーダーパネル]</div>
         <div className="border-top mb-3"></div>
         {state.data.length === 0 ?
@@ -219,7 +219,7 @@ const Main = ()=>{
            }
          </div>
        </div>
-       {state.data.length === 0 ? <div></div> : <div className="text-center">
+       {state.data.length === 0 ? <div></div> : <div className="text-center h-20 overflow-auto">
              <button className="btn btn-primary" onClick={AddOrder}>確定</button>
            </div>   
            }
@@ -247,7 +247,7 @@ const Main = ()=>{
 
      {/*** メインエリア ****/}
      <div className="row mt-2">
-       <div className="col-md-7 bg-light pt-3">
+       <div className="col-md-6 bg-light pt-3">
          <Accounting 
             viewData={state.items} 
             waitno={state.waitNO}

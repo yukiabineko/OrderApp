@@ -22,7 +22,7 @@ const Accounting = (props)=>{
       </div>
       
       {props.viewData.length === 0? 
-        <div className="bg-secondary text-white h3 font-weight-bold p-5">精算するオーダーがありません。</div>
+        <div className="bg-secondary text-white h3 font-weight-bold p-5 ml-3">精算するオーダーがありません。</div>
         :
         <div className="main">
           <div className="row">
@@ -68,6 +68,7 @@ const Accounting = (props)=>{
           </tbody>
         </table>
         </div>
+        <br/>
       </div>
       }
       
