@@ -192,7 +192,7 @@ const Main = ()=>{
              :
             <div>
             
-            <table className="table table-bordered">
+            <table className="table table-bordered itemTable2">
                 <thead>
                   <tr>
                     <th className="bg-primary text-white font-weight-bold w-75">商品名</th>

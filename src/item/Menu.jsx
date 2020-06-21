@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
+import './Main.css';
 import Item from './Item';
 
 
@@ -26,7 +27,7 @@ const Menu = (props)=>{
         props.data.length === 0 ? 
         <div className="bg-secondary text-light p-5">データがありません。</div>
           : 
-          <table className="table table-bordered">
+          <table className="table table-bordered itemTable">
             <thead>
               <tr>
                 <th className="bg-dark text-white text-center">NO</th>

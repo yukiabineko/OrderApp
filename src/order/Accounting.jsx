@@ -34,7 +34,7 @@ const Accounting = (props)=>{
           <label className="ml-3 mt-5 font-weight-bold">買上点数<span className="text-danger">5</span>点</label>
         
         <div className="item-table">
-          <table className="table mt-3">
+          <table className="table mt-3 itemTable2">
           <thead>
             <tr>
               <th className="bg-dark text-center text-white"></th>

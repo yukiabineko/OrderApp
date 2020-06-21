@@ -130,9 +130,19 @@
   height: 500px;
   overflow: hidden;
 }
-.item-table{
- overflow: auto;
- height:300px;
+.itemTable2 tbody, .itemTable2 thead{
+  display: block;
+  width: 100%;
+}
+.itemTable2 th, .itemTable2 td {
+  width: 200px; min-width: 200px;
+  width: 100%;
+
+}
+.itemTable2 tbody {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 200px;
 }
 /******************************レスポンシブ ************************************/
 @media screen and (max-height: 768px) { /*ipad横*/

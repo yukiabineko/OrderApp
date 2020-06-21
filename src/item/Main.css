@@ -47,3 +47,16 @@
   transform: translateX(0%);
   transition: 0.3s ease-in-out;
 }
+.itemTable tbody, .itemTable thead{
+  display: block;
+  width: 100%;
+}
+.itemTable th, .itemTable td {
+  width: 200px; min-width: 200px;
+
+}
+.itemTable tbody {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 100px;
+}

@@ -9,7 +9,7 @@ const init_data = {
   fdata: []
 }
 
-const foodReducer = (state = init_data, action)=>{
+export const foodReducer = (state = init_data, action)=>{
   switch (action.type) {
     case 'ADD':
       return addReducer(state, action);
