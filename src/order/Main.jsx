@@ -1,6 +1,6 @@
 import React from 'react';
 import './Order.css';
-import {setDay} from '../data/Time';
+import { setDay, dateObjectCheck } from '../data/Time';
 import { connect } from 'react-redux';
 import Drower from './Drower';
 import { useState } from 'react';
@@ -138,9 +138,22 @@ const Main = ()=>{
 
     globalItems.splice(state.waitNO, 1);    //グローバル合計も変更
 
-    let today = setDay();
-    localStorage.setItem(today, price);
 
+    let today = setDay();
+    dateObjectCheck ();
+    let data = JSON.parse(localStorage.getItem('dates').slice());
+      
+    if(data[today]){
+      data[today] += price;
+    }
+    else{
+       data[today] = price;
+    }
+    localStorage.setItem('dates',JSON.stringify(data));
+   alert(JSON.stringify(data));
+    
+
+   
 
     setState({      
       data: state.data,

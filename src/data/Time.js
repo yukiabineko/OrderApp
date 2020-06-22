@@ -6,3 +6,10 @@ export const  setDay = ()=>{
     const formatDay = year+"/"+month+"/"+day;
     return formatDay;
 } 
+export const dateObjectCheck = (day)=>{
+    let object = localStorage.getItem('dates');
+    if(!object){
+      localStorage.setItem('dates',JSON.stringify({}));
+    }
+   
+}
