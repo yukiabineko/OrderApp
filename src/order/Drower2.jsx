@@ -44,7 +44,7 @@ const Drower2 = (props)=>{
 
      <form className="form-inline bg-light" onSubmit={sendData} >
        <label className="mr-3 font-weight-bold pt-4 pb-4">
-         <FontAwesomeIcon icon={faCoffee}className="mr-1" size="lg" /> 
+         <FontAwesomeIcon icon={faCoffee}className="mr-1" size="lg" />
          飲物:
        </label>
        <select className="form-control mr-3 w-50" onChange={addItem}   >

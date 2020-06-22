@@ -46,8 +46,8 @@ const Drower = (props)=>{
 
      <form className="form-inline bg-light" onSubmit={sendData}>
        <label className="mr-3 font-weight-bold pt-4 pb-4">
-         <FontAwesomeIcon icon={faHamburger}className="mr-1" size="lg" />
-         軽食:
+         <FontAwesomeIcon icon={faHamburger}className="mr-1" size="lg"/>
+         軽食:&nbsp;
        </label>
        <select className="form-control mr-3 w-50" onChange={addItem} >
          <option></option>

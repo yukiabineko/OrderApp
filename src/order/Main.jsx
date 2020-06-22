@@ -1,5 +1,6 @@
 import React from 'react';
 import './Order.css';
+import {setDay} from '../data/Time';
 import { connect } from 'react-redux';
 import Drower from './Drower';
 import { useState } from 'react';
@@ -68,8 +69,13 @@ const Main = ()=>{
   //モーダル内の各削除ボタン押した際処理削除処理
 
   const modalOrderDelete = (i)=>{
+     modalViewPrice = 0;
      let statedata = state.data.slice();
      statedata.splice(i, 1);
+     itemArray.splice(i, 1);
+     statedata.forEach((data)=>{
+        modalViewPrice += Number(data.price);
+     });
      setState({data :statedata, items: state.items, waitNO: state.waitNO, changeMoney: state.changeMoney,todaySale: state.todaySale})
   }
   //オーダー待ちエリア個別削除処理
@@ -84,6 +90,7 @@ const Main = ()=>{
   ////会計エリア合計処理
 
   const totalAccounting = (i)=>{
+    
     accountingPrice = 0;
     if(globalItems[i]){
       globalItems[i].forEach((value)=>{
@@ -121,15 +128,20 @@ const Main = ()=>{
 
   }
   //会計終了時当該データ削除
+ 
   const deletOrderData = ()=>{
     let newitems = state.items.slice();
     newitems.splice(state.waitNO, 1);
     
-    totalAccounting(0);                     //精算エリアの合計を要素１のtotalに
     let price = state.todaySale;
     price += accountingPrice                //当日売り上げ加算
 
     globalItems.splice(state.waitNO, 1);    //グローバル合計も変更
+
+    let today = setDay();
+    localStorage.setItem(today, price);
+
+
     setState({      
       data: state.data,
       items: newitems,
@@ -137,7 +149,7 @@ const Main = ()=>{
       changeMoney: state.changeMoney,                    
       todaySale: price           
     });
-          
+    totalAccounting(0);                     //精算エリアの合計を要素１のtotalに      
   }
   /******************************************* JSX ************************************************************************************ */
   return(
@@ -152,8 +164,8 @@ const Main = ()=>{
      <div className="text-center text-dark h3 font-weight-bold mb-5">オーダー詳細</div>
      
 
-     <input type="checkbox" id="ordercheck" />
-     <label for="ordercheck" className="h5" id="oderOpen">
+     <input type="checkbox" id="ordercheck" />&nbsp;
+     <label for="ordercheck" className="h5 ml-4" id="oderOpen">
        <FontAwesomeIcon icon={faCartPlus} size="2x" /> 新規オーダー
      </label>
      <label for="ordercheck" className="text-primary h3" id="orderBack"></label>
@@ -247,14 +259,14 @@ const Main = ()=>{
 
      {/*** メインエリア ****/}
      <div className="row mt-2">
-       <div className="col-md-6 bg-light pt-3">
+       <div className="col-md-7 bg-light pt-3 ml-5">
          <Accounting 
             viewData={state.items} 
             waitno={state.waitNO}
             totalPrice={accountingPrice}
          /></div>
        {/*.....*/}
-       <div className="col-md-5 bg-light border-left pt-3">
+       <div className="col-md-4 bg-light border-left pt-3">
          <Wait 
            orderData={state.items} 
            sendParentDelete={sendWaitOderDelete}

@@ -11,7 +11,7 @@ const FoodButton = (props)=>{
  } 
   return(
     <div>
-      <p className="font-weight-bold text-primary"><span className="text-primary mr-1"><FontAwesomeIcon icon={faHamburger} size="lg" /></span>軽食一覧</p>
+      <p className="font-weight-bold text-dark"><span className="text-primary mr-1"><FontAwesomeIcon icon={faHamburger} size="lg" /></span>軽食一覧</p>
       {foods.map((value, i)=>(
         <button 
           key={'bt'+i} 

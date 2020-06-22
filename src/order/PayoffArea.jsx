@@ -65,7 +65,7 @@ const PayoffArea = (props)=>{
                 required placeholder="金額を入力ください。" />
               </div>
               <div className="text-center">
-                <button className="btn btn-success mr-3">精算する</button>
+                <input type="submit" className="btn btn-success mr-3" value="精算する" />
                 <button className="btn btn-danger" onClick={closeModal}>取り消し</button>
               </div>
             </form>
