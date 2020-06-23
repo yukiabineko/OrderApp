@@ -109,8 +109,8 @@ const Item = (props)=>{
         <td className="text-center bg-white">{props.value.price}</td>
         <td className="text-center bg-white">{props.value.category}</td>
         <td className="text-center bg-white">
-          <button id={"item"+props.index} className="btn btn-danger mr-3" onClick={()=>delItem(props.index)}>削除</button>
-          <button id={"item"+props.index} className="btn btn-primary mr-3" onClick={()=>openModal(props.index)}>編集</button>
+          <button id={"item"+props.index} className="btn btn-danger mr-3 w-25" onClick={()=>delItem(props.index)}>削除</button>
+          <button id={"item"+props.index} className="btn btn-primary mr-3 w-25" onClick={()=>openModal(props.index)}>編集</button>
           <Modal
           isOpen={state.modalIsOpen}
           onAfterOpen={afterOpenModal}
@@ -156,8 +156,8 @@ const Item = (props)=>{
                    <label>カテゴリー</label>
                    <select className="form-control" value={state.category ==null ?props.value.category : state.category} onChange={doChange} name="category">
                       <option></option>
-                      <option value="食べ物">食べ物</option>
                       <option value="飲み物">飲み物</option>
+                      <option value="軽食">軽食</option>
                    </select>
                  </div>
                  {/*送信ボタン*/}

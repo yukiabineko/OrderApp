@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCashRegister, faHamburger, faCoffee } from '@fortawesome/free-solid-svg-icons'
 
+const thStyle={
+  width: '5%'
+}
 
 const Accounting = (props)=>{
   const pareantOpenModal = ()=>{
@@ -37,7 +40,7 @@ const Accounting = (props)=>{
           <table className="table mt-3 itemTable2">
           <thead>
             <tr>
-              <th className="bg-dark text-center text-white"></th>
+              <th className="bg-dark text-center text-white" style={thStyle}></th>
               <th className="bg-dark text-center text-white">商品名</th>
               <th className="bg-dark text-center text-white">価格</th>
             </tr>
@@ -47,7 +50,7 @@ const Accounting = (props)=>{
             {props.viewData[props.waitno].map((value)=>(
               <tr>
                {value.category === '軽食'? 
-                 <td className="font-weight-bold text-center bg-white align-middle">
+                 <td className="font-weight-bold text-center bg-white align-middle" style={thStyle}>
                    <p></p>
                    <div><FontAwesomeIcon icon={faHamburger} size="2x" /></div>
                    <p>{value.category}</p>

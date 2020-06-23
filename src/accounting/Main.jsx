@@ -2,8 +2,28 @@ import React from 'react';
 import { setDay } from '../data/Time';
 import { connect } from 'react-redux';
 
+const Thstyle={width: '10%'};
+const viewTitle={
+  float: 'left',
+  fontWeight: 'bold',
+  fontSize:'26px',
+  width: '30%',
+  textAlign: 'right',
+  marginBottom: '1%'
+};
+
+const viewMenu={
+  float: 'right',
+  fontWeight: 'bold',
+  fontSize:'26px',
+  width: '70%',
+  marginBottom: '1%'
+};
+
+
 const Main =()=>{
   const data = JSON.parse(localStorage.getItem('dates').slice());
+  let week = [ "日", "月", "火", "水", "木", "金", "土" ];
  
   let array = [];
   for(let i=0; i<Object.keys(data).length; i++){
@@ -16,16 +36,19 @@ const Main =()=>{
 
   return(
     <div className="row">
-      <div className="col-md-10 offset-1  mt-5 bg-light shadow">
+      <div className="col-md-10 offset-1  mt-5 bg-light shadow pb-3">
         <div className="text-center h3 font-weight-bold mt-3 mb-5">[売上げ管理]</div>
-        <ul>
-          <li>本日現在売上げ</li>
-          <li>{todayAccounting}</li>
-        </ul>
+        
+          <div style={viewTitle}>本日現在売上げ:</div>
+          <div style={viewMenu}>
+            <span className="text-danger ml-3">{todayAccounting}</span>円
+            <button className=" btn btn-danger ml-5">リセット</button>
+          </div>
+        
         <table className="table table-bordered">
           <thead>
-            <th className="bg-dark text-center text-white">日付</th>
-            <th className="bg-dark text-center text-white">曜日</th>
+            <th className="bg-dark text-center text-white" style={Thstyle}>日付</th>
+            <th className="bg-dark text-center text-white" style={Thstyle}>曜日</th>
             <th className="bg-dark text-center text-white">売り上げ金額</th>
             <th className="bg-dark text-center text-white">売上げ点数</th>
           </thead>
@@ -33,7 +56,7 @@ const Main =()=>{
             {array.map((value)=>(
               <tr>
                <td className="font-weight-bold text-center">{value.day}</td>
-               <td className="font-weight-bold text-center"></td>
+               <td className="font-weight-bold text-center">{week[new Date(value.created).getDay()]}</td>
                <td className="font-weight-bold text-center">{value.uriage}</td>
                <td className="font-weight-bold text-center">{value.number}</td>
               </tr>

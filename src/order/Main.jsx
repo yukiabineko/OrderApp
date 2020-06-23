@@ -181,7 +181,7 @@ const Main = ()=>{
     //当日データない場合作成
 
     else{               
-       data[today] = {uriage: price, number: itemPoint};
+       data[today] = {uriage: price, number: itemPoint, created: new Date()};
     }
     localStorage.setItem('dates',JSON.stringify(data));
    alert(JSON.stringify(data));

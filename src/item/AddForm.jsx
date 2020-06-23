@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addmemo } from '../data/Store';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
+const buttonStyle={
+  border: 'none'
+}
 
 const AddForm = (props)=>{
   const [state, setState] = useState({
@@ -53,7 +58,10 @@ const AddForm = (props)=>{
   }
   return(
     <div>
-      <div className="text-right text-dark  mb-1 mt-5"><button onClick={childCloseMenu}>閉じる</button></div>
+      <div className="text-right text-dark  mb-1 mt-5">
+        <button onClick={childCloseMenu} className="text-danger" style={buttonStyle}>
+          <FontAwesomeIcon icon={faTimesCircle} size="2x"/>
+        </button></div>
       <div className="text-center text-dark h1 mb-3 mt-5">登録フォーム</div>
       <div className="row">
         <div className="col-md-10 offset-1 bg-light shadow p-5">
