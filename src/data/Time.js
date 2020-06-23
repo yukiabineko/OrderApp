@@ -1,9 +1,8 @@
 export const  setDay = ()=>{
     const nowDate = new Date();
-    const year = nowDate.getFullYear();
     const month = nowDate.getMonth() + 1;
     const day = nowDate.getDate();
-    const formatDay = year+"/"+month+"/"+day;
+    const formatDay = month+"/"+day;
     return formatDay;
 } 
 export const dateObjectCheck = (day)=>{

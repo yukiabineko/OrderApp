@@ -28,6 +28,7 @@ const Main = ()=>{
     waitNO: 0,  //オーダー待ちNO
     changeMoney: 0,  //お釣り
     todaySale: 0,     //本日売上げ
+    itemPoint: 0,  
   
   });
   //ドロワーを閉じる
@@ -59,7 +60,14 @@ const Main = ()=>{
     })
     let newdata = state.data.slice();    //モーダル内のデータ管理
     newdata.splice(0);
-    setState({data: newdata, items: stateItems, waitNO: state.waitNO, changeMoney: state.changeMoney,todaySale: state.todaySale});
+    setState({
+      data: newdata, 
+      items: stateItems, 
+      waitNO: state.waitNO, 
+      changeMoney: state.changeMoney,
+      todaySale: state.todaySale,
+      itemPoint: state.itemPoint
+    });
     modalViewPrice = 0;       //モーダルの価格覧リセット
 
     totalAccounting(0);  //会計エリア合計
@@ -76,14 +84,27 @@ const Main = ()=>{
      statedata.forEach((data)=>{
         modalViewPrice += Number(data.price);
      });
-     setState({data :statedata, items: state.items, waitNO: state.waitNO, changeMoney: state.changeMoney,todaySale: state.todaySale})
+     setState({
+       data :statedata, 
+       items: state.items, 
+       waitNO: state.waitNO, 
+       changeMoney: state.changeMoney,
+       todaySale: state.todaySale,
+       itemPoint: state.itemPoint
+      })
   }
   //オーダー待ちエリア個別削除処理
 
   const sendWaitOderDelete = (i)=>{
     let stateItems = state.items.slice();
     stateItems.splice(i, 1);
-    setState({data: state.data, items: stateItems, waitNO: 0});
+    setState({
+      data: state.data, 
+      items: stateItems, 
+      waitNO: 0,       //一度最初のオーダーに戻す。
+      todaySale: state.todaySale,
+      itemPoint: state.itemPoint
+    });
     globalItems.splice(i, 1);
     totalAccounting(0);  //会計エリア合計
   }
@@ -101,7 +122,13 @@ const Main = ()=>{
   //会計エリアのオーダー表示処理
 
   const sendAccounting = (i)=>{
-    setState({data: state.data, items: state.items, waitNO: i,changeMoney: state.changeMoney,todaySale: state.todaySale});
+    setState({
+      data: state.data, 
+      items: state.items, 
+      waitNO: i,changeMoney: state.changeMoney,
+      todaySale: state.todaySale,
+      itemPoint: state.itemPoint
+    });
     totalAccounting(i);  //会計エリア合計
   }
   // 会計処理モーダルからのsubmit
@@ -112,7 +139,8 @@ const Main = ()=>{
       items: state.items,
       waitNO: state.waitNO,
       changeMoney: change,
-      todaySale: state.todaySale
+      todaySale: state.todaySale,
+      itemPoint: state.itemPoint
    })  
   }
    //お釣りのリセット
@@ -123,7 +151,8 @@ const Main = ()=>{
       items: state.items,
       waitNO: state.waitNO,
       changeMoney: 0,
-      todaySale: state.todaySale
+      todaySale: state.todaySale,
+      itemPoint: state.itemPoint
     });
 
   }
@@ -131,10 +160,12 @@ const Main = ()=>{
  
   const deletOrderData = ()=>{
     let newitems = state.items.slice();
-    newitems.splice(state.waitNO, 1);
-    
+
+    let itemPoint = state.items[state.waitNO].length; //当該オーダー売上数
+
     let price = state.todaySale;
     price += accountingPrice                //当日売り上げ加算
+    
 
     globalItems.splice(state.waitNO, 1);    //グローバル合計も変更
 
@@ -144,15 +175,18 @@ const Main = ()=>{
     let data = JSON.parse(localStorage.getItem('dates').slice());
       
     if(data[today]){
-      data[today] += price;
+      data[today].uriage += accountingPrice;
+      data[today].number += itemPoint;
     }
-    else{
-       data[today] = price;
+    //当日データない場合作成
+
+    else{               
+       data[today] = {uriage: price, number: itemPoint};
     }
     localStorage.setItem('dates',JSON.stringify(data));
    alert(JSON.stringify(data));
     
-
+   newitems.splice(state.waitNO, 1);
    
 
     setState({      
@@ -160,7 +194,8 @@ const Main = ()=>{
       items: newitems,
       waitNO: 0,                           //一旦最初の要素に戻す。
       changeMoney: state.changeMoney,                    
-      todaySale: price           
+      todaySale: price,
+      itemPoint: itemPoint        
     });
     totalAccounting(0);                     //精算エリアの合計を要素１のtotalに      
   }
