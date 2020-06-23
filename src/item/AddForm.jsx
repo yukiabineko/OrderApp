@@ -59,7 +59,7 @@ const AddForm = (props)=>{
   return(
     <div>
       <div className="text-right text-dark  mb-1 mt-5">
-        <button onClick={childCloseMenu} className="text-danger" style={buttonStyle}>
+        <button onClick={childCloseMenu} className="text-danger closeButton" style={buttonStyle}>
           <FontAwesomeIcon icon={faTimesCircle} size="2x"/>
         </button></div>
       <div className="text-center text-dark h1 mb-3 mt-5">登録フォーム</div>

@@ -56,7 +56,7 @@ const Accounting = (props)=>{
                    <p>{value.category}</p>
                  </td>
                  : 
-                 <td className="font-weight-bold text-center bg-white align-middle">
+                 <td className="font-weight-bold text-center bg-white align-middle" >
                     <p></p>
                     <div><FontAwesomeIcon icon={faCoffee} size="2x" /></div>
                     <p>{value.category}</p>
