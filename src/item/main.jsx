@@ -7,11 +7,6 @@ import FindForm from './FindForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
-const style={
-  overflow: 'scroll',
-  height: '500px'
-}
-
 const Main = ()=>{
   const closeMenu = ()=>{
    let check = document.getElementById('drower');
@@ -21,7 +16,7 @@ const Main = ()=>{
     <div>
       <div className="text-center text-dark h1 mb-3 mt-5">商品一覧</div>
       
-      <div className="row" style={style}>
+      <div className="row item-row">
         <div className="col-md-10 offset-1 bg-light shadow p-5">
           <input type="checkbox" id="drower" />
           <label for="drower" id="open" className="text-primary">

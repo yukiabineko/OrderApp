@@ -53,3 +53,13 @@ button:focus {
 .itemitemTable{
   max-height: 100%;
 }
+.item-row{
+  overflow: scroll;
+  height: 500px;
+}
+/**********************************************************************************************************/
+@media screen and (min-height: 1024px){
+  .item-row{
+    height: 700px;
+  }
+}

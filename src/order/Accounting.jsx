@@ -3,12 +3,16 @@ import './Order.css';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCashRegister, faHamburger, faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react';
 
 const thStyle={
   width: '5%'
 }
 
 const Accounting = (props)=>{
+  const[state, setState] = useState({
+    box: true
+  });
   const pareantOpenModal = ()=>{
     let modal = document.getElementById('AcoountingModal');
     modal.style.transition="0.3s ease-in-out";
@@ -18,8 +22,18 @@ const Accounting = (props)=>{
     backArea.style.display = 'block';
 
   }
+  const rightView =(event)=>{
+    let f = event.target.checked
+    setState({
+      box: f
+    });
+    props. parentRight(f);
+  }
   return(
     <div>
+      <div className="text-right">
+        <input type="checkbox" checked={state.box} onChange={rightView} />一覧表示
+      </div>
       <div className="text-center h2 text-primary font-weight-bold mb-3">
          <FontAwesomeIcon icon={faCashRegister} /> 商品精算
       </div>
