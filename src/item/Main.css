@@ -50,3 +50,6 @@
 button:focus {
 	outline:0;
 }
+.itemitemTable{
+  max-height: 100%;
+}

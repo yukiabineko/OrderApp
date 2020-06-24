@@ -34,7 +34,7 @@ const Accounting = (props)=>{
           </div>
           <div className="border-bottom p-1 m-1"></div>
           <button className="btn btn-primary w-50 border-white p-3 font-weight-bold" onClick={pareantOpenModal}>精算</button>
-          <label className="ml-3 mt-5 font-weight-bold">買上点数<span className="text-danger">5</span>点</label>
+          <label className="ml-3 mt-5 font-weight-bold">買上点数<span className="text-danger">{props.viewData[props.waitno].length}</span>点</label>
         
         <div className="item-table">
           <table className="table mt-3 itemTable2">
