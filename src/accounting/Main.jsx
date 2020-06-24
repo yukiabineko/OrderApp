@@ -1,6 +1,7 @@
 import React from 'react';
-import { setDay } from '../data/Time';
+import { setDay, dateObjectCheck } from '../data/Time';
 import { connect } from 'react-redux';
+
 
 const Thstyle={width: '10%'};
 const viewTitle={
@@ -22,7 +23,19 @@ const viewMenu={
 
 
 const Main =()=>{
-  const data = JSON.parse(localStorage.getItem('dates').slice());
+  let today = setDay();
+    dateObjectCheck ();
+    let data = JSON.parse(localStorage.getItem('dates').slice());
+    
+     //当日データない場合作成
+
+    if(!data[today]){
+      data[today] = {};
+      data[today].uriage = 0;
+      data[today].number = 0;
+      data[today].created = new Date();
+    }
+   
   let week = [ "日", "月", "火", "水", "木", "金", "土" ];
  
   let array = [];
@@ -32,7 +45,8 @@ const Main =()=>{
     arrayItem['day'] = key; 
     array.push(arrayItem);
   }
-  const todayAccounting = data[setDay()].uriage;
+  const textAccounting = data[today].uriage;
+  
 
   return(
     <div className="row">
@@ -41,7 +55,7 @@ const Main =()=>{
         
           <div style={viewTitle}>本日現在売上げ:</div>
           <div style={viewMenu}>
-            <span className="text-danger ml-3">{todayAccounting}</span>円
+            <span className="text-danger ml-3">{textAccounting}</span>円
             <button className=" btn btn-danger ml-5">リセット</button>
           </div>
         
