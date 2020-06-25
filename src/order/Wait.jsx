@@ -14,7 +14,7 @@ const Wait = (props)=>{
      props.sendParentAccounting(i);
   }
   return(
-    <div className="wait_area mt-1">
+    <div className="mt-1">
       <h3 className="text-center text-success font-weight-bold mt-3">
         <FontAwesomeIcon icon={faClipboardList} /> オーダー待ち覧
       </h3>
@@ -22,7 +22,7 @@ const Wait = (props)=>{
        <div className="bg-secondary text-center text-white h3 font-weight-bold p-5 ml-1 mt-4">オーダーなし</div>
        : 
        props.orderData.map((val,i)=>(
-         <div>
+         <div className="wait_area"> 
           <span>
             <button className="btn btn-success mr-2" onClick={()=>accountingNoSend(i)}>会計する</button>
             <label className="text-dark font-weight-bold mr-2">{'注文NO:' + (i+1)}</label>

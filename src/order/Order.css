@@ -202,3 +202,28 @@
    
   }
 }
+@media (max-width: 767px){
+  .main{
+    height: auto;
+  }
+  .accouding-main{
+    margin-left: -18%;
+  }
+  #main.row{
+    margin-left: 20%;
+  }
+  .order-row{
+    margin-left: 5%;
+  }
+  .accounding-btn{
+    margin-left: 5%;
+  }
+  .wait_area{
+    margin-left: 5%;
+  }
+  .Main-wait, .Main-Accounting{
+    width: 100%;
+    padding: 10%;
+  }
+  
+} 

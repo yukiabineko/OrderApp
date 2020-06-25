@@ -338,7 +338,7 @@ const Main = ()=>{
      {/*** メインエリア ****/}
      {state.right === true ? 
         <div className="row mt-2">
-        <div className="col-md-7 bg-light pt-2 ml-5">
+        <div className="col-md-7 pt-2 ml-5 Main-Accounting">
           <Accounting 
              viewData={state.items} 
              waitno={state.waitNO}
@@ -348,7 +348,7 @@ const Main = ()=>{
           /></div>
         {/*.....*/}
         
-        <div className="col-md-4 bg-light border-left pt-2 ">
+        <div className="col-md-4 bg-light border-left pt-2 Main-wait">
           <Wait 
             orderData={state.items} 
             sendParentDelete={sendWaitOderDelete}
@@ -362,7 +362,7 @@ const Main = ()=>{
 
      //チェックしてない
     <div className="row mt-2 ">
-      <div className="col-md-10 offset-1 no-check-accounthing">
+      <div className="col-md-10 offset-1 no-check-accounthing Main-wait">
       <Accounting 
              viewData={state.items} 
              waitno={state.waitNO}
