@@ -11,7 +11,7 @@ const thStyle={
 
 const Accounting = (props)=>{
   const[state, setState] = useState({
-    box: true
+    box: 'on'
   });
   const pareantOpenModal = ()=>{
     let modal = document.getElementById('AcoountingModal');
@@ -25,9 +25,18 @@ const Accounting = (props)=>{
   const rightView =(event)=>{
     let f = event.target.checked
     setState({
-      box: f
-    });
+      box: f ?'on' : ''
+    })
+    
     props. parentRight(f);
+    let main = document.getElementById('main');
+    if(f && props.viewData.length >0){
+       main.style.overflow = 'hidden';
+    }
+    else if(!f && props.viewData.length >0){
+      main.style.overflow = 'scroll';
+      main.style.height ='250px';
+    }
   }
   return(
     <div>
@@ -39,9 +48,11 @@ const Accounting = (props)=>{
       </div>
       
       {props.viewData.length === 0? 
-        <div className="bg-secondary text-white h3 font-weight-bold p-5 ml-3">精算するオーダーがありません。</div>
+         <div className="main" id="main">
+          <div className="bg-secondary text-white h3 font-weight-bold p-5 ml-3">精算するオーダーがありません。</div>
+         </div>
         :
-        <div className="main">
+        <div className="main" id="main">
           <div className="row">
             <div className="col-md-2 mt-1 h5 font-weight-bold"> 合計金額:</div>
             <div className="col-md-8 p-2 mr-5 bg-dark text-warning h3 font-weight-bold text-right rounded">{props.totalPrice}<span className="font-weight-bold text-white">円</span></div>

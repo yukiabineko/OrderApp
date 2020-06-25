@@ -147,6 +147,7 @@
 .itemTable2 td{
   height: 40px;
 }
+
 /******************************レスポンシブ ************************************/
 @media screen and (max-height: 768px) { /*ipad横*/
   #orderModal{

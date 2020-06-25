@@ -29,7 +29,7 @@ const Main = ()=>{
     changeMoney: 0,  //お釣り
     todaySale: 0,     //本日売上げ
     itemPoint: 0,     //買い上げ点数
-    right: true     //右エリア表示
+    right: true
   
   });
   //ドロワーを閉じる
@@ -43,7 +43,15 @@ const Main = ()=>{
     sendData.push({name: data.name, price: data.price, category: data.category, date: new Date()});
     itemArray.push({name: data.name, price: data.price, category: data.category, date: new Date()});
     
-    setState({data: sendData, items: state.items, waitNO: state.waitNO, changeMoney: state.changeMoney,todaySale: state.todaySale});
+    setState(
+      {
+        data: sendData, 
+        items: state.items, 
+        waitNO: state.waitNO, 
+        changeMoney: state.changeMoney,
+        todaySale: state.todaySale,
+        right: state.right
+      });
     modalViewPrice += Number(data.price);  //モーダル表示価格
 
   }
@@ -68,13 +76,14 @@ const Main = ()=>{
       changeMoney: state.changeMoney,
       todaySale: state.todaySale,
       itemPoint: state.itemPoint,
-      right: state.rightArea
+      right: state.right
     });
     modalViewPrice = 0;       //モーダルの価格覧リセット
 
     totalAccounting(0);  //会計エリア合計
 
     drowerClose(); //ドロワーを閉じる
+    
   }
   //モーダル内の各削除ボタン押した際処理削除処理
 
@@ -93,7 +102,7 @@ const Main = ()=>{
        changeMoney: state.changeMoney,
        todaySale: state.todaySale,
        itemPoint: state.itemPoint,
-       right: state.rightArea
+       right: state.right
       })
   }
   //オーダー待ちエリア個別削除処理
@@ -107,7 +116,7 @@ const Main = ()=>{
       waitNO: 0,       //一度最初のオーダーに戻す。
       todaySale: state.todaySale,
       itemPoint: state.itemPoint,
-      right: state.rightArea
+      right: state.right
     });
     globalItems.splice(i, 1);
     totalAccounting(0);  //会計エリア合計
@@ -132,9 +141,10 @@ const Main = ()=>{
       waitNO: i,changeMoney: state.changeMoney,
       todaySale: state.todaySale,
       itemPoint: state.itemPoint,
-      right: state.rightArea
+      right: state.right
     });
     totalAccounting(i);  //会計エリア合計
+   
   }
   // 会計処理モーダルからのsubmit
 
@@ -146,7 +156,7 @@ const Main = ()=>{
       changeMoney: change,
       todaySale: state.todaySale,
       itemPoint: state.itemPoint,
-      right: state.rightArea
+      right: state.right
    })  
   }
    //お釣りのリセット
@@ -159,7 +169,7 @@ const Main = ()=>{
       changeMoney: 0,
       todaySale: state.todaySale,
       itemPoint: state.itemPoint,
-      right: state.rightArea
+      right: state.right
     });
 
   }
@@ -191,7 +201,7 @@ const Main = ()=>{
        data[today] = {uriage: price, number: itemPoint, created: new Date()};
     }
     localStorage.setItem('dates',JSON.stringify(data));
-   alert(JSON.stringify(data));
+  
     
    newitems.splice(state.waitNO, 1);
    
@@ -203,7 +213,7 @@ const Main = ()=>{
       changeMoney: state.changeMoney,                    
       todaySale: price,
       itemPoint: itemPoint,
-      right: state.rightArea        
+      right: state.right      
     });
     totalAccounting(0);                     //精算エリアの合計を要素１のtotalに      
   }
@@ -310,6 +320,7 @@ const Main = ()=>{
       <PayoffArea 
       sendModalTotalMoney={accountingPrice} 
       sendAccountingSubmit={AccountingSubmit}
+     
       />
      </div>
 
@@ -327,16 +338,17 @@ const Main = ()=>{
      {/*** メインエリア ****/}
      {state.right === true ? 
         <div className="row mt-2">
-        <div className="col-md-7 bg-light pt-3 ml-5">
+        <div className="col-md-7 bg-light pt-2 ml-5">
           <Accounting 
              viewData={state.items} 
              waitno={state.waitNO}
              totalPrice={accountingPrice}
              parentRight={rightAria}
+             checkStatus={state.right}
           /></div>
         {/*.....*/}
         
-        <div className="col-md-4 bg-light border-left pt-3">
+        <div className="col-md-4 bg-light border-left pt-2 ">
           <Wait 
             orderData={state.items} 
             sendParentDelete={sendWaitOderDelete}
@@ -349,13 +361,14 @@ const Main = ()=>{
         : 
 
      //チェックしてない
-    <div className="row mt-2">
-      <div className="col-md-10 offset-1">
+    <div className="row mt-2 ">
+      <div className="col-md-10 offset-1 no-check-accounthing">
       <Accounting 
              viewData={state.items} 
              waitno={state.waitNO}
              totalPrice={accountingPrice}
              parentRight={rightAria}
+             checkStatus={state.right}
           /></div>
       </div>
     }
