@@ -55,11 +55,6 @@ const Accounting = (props)=>{
          </div>
         :
         <div className="main" id="main">
-          <div className="row order-row">
-            <div className="col-md-2 mt-1 h5 font-weight-bold"> 合計金額:</div>
-            <div className="col-md-8 p-2 mr-5 bg-dark text-warning h3 font-weight-bold text-right rounded">{props.totalPrice}<span className="font-weight-bold text-white">円</span></div>
-          </div>
-          <div className="border-bottom p-1 m-1"></div>
           <button className="btn btn-primary w-50 border-white p-3 font-weight-bold accounding-btn" onClick={pareantOpenModal}>精算</button>
           <label className="ml-3 mt-5 font-weight-bold">買上点数<span className="text-danger">{props.viewData[props.waitno].length}</span>点</label>
         

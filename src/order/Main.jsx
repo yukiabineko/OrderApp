@@ -241,15 +241,18 @@ const Main = ()=>{
            </span>
       </span>
     </div>
-     <div className="text-center text-dark h3 font-weight-bold mb-1">オーダー詳細</div>
-     
-
+     <div className="text-center text-dark h3 font-weight-bold mb-1 mt-1 mb-5">オーダー詳細</div>
+    
      <input type="checkbox" id="ordercheck" />&nbsp;
      <label for="ordercheck" className="h5 ml-4" id="oderOpen">
        <FontAwesomeIcon icon={faCartPlus} size="2x" /> 新規オーダー
      </label>
      <label for="ordercheck" className="text-primary h3" id="orderBack"></label>
      <label className="text-primary h3" id="orderBack2"></label>
+     <div className="row order-row">
+        <div className="left"> 合計金額:</div>
+        <div className="right bg-dark text-warning h3 font-weight-bold text-right rounded">{acc}<span className="font-weight-bold text-white">円</span></div>
+     </div>
 
      {/*. ドロワーのエリアView..*/}
      <div id="orderArea">
@@ -340,8 +343,8 @@ const Main = ()=>{
 
      {/*** メインエリア ****/}
      {state.right === true ? 
-        <div className="row mt-1">
-        <div className="col-md-7 pt-2 ml-5 Main-Accounting">
+        <div className="row mt-5">
+        <div className="col-md-7 pt-2 ml-5 Main-Accounting mt-4 border-top">
           <Accounting 
              viewData={state.items} 
              waitno={state.waitNO}
@@ -351,7 +354,7 @@ const Main = ()=>{
           /></div>
         {/*.....*/}
         
-        <div className="col-md-4 bg-light border-left pt-2 Main-wait">
+        <div className="col-md-4 bg-light border-left pt-2 Main-wait mt-4">
           <Wait 
             orderData={state.items} 
             sendParentDelete={sendWaitOderDelete}
@@ -364,8 +367,8 @@ const Main = ()=>{
         : 
 
      //チェックしてない
-    <div className="row mt-2 ">
-      <div className="col-md-10 offset-1 no-check-accounthing Main-wait">
+    <div className="row mt-4 ">
+      <div className="col-md-10 offset-1 no-check-accounthing Main-wait mt-5 border-top">
       <Accounting 
              viewData={state.items} 
              waitno={state.waitNO}
