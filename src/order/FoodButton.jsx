@@ -15,7 +15,7 @@ const FoodButton = (props)=>{
       {foods.map((value, i)=>(
         <button 
           key={'bt'+i} 
-          className="btn btn-primary btn-block mb-3"
+          className="btn btn-primary btn-block mb-3 foodbutton"
           onClick={()=>sendData(value.name, value.price, value.category)}
           >{value.name}</button>
       ))}

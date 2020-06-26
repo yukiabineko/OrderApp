@@ -263,6 +263,34 @@
     top: 24%;
     left: -3%;
   }
+  #orderArea{
+    position: fixed;
+    overflow: scroll;
+    width: 75%;
+    height: 50%;
+    top: 50%;
+    left:15%;
+    background: #fff;
+    z-index: 9999;
+    transform: translateX(-150%);
+    transition: 0.3s ease-in-out;
+  }
+  #orderModal{
+    position: fixed;
+    width: 75%;
+    height: 40%;
+    top: 5%;
+    left:15%;
+    border-radius: 6px;
+    background: #fff;
+    z-index: 9999;
+    transform: translateY(-200%);
+    transition: 0.3s ease-in-out;
+  }
+  .table_area{
+    margin-left: 8%;
+    height: 200px;
+  }
   
   .Main-Accounting{
     margin-top: 20%;
@@ -304,7 +332,10 @@
     left: 81%;
     display: display;
   }
-  
+  .foodbutton, .drinkbutton{
+    width: 100%;
+    margin-left: 10%;
+  }
  
 } 
 @media screen and (max-width: 1023px) and (min-width: 768px){
