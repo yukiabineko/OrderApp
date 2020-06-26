@@ -281,7 +281,7 @@ const Main = ()=>{
         }
         
        <div className="row">
-         <div className="col-md-10 offset-1 table_area">
+         <div className="col-md-10 offset-1 table_area mb-3">
            {state.data.length === 0 ? 
              <div className="text-center text-primary h4 font-weight-bold no_order">まだオーダーがありません。</div> 
              :
@@ -313,7 +313,7 @@ const Main = ()=>{
          </div>
        </div>
        {state.data.length === 0 ? <div></div> : <div className="text-center h-20 overflow-auto">
-             <button className="btn btn-primary" onClick={AddOrder}>確定</button>
+             <button className="btn btn-primary w-25" onClick={AddOrder}>確定</button>
            </div>   
            }
      </div>
