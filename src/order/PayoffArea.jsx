@@ -52,7 +52,7 @@ const PayoffArea = (props)=>{
         </div>
       </div>
       <div className="row mt-3">
-          <div className="col-md-10 offset-1 bg-white shadow p-3">
+          <div className="col-md-10 offset-1 bg-white shadow p-3 payoff-modal">
             <form onSubmit={sendEarnings}>
               <div className="form-group ">
                 <label>お預かり金額</label>

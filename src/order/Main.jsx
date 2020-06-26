@@ -274,7 +274,7 @@ const Main = ()=>{
         {state.data.length === 0 ?
          '' 
          : 
-         <div className="mb-2 round font-weight-bold">
+         <div className="mb-3 round font-weight-bold">
           <span className="bg-dark text-white p-2 rounded-left ml-2"><FontAwesomeIcon icon={faDollarSign} size="lg" />合計金額:</span>
           <span className="text-warning bg-dark p-2 rounded-right">{modalViewPrice}円</span>
        </div>
@@ -287,7 +287,7 @@ const Main = ()=>{
              :
             <div>
             
-            <table className="table table-bordered itemTable2">
+            <table className="table table-bordered itemtable3">
                 <thead>
                   <tr>
                     <th className="bg-primary text-white font-weight-bold w-75">商品名</th>
@@ -298,9 +298,7 @@ const Main = ()=>{
                   {state.data.map((value,i)=>(
                     <tr>
                     <td className="font-weight-bold bg-white"> 
-                      <h5>{value.name}</h5>
-                      <div className="border-top border-primary mb-2"></div>
-                      <h6>価格:{value.price}<span className="text-danger">円</span></h6>
+                      <label>{value.name}<span className="text-danger">価格:{value.price}</span>円</label>
                     </td>
                     <td className="font-weight-bold bg-white">
                       <button className="btn btn-danger btn-block" onClick={()=>modalOrderDelete(i)}>削除</button>
@@ -354,7 +352,7 @@ const Main = ()=>{
           /></div>
         {/*.....*/}
         
-        <div className="col-md-4 bg-light border-left pt-2 Main-wait mt-4">
+        <div className="col-md-4 bg-light border-left pt-2 Main-wait mt-4 border-top">
           <Wait 
             orderData={state.items} 
             sendParentDelete={sendWaitOderDelete}
