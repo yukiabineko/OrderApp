@@ -236,12 +236,13 @@
     margin-left: 20%;
   }
   .order-row{
-    left: 5%;
+    left: 58%;
+    top: 24%;
     margin-top: 9%;
     width: 90%
   }
   #oderOpen{
-    top: 20%;
+    top: 28%;
     left: -3%;
   }
   .Main-Accounting{
@@ -261,8 +262,8 @@
   }
   .uriage{
     position: fixed;
-    top:16%;
-    left: 100%;
+    top:10%;
+    left: 99%;
     width: 100px;
     height: 30px;
     z-index: 12;
@@ -280,7 +281,7 @@
   }
   .uriage span .span1{
     position: fixed;
-    top:18.5%;
+    top:11.5%;
     left: 81%;
     display: display;
   }
