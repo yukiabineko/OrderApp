@@ -234,11 +234,14 @@ const Main = ()=>{
      <div className="text-right text-white uriage">
        <span className="bg-dark p-2 rounded-pill font-weight-bold">
          <FontAwesomeIcon icon={faFileSignature} size="lg" />
-           売上げ：
-           <span className="text-warning">{state.todaySale}</span>円
+           売上げ： 
+           <span className="text-warning span1">
+             {state.todaySale}
+             <label className="text-white">円</label>
+           </span>
       </span>
     </div>
-     <div className="text-center text-dark h3 font-weight-bold mb-5">オーダー詳細</div>
+     <div className="text-center text-dark h3 font-weight-bold mb-1">オーダー詳細</div>
      
 
      <input type="checkbox" id="ordercheck" />&nbsp;
@@ -337,7 +340,7 @@ const Main = ()=>{
 
      {/*** メインエリア ****/}
      {state.right === true ? 
-        <div className="row mt-2">
+        <div className="row mt-1">
         <div className="col-md-7 pt-2 ml-5 Main-Accounting">
           <Accounting 
              viewData={state.items} 

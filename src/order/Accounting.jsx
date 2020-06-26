@@ -6,7 +6,8 @@ import { faCashRegister, faHamburger, faCoffee } from '@fortawesome/free-solid-s
 import { useState } from 'react';
 
 const thStyle={
-  width: '5%'
+  width: '5%',
+
 }
 
 const Accounting = (props)=>{

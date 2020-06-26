@@ -225,5 +225,67 @@
     width: 100%;
     padding: 10%;
   }
-  
+  .uriage{
+    position: fixed;
+    top:16%;
+    left: 100%;
+    width: 100px;
+    height: 30px;
+    z-index: 12;
+  }
+  .uriage span{
+    position: fixed;
+    left: 85%;
+    display: block;
+    width: 110px;
+    height: 60px;
+    padding:3%;
+    margin-left: -20%;
+    font-size: 14px;
+    
+  }
+  .uriage span .span1{
+    position: fixed;
+    top:18.5%;
+    left: 81%;
+    display: display;
+  }
+ 
 } 
+@media screen and (max-width: 1023px) and (min-width: 768px){
+  .uriage{
+    position: fixed;
+    top:8%;
+    left: 100%;
+    width: 100px;
+    height: 30px;
+    z-index: 12;
+  }
+  .uriage span{
+    position: fixed;
+    left: 100%;
+    display: block;
+    width: 110px;
+    height: 60px;
+    padding:3%;
+    margin-left: -20%;
+    font-size: 14px;
+    
+  }
+  .uriage span .span1{
+    position: fixed;
+    top:9%;
+    left: 98%;
+    display: display;
+  }
+  .Main-wait{
+    overflow: scroll;
+    height: 800px;
+  }
+  .itemTable2{
+    height: 400px;
+  }
+  .itemTable2 tbody{
+    height: 400px;
+  } 
+}
