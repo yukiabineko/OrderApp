@@ -251,7 +251,7 @@ const Main = ()=>{
      <label className="text-primary h3" id="orderBack2"></label>
      <div className="row order-row">
         <div className="left"> 合計金額:</div>
-        <div className="right bg-dark text-warning h3 font-weight-bold text-right rounded">{acc}<span className="font-weight-bold text-white">円</span></div>
+        <div className="right bg-dark text-warning h3 font-weight-bold text-right rounded">{accountingPrice}<span className="font-weight-bold text-white">円</span></div>
      </div>
 
      {/*. ドロワーのエリアView..*/}
