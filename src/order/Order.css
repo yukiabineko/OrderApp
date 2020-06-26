@@ -121,6 +121,7 @@
   width: 100%;
   height: 500px;
 }
+
 .uriage{
   position: fixed;
   top:10%;
@@ -408,12 +409,13 @@
 @media screen and (min-width: 1024px) and (max-width: 1300px){ /*ipad ~ ipad pro */
   #oderOpen{
     position: absolute;
-    top: 12%;
-   
+    top: 20%;
+    margin-bottom: 14%;
   }
   .order-row{
-    top: 14%;
+    top: 22%;
     left: 25%;
+    margin-bottom: 14%;
   }
   .table_area{
     height: 280px;
@@ -422,11 +424,11 @@
 }
 @media screen and (min-width:1366px){
   #oderOpen{
-    top: 16%;
+    top: 20%;
    
   }
   .order-row{
-    top: 19%;
+    top: 22%;
     left: 25%;
 
   }

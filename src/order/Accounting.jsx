@@ -45,13 +45,13 @@ const Accounting = (props)=>{
       <div className="text-right">
         <input type="checkbox" checked={state.box} onChange={rightView} />一覧表示
       </div>
-      <div className="text-center h2 text-primary font-weight-bold mb-3">
+      <div className="text-center h2 text-primary font-weight-bold mb-4">
          <FontAwesomeIcon icon={faCashRegister} /> 商品精算
       </div>
       
       {props.viewData.length === 0? 
          <div className="main" id="main">
-          <div className="bg-secondary text-white h3 font-weight-bold p-5 ml-3 not-accouding">精算するオーダーがありません。</div>
+          <div className="bg-secondary text-white text-center h4 font-weight-bold p-5 ml-3 not-accouding">精算するオーダーがありません。</div>
          </div>
         :
         <div className="main" id="main">

@@ -15,11 +15,13 @@ const Wait = (props)=>{
   }
   return(
     <div className="mt-1">
-      <h3 className="text-center text-success font-weight-bold mt-3">
+      <h3 className="text-center text-success font-weight-bold mt-4 mb-4">
         <FontAwesomeIcon icon={faClipboardList} /> オーダー待ち覧
       </h3>
+     
       {props.orderData.length === 0 ?
-       <div className="bg-secondary text-center text-white h3 font-weight-bold p-5 ml-1 mt-4">オーダーなし</div>
+       
+       <div className="bg-secondary text-center text-white h4 font-weight-bold p-5 ml-1 mt-3">オーダーなし</div>
        : 
        props.orderData.map((val,i)=>(
          <div className="wait_area"> 
