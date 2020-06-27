@@ -51,7 +51,7 @@ const Accounting = (props)=>{
       
       {props.viewData.length === 0? 
          <div className="main" id="main">
-          <div className="bg-secondary text-white text-center h4 font-weight-bold p-5 ml-3 not-accouding">精算するオーダーがありません。</div>
+          <div className="bg-secondary text-white h5 font-weight-bold p-5 ml-3 not-accouding">精算するオーダーがありません。</div>
          </div>
         :
         <div className="main" id="main">

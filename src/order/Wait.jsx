@@ -21,7 +21,7 @@ const Wait = (props)=>{
      
       {props.orderData.length === 0 ?
        
-       <div className="bg-secondary text-center text-white h4 font-weight-bold p-5 ml-1 mt-3">オーダーなし</div>
+       <div className="bg-secondary text-center text-white h5 font-weight-bold p-5 ml-1 mt-3">オーダーなし</div>
        : 
        props.orderData.map((val,i)=>(
          <div className="wait_area"> 
