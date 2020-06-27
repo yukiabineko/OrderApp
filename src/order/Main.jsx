@@ -257,7 +257,7 @@ const Main = ()=>{
 
      {/*. ドロワーのエリアView..*/}
      <div id="orderArea">
-     <div className="mt-5 font-weight-bold text-center font-weight-bold"><h2>オーダー入力</h2></div>
+     <div className="font-weight-bold text-center font-weight-bold"><h2>オーダー入力</h2></div>
      <div className="border border-top mb-1"></div>
      <div className="data-input">
        <Drower parentData={addData} />
@@ -306,7 +306,7 @@ const Main = ()=>{
                       <label>{value.name}<span className="text-danger">価格:{value.price}</span>円</label>
                     </td>
                     <td className="font-weight-bold bg-white">
-                      <button className="btn btn-danger btn-block" onClick={()=>modalOrderDelete(i)}>削除</button>
+                      <button className="btn btn-danger" onClick={()=>modalOrderDelete(i)}>削除</button>
                     </td>
                   </tr>
                   ))}
@@ -318,7 +318,7 @@ const Main = ()=>{
          </div>
        </div>
        {state.data.length === 0 ? <div></div> : <div className="text-center h-20 overflow-auto">
-             <button className="btn btn-primary w-25" onClick={AddOrder}>確定</button>
+             <button className="btn btn-primary w-25 order-add-button" onClick={AddOrder}>確定</button>
            </div>   
            }
      </div>
@@ -346,7 +346,7 @@ const Main = ()=>{
 
      {/*** メインエリア ****/}
      {state.right === true ? 
-        <div className="row mt-5">
+        <div className="row main-area">
         <div className="col-md-7 pt-2 ml-5 Main-Accounting mt-4 border-top">
           <Accounting 
              viewData={state.items} 
