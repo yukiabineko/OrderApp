@@ -61,6 +61,7 @@
   transform: translateY(-200%);
   transition: 0.3s ease-in-out;
 }
+
 #AcoountingModal{
   position: fixed;
   width: 30%;
@@ -266,7 +267,7 @@
   }
   #orderArea{
     position: fixed;
-    overflow: scroll;
+    overflow: hidden;
     width: 75%;
     height: 50%;
     top: 50%;
@@ -287,6 +288,11 @@
     z-index: 9999;
     transform: translateY(-200%);
     transition: 0.3s ease-in-out;
+  }
+  
+  .data-input{
+    overflow: scroll;
+    height: 80%;
   }
   .table_area{
     margin-left: 8%;
