@@ -18,13 +18,13 @@ const Wait = (props)=>{
       <h3 className="text-center text-success font-weight-bold mt-4 mb-4">
         <FontAwesomeIcon icon={faClipboardList} /> オーダー待ち覧
       </h3>
-     
+      <div className="wait_area">
       {props.orderData.length === 0 ?
        
        <div className="bg-secondary text-center text-white h5 font-weight-bold p-5 ml-1 mt-3">オーダーなし</div>
        : 
        props.orderData.map((val,i)=>(
-         <div className="wait_area"> 
+         <div> 
           <span>
             <button className="btn btn-success mr-2" onClick={()=>accountingNoSend(i)}>会計する</button>
             <label className="text-dark font-weight-bold mr-2">{'注文NO:' + (i+1)}</label>
@@ -68,6 +68,8 @@ const Wait = (props)=>{
        ))
       }
     </div>
+  </div>
+      
   );
 }
 export default connect()(Wait);

@@ -16,3 +16,8 @@ code {
     overflow: scroll;
   }
 }
+@media screen and (min-width:1366px){
+  body{
+    overflow: hidden;
+  }
+}

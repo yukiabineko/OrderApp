@@ -5,10 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCashRegister, faHamburger, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
 
-const thStyle={
-  width: '5%',
-
-}
 
 const Accounting = (props)=>{
   const[state, setState] = useState({
@@ -58,32 +54,20 @@ const Accounting = (props)=>{
           <button className="btn btn-primary w-50 border-white p-3 font-weight-bold accounding-btn" onClick={pareantOpenModal}>精算</button>
           <label className="ml-3 mt-5 font-weight-bold">買上点数<span className="text-danger">{props.viewData[props.waitno].length}</span>点</label>
         
-        <div className="item-table">
-          <table className="table mt-3 itemTable2">
+        <div className="item-tables bg-light" >
+          <table className="table table-bordered mt-3 itemtable2">
           <thead>
             <tr>
-              <th className="bg-dark text-center text-white" style={thStyle}></th>
+              <th className="bg-dark text-center text-white"></th>
               <th className="bg-dark text-center text-white">商品名</th>
               <th className="bg-dark text-center text-white">価格</th>
             </tr>
           </thead>
           <tbody>
           
-            {props.viewData[props.waitno].map((value)=>(
+            {props.viewData[props.waitno].map((value,i)=>(
               <tr>
-               {value.category === '軽食'? 
-                 <td className="font-weight-bold text-center bg-white align-middle" style={thStyle}>
-                   <p></p>
-                   <div><FontAwesomeIcon icon={faHamburger} size="2x" /></div>
-                   <p>{value.category}</p>
-                 </td>
-                 : 
-                 <td className="font-weight-bold text-center bg-white align-middle" >
-                    <p></p>
-                    <div><FontAwesomeIcon icon={faCoffee} size="2x" /></div>
-                    <p>{value.category}</p>
-                 </td>
-                }
+                <td className="font-weight-bold text-center bg-white align-middle h4">{i+1}</td>
                 <td className="font-weight-bold text-center bg-white align-middle h4">{value.name}</td>
                 <td className="font-weight-bold text-center bg-white align-middle h4 text-danger">{value.price}</td>
                 
