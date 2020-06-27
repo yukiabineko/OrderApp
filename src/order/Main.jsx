@@ -241,7 +241,8 @@ const Main = ()=>{
            </span>
       </span>
     </div>
-     <div className="text-center text-dark h3 font-weight-bold mb-1 mt-1 mb-5">オーダー詳細</div>
+    
+     <div className="text-center text-dark h3 font-weight-bold mb-1 mt-1 mb-5 drower-title">オーダー詳細</div>
     
      <input type="checkbox" id="ordercheck" />&nbsp;
      <label for="ordercheck" className="h5 ml-4" id="oderOpen">
@@ -256,6 +257,9 @@ const Main = ()=>{
 
      {/*. ドロワーのエリアView..*/}
      <div id="orderArea">
+     <div className="mt-5 font-weight-bold text-center font-weight-bold"><h2>オーダー入力</h2></div>
+     <div className="border border-top mb-1"></div>
+     <div className="data-input">
        <Drower parentData={addData} />
        <Drower2 parentData={addData} />
        {/*...ドロワーボタン入力エリア...*/}
@@ -266,6 +270,7 @@ const Main = ()=>{
         <div className="row btArea">
           <div className="col-md-6"><DrinkButton sendDrinkData={addData} /></div>
           <div className="col-md-6 border-left"><FoodButton sendFoodData={addData} /></div>
+        </div>
         </div>
     </div>
      <div id="orderModal" className="pb-5">
