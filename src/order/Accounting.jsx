@@ -5,6 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCashRegister, faHamburger, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
 
+const st ={
+  marginBottom: '1.5vh'
+}
+
 
 const Accounting = (props)=>{
   const[state, setState] = useState({
@@ -47,6 +51,7 @@ const Accounting = (props)=>{
       
       {props.viewData.length === 0? 
          <div className="main" id="main">
+            <div style={st} ></div>
           <div className="bg-secondary text-white h5 font-weight-bold p-5 ml-3 not-accouding">精算するオーダーがありません。</div>
          </div>
         :
