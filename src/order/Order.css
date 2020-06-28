@@ -196,6 +196,12 @@
   z-index: 999;
   
 }
+.accounding-btn{
+  width: 30%;
+  height: 8vh;
+  border-radius: 6px;
+  
+}
 
 /******************************レスポンシブ ************************************/
 @media screen and (max-height: 768px) { /*ipad横*/
@@ -258,7 +264,7 @@
 }
 @media (max-width: 767px){               /*スマホ縦*/
   .main-area{
-    margin-top: 35%;
+    margin-top: 37%;
   }
   .main{
     height: auto;
@@ -334,7 +340,7 @@
   }
   
   .Main-Accounting{
-    margin-top: 20%;
+    margin-top: 25%;
   }
   .accounding-btn{
     margin-left: 5%;

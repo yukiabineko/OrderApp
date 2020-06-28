@@ -32,12 +32,11 @@ const Accounting = (props)=>{
     props. parentRight(f);
     let main = document.body;
     if(f && props.viewData.length >0){
-      main.style.overflow = 'hidden';
+      /*main.style.overflow = 'hidden';*/
       
     }
     else if(!f && props.viewData.length >0){
-      main.style.overflow = 'scroll';
-     
+       /*main.style.overflow = 'hidden';*/
     }
   }
   return(
@@ -56,7 +55,10 @@ const Accounting = (props)=>{
          </div>
         :
         <div className="main" id="main">
-          <button className="btn btn-primary w-50 border-white p-3 font-weight-bold accounding-btn" onClick={pareantOpenModal}>精算</button>
+          <button className="btn btn-primary  border-white  font-weight-bold accounding-btn" onClick={pareantOpenModal}>
+            <FontAwesomeIcon icon={faCashRegister} size="2x" />&thinsp; 
+            精算
+          </button>
           <label className="ml-3 mt-5 font-weight-bold">買上点数<span className="text-danger">{props.viewData[props.waitno].length}</span>点</label>
         
         <div className="item-tables bg-light" >

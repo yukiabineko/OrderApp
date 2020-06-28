@@ -370,8 +370,8 @@ const Main = ()=>{
         : 
 
      //チェックしてない
-    <div className="row mt-4 ">
-      <div className="col-md-10 offset-1 no-check-accounthing Main-wait mt-5 border-top">
+    <div className="row mt-5 ">
+      <div className="col-md-10 offset-1 no-check-accounthing Main-Accounting  border-top">
       <Accounting 
              viewData={state.items} 
              waitno={state.waitNO}
