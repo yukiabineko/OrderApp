@@ -156,7 +156,7 @@
   position: sticky;
   top: 0;
   /* tbody内のセルより手前に表示する */
-  z-index: 999;
+  z-index: 9;
   
 }
 .order-row{
@@ -193,7 +193,7 @@
   top: 0;
   height: 100px;
   /* tbody内のセルより手前に表示する */
-  z-index: 999;
+  z-index: 9;
   
 }
 .accounding-btn{
@@ -202,6 +202,10 @@
   border-radius: 6px;
   
 }
+.payoff-phone{
+  display: none;
+}
+
 
 /******************************レスポンシブ ************************************/
 @media screen and (max-height: 768px) { /*ipad横*/
@@ -315,6 +319,41 @@
     transform: translateY(-200%);
     transition: 0.3s ease-in-out;
   }
+  #AcoountingModal{
+    width: 85%;
+    height: 43vh;
+    overflow: hidden;
+    top: 15%;
+    left:5%;
+  }
+  .payoff-phone{
+    display: block;
+  }
+  .payoff-pc{
+    display: none;
+  }
+  .payoff-modal{
+    margin-right: 8%;
+    margin-top: -2%;
+  }
+  /*お釣りモーダル*/
+  #changeModal{
+    width: 75%;
+    height: 28%;
+    overflow-x: hidden;
+    top: 20%;
+    left:10%;
+  }
+  .charge-main{
+    overflow-x: hidden;
+    margin-left: -10%;
+    max-width: 100%;
+  }
+  /* お釣りボタン*/
+  .charge-button{
+    margin-top: 5%;
+     margin-left: -20%;
+  }
   
   .data-input{
     overflow: scroll;
@@ -362,6 +401,9 @@
   .right{
     width: 99%;
   }
+  .uriage{
+    margin-bottom: 5%;
+  }
  
 } 
 @media (max-width: 767px) and (min-height: 800px){  /* iphonxシリーズ縦*/
@@ -383,7 +425,7 @@
   }
   #orderModal{
     width: 75%;
-    height: 40%;
+    height: 35%;
     top: 2%;
     left:15%;
   }
@@ -393,6 +435,25 @@
     left:15%;
    
   }
+  #AcoountingModal{
+    width: 85%;
+    height: 38vh;
+    overflow: hidden;
+    top: 15%;
+    left:5%;
+  }
+  .charge-main{
+    overflow-x: hidden;
+    margin-left: -10%;
+    max-width: 100%;
+    margin-top: 5%;
+  }
+  /* お釣りボタン*/
+  .charge-button{
+    margin-top: 10%;
+     margin-left: -22%;
+  }
+  
   
 }
 @media screen and (max-width: 1023px) and (min-width: 768px){
@@ -429,6 +490,7 @@
   #AcoountingModal{
     width: 50%;
     height: 300px;
+    left: 25%;
   }
   .payoff-modal{
     height: 200px;
@@ -436,6 +498,12 @@
   .table_area{
     height: 180px;
   }
+  /*お釣りボタン*/
+
+  .charge-main{
+    margin-bottom: 10%;
+    margin-top: 10%;
+  }  
   
 }
 @media screen and (min-width: 1024px) and (max-width: 1300px){ /*ipad ~ ipad pro */
@@ -452,6 +520,17 @@
   .table_area{
     height: 280px;
     margin-bottom: 14%;
+  }
+  #AcoountingModal{
+    width: 50%;
+    height: 41vh;
+    overflow: hidden;
+    top: 20%;
+    left:25%;
+  }
+  .charge-main{
+    margin-bottom: 12%;
+    margin-top: 10%;
   }
 }
 @media screen and (min-width:1366px){
@@ -470,5 +549,13 @@
   }
   .table_area{
     margin-bottom: 15%;
+  }
+  .payoff-modal{
+    height:  28vh;
+  }
+  /* お釣りボタン*/
+  .charge-button{
+    margin-top: 5%;
+    margin-left: -5%;
   }
 }

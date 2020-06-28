@@ -21,12 +21,12 @@ const ChangeMoney = (props)=>{
       <div className="text-center font-weight-bold h4 mt-2">[お釣り]</div>
       <div className="border-top mt-3"></div>
         <div className="row">
-            <div className="col-md-8 offset-2">
+            <div className="col-md-8 offset-2 ">
               <div className="text-dark text-center font-weight-bold mb-2">ありがとうございます。</div>
-              <div className="text-danger text-center pt-2 pb-2 font-weight-bold h2 mb-2">
+              <div className="text-danger text-center pt-2 pb-2 font-weight-bold h2 charge-main">
                 {"おつり" + props.sendChangeMoney + "円"}
               </div>
-              <div className="text-center">
+              <div className="text-center charge-button">
                 <button className="btn btn-secondary" onClick={closeChangeModal}>閉じる</button>
               </div>
             </div>

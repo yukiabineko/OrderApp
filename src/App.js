@@ -10,12 +10,14 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee, faShoppingBag, faFileAlt, faListAlt, faMapPin, faBaby, faBars } from '@fortawesome/free-solid-svg-icons'
 
-
+const st ={
+  zIndex: '9'
+}
 
 const App = ()=>{
   return(
    <BrowserRouter>
-      <nav className="navbar navbar-expand-lg navbar-light bg-dark font-weight-bold fixed-top mb-5">
+      <nav className="navbar navbar-expand-lg navbar-light bg-dark font-weight-bold fixed-top mb-5" style={st}>
         <a className="navbar-brand mr-3 text-white"> <span className="text-white mr-1"><FontAwesomeIcon icon={faCoffee} size="lg"/></span> オーダーアプリ</a>
         <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
           <FontAwesomeIcon icon={faBars} />
@@ -23,7 +25,7 @@ const App = ()=>{
         <div className="collapse navbar-collapse" id="navbarsExample01">
         <ul className="navbar-nav mr-auto">
         <li className="nav-item">
-          <Link to="/" className="font-weight-bold mr-3 text-warning">
+          <Link to="/" className="font-weight-bold mr-3 text-warning" >
             <span className="text-warning mr-1"><FontAwesomeIcon icon={faShoppingBag} size="lg"/></span> オーダー
           </Link></li>
         <li className="nav-item">

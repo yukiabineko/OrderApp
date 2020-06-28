@@ -45,12 +45,22 @@ const PayoffArea = (props)=>{
     <div>
       <div className="text-center font-weight-bold h4 mt-2">[お会計]</div>
       <div className="border-top mt-3"></div>
-      <div className="row mt-3">
+      {/*...pc...*/}
+      <div className="row mt-3 payoff-pc">
         <div className="col-md-5 offset-1 bg-dark text-white pt-2 pb-2 font-weight-bold">お買い上げ金額：</div>
         <div className="col-md-5 bg-dark  text-right text-warning pt-2 pb-2 font-weight-bold">
           {props.sendModalTotalMoney + "円"}
         </div>
       </div>
+       {/*...スマホ..*/}
+       <div className="row mt-3 payoff-phone">
+        <div className="col-md-11 bg-dark  text-right text-warning pt-2 pb-2 font-weight-bold">
+          {"会計"+props.sendModalTotalMoney + "円"}
+        </div>
+      </div>
+
+
+
       <div className="row mt-3">
           <div className="col-md-10 offset-1 bg-white shadow p-3 payoff-modal">
             <form onSubmit={sendEarnings}>
