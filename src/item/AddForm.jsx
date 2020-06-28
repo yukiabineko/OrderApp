@@ -64,7 +64,7 @@ const AddForm = (props)=>{
         </button></div>
       <div className="text-center text-dark h1 mb-3 mt-5">登録フォーム</div>
       <div className="row">
-        <div className="col-md-10 offset-1 bg-light shadow p-5">
+        <div className="col-md-10 offset-1 p-5">
           <form onSubmit={doSubmit}>
 
              <div className="form-group">
@@ -83,7 +83,7 @@ const AddForm = (props)=>{
                   <option value="軽食">軽食</option>
                </select>
              </div>
-             <div className="text-center">
+             <div className="text-center mt-5">
                <input type="submit" value="追加" className="btn btn-primary w-25" />
              </div>
 

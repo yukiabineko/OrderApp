@@ -57,9 +57,27 @@ button:focus {
   overflow: scroll;
   height: 500px;
 }
+.list-pc{
+  display: table;
+  width: 100%;
+}
+.list-phone{
+  display: none;
+}
 /**********************************************************************************************************/
 @media screen and (min-height: 1024px){
   .item-row{
     height: 700px;
+  }
+}
+@media (max-width: 767px){
+  .list-pc{
+    display: none;
+  }
+  .list-phone{
+    display: table;
+  }
+  #content{
+    max-width: 100%;
   }
 }

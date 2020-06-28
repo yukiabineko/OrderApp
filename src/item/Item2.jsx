@@ -20,18 +20,18 @@ const customStyles = {
     top                   : '50%',
     left                  : '50%',
     right                 : 'auto',
-    width                 : '50%',
+    width                 : '89%',
     bottom                : 'auto',
-    marginRight           : '-50%',
+    marginRight           : '-60%',
     borderRadius　　　　　　: '4px',
     background            : '#f0f0f0',
-    padding               : '10px',
+    padding               : '4px',
     transform             : 'translate(-50%, -50%)'
  }
 };
 
 
-const Item = (props)=>{
+const Item2 = (props)=>{
   const [state, setState] = useState({
     modalIsOpen: false,
     name: props.value.name,
@@ -104,13 +104,14 @@ const Item = (props)=>{
   return(
   
       <tr>
-        <td className="text-center bg-white">{props.index}</td>
-        <td className="text-center bg-white">{props.value.name}</td>
-        <td className="text-center bg-white">{props.value.price}</td>
-        <td className="text-center bg-white">{props.value.category}</td>
         <td className="text-center bg-white">
-          <button id={"item"+props.index} className="btn btn-danger mr-3" onClick={()=>delItem(props.index)}>削除</button>
-          <button id={"item"+props.index} className="btn btn-primary mr-3" onClick={()=>openModal(props.index)}>編集</button>
+          <h5 className="font-weight-bold">{props.value.name}</h5>
+          <p>{props.value.category}</p>
+        </td>
+        <td className="text-center bg-white align-middle">{props.value.price}</td>
+        <td className="text-center bg-white align-middle">
+          <button id={"item"+props.index} className="btn btn-danger btn-block" onClick={()=>delItem(props.index)}>削除</button>
+          <button id={"item"+props.index} className="btn btn-primary btn-block" onClick={()=>openModal(props.index)}>編集</button>
           <Modal
           isOpen={state.modalIsOpen}
           onAfterOpen={afterOpenModal}
@@ -168,10 +169,11 @@ const Item = (props)=>{
             </div>
           </div>
         </Modal>
-        </td>
-      </tr>
 
-  
+        </td>
+        
+        
+      </tr>  
   );
 }
-export default connect((state)=>state)(Item)
+export default connect((state)=>state)(Item2)

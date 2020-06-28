@@ -339,8 +339,8 @@
   /*お釣りモーダル*/
   #changeModal{
     width: 75%;
-    height: 28%;
-    overflow-x: hidden;
+    height: 35%;
+    overflow:hidden;
     top: 20%;
     left:10%;
   }
