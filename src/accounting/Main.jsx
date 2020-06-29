@@ -6,8 +6,13 @@ import './Accounting.css';
 
 const Thstyle={width: '10%'};
 
+
 const viewMenu={
-  
+  float: 'right',
+  fontWeight: 'bold',
+  fontSize:'26px',
+  width: '70%',
+  marginBottom: '1%'
 };
 
 
@@ -23,6 +28,7 @@ const Main =()=>{
       data[today].uriage = 0;
       data[today].number = 0;
       data[today].created = new Date();
+      localStorage.setItem('dates',JSON.stringify(data));
     }
    
   let week = [ "日", "月", "火", "水", "木", "金", "土" ];
@@ -42,7 +48,7 @@ const Main =()=>{
       <div className="col-md-10 offset-1  mt-5 bg-light shadow pb-3">
         <div className="text-center h3 font-weight-bold mt-3 mb-5">[売上げ管理]</div>
         
-          <div className="viewTitle">本日現在売上げ:</div>
+          <div className="viewTitle" >本日現在売上げ:</div>
           <div className="viewMenu">
             <span className="text-danger ml-3">{textAccounting}</span>円
             <button className=" btn btn-danger ml-5">リセット</button>

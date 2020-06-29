@@ -14,7 +14,11 @@ export const dateObjectCheck = (day)=>{
 }
 export const showTodayAccounting =()=>{
   const today = setDay();
-  const strage =JSON.parse(localStorage.getItem ('dates'));
-  const todayData = strage[today];
-  return todayData;
+  const strage = JSON.parse(localStorage.getItem ('dates'));
+  if(strage[today]){
+    return strage[today]
+  }
+  else{
+    return 0;
+  }
 }

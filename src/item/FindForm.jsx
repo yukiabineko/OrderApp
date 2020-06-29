@@ -59,7 +59,7 @@ const FindForm = (props)=>{
                 onChange={seachParameter}
 
               />
-              <input type="submit" value="検索" className="btn btn-success" />
+              <input type="submit" value="検索" className="btn btn-success s-bt1" />
            </div>
             : 
             state.number === '2' ?
@@ -71,7 +71,7 @@ const FindForm = (props)=>{
                   <option value="軽食">軽食</option>
                   <option value="飲み物">飲み物</option>
                 </select>
-                <input type="submit" value="検索" className="btn btn-success" />
+                <input type="submit" value="検索" className="btn btn-success s-bt2" />
             </div>
             :
             state.number === '3'?
@@ -87,7 +87,7 @@ const FindForm = (props)=>{
                 onChange={seachParameter}
 
                />
-              <input type="submit" value="検索" className="btn btn-success" />
+              <input type="submit" value="検索" className="btn btn-success s-bt3" />
            </div>
             :
            <div></div>

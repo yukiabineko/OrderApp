@@ -20,14 +20,28 @@ var modalViewPrice = 0    //モーダル内合計金額
 var accountingPrice = 0;  //オーダー金額
 
 const Main = ()=>{
-  let sale = showTodayAccounting().uriage;
+  let today = setDay();
+    dateObjectCheck ();
+    let data = JSON.parse(localStorage.getItem('dates').slice());
+    
+     //当日データない場合作成
+
+    if(!data[today]){
+      data[today] = {};
+      data[today].uriage = 0;
+      data[today].number = 0;
+      data[today].created = new Date();
+      localStorage.setItem('dates',JSON.stringify(data));
+    }
+  let saleObject = showTodayAccounting().uriage;
+  
 
   const[state, setState] = useState({
     data: [],   //追加中のオーダーリスト
     items: [],  //オーダー待ちリスト
     waitNO: 0,  //オーダー待ちNO
     changeMoney: 0,  //お釣り
-    todaySale: sale ?sale : 0,     //本日売上げ
+    todaySale: saleObject ? Number(saleObject) : 0,    //本日売上げ
     itemPoint: 0,     //買い上げ点数
     right: true
   
@@ -39,6 +53,7 @@ const Main = ()=>{
     drower.checked = false; 
   }
   const addData = (data)=>{    //左のパネルから商品追加
+    
     let sendData = state.data.slice();
     sendData.push({name: data.name, price: data.price, category: data.category, date: new Date()});
     itemArray.push({name: data.name, price: data.price, category: data.category, date: new Date()});

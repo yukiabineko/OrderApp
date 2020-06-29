@@ -18,12 +18,12 @@
   .viewTitle{
     font-size: 16px;
     text-align: right;
-    width: 40%;
+    width: 35%;
   }
   .viewMenu{
-    font-size: 18px;
+    font-size: 16px;
     text-align: left;
-    width: 60%;
+    width: 65%;
     margin-top: -1.5%;
   }
 }
