@@ -17,7 +17,7 @@ const Main = ()=>{
       <div className="text-center text-dark h1 mb-3 mt-5">商品一覧</div>
       
       <div className="row item-row">
-        <div className="col-md-10 offset-1 bg-light shadow p-5">
+        <div className="col-md-10 offset-1 bg-light shadow p-5 list-area">
           <input type="checkbox" id="drower" />
           <label for="drower" id="open" className="text-primary">
             &emsp;<FontAwesomeIcon icon={faPlusCircle} size="2x" />

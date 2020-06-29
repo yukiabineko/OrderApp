@@ -1,6 +1,6 @@
 import React from 'react';
 import './Order.css';
-import { setDay, dateObjectCheck } from '../data/Time';
+import { setDay, dateObjectCheck, showTodayAccounting} from '../data/Time';
 import { connect } from 'react-redux';
 import Drower from './Drower';
 import { useState } from 'react';
@@ -20,14 +20,14 @@ var modalViewPrice = 0    //モーダル内合計金額
 var accountingPrice = 0;  //オーダー金額
 
 const Main = ()=>{
-  
+  let sale = showTodayAccounting().uriage;
 
   const[state, setState] = useState({
     data: [],   //追加中のオーダーリスト
     items: [],  //オーダー待ちリスト
     waitNO: 0,  //オーダー待ちNO
     changeMoney: 0,  //お釣り
-    todaySale: 0,     //本日売上げ
+    todaySale: sale ?sale : 0,     //本日売上げ
     itemPoint: 0,     //買い上げ点数
     right: true
   
@@ -223,7 +223,7 @@ const Main = ()=>{
       items: state.items,
       waitNO: state.waitNO,                     //一旦最初の要素に戻す。
       changeMoney: state.changeMoney,                    
-      todaySale: state.price,
+      todaySale: state.todaySale,
       itemPoint: state.itemPoint,
       right: check
     })
@@ -231,6 +231,7 @@ const Main = ()=>{
   /******************************************* JSX ************************************************************************************ */
   return(
    <div　className="mt-5">
+     
      <div className="text-right text-white uriage">
        <span className="bg-dark p-2 rounded-pill font-weight-bold">
          <FontAwesomeIcon icon={faFileSignature} size="lg" />

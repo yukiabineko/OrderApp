@@ -71,11 +71,16 @@ button:focus {
   }
 }
 @media (max-width: 767px){
+  .list-area{
+    height: 550px;
+    overflow-y: scroll;
+  }
   .list-pc{
     display: none;
   }
   .list-phone{
     display: table;
+
   }
   #content{
     max-width: 100%;
