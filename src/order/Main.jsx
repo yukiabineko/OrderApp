@@ -21,18 +21,10 @@ var accountingPrice = 0;  //オーダー金額
 
 const Main = ()=>{
   let today = setDay();
-    dateObjectCheck ();
-    let data = JSON.parse(localStorage.getItem('dates').slice());
+  dateObjectCheck ();
     
-     //当日データない場合作成
-
-    if(!data[today]){
-      data[today] = {};
-      data[today].uriage = 0;
-      data[today].number = 0;
-      data[today].created = new Date();
-      localStorage.setItem('dates',JSON.stringify(data));
-    }
+    
+     
   let saleObject = showTodayAccounting().uriage;
   
 
@@ -258,7 +250,7 @@ const Main = ()=>{
       </span>
     </div>
     
-     <div className="text-center text-dark h3 font-weight-bold mb-1 mt-1 mb-5 drower-title">オーダー詳細</div>
+     <div className="text-center text-dark h4 font-weight-bold mb-1 mt-1 mb-5 drower-title">オーダー詳細</div>
     
      <input type="checkbox" id="ordercheck" />&nbsp;
      <label for="ordercheck" className="h5 ml-4" id="oderOpen">
@@ -273,7 +265,7 @@ const Main = ()=>{
 
      {/*. ドロワーのエリアView..*/}
      <div id="orderArea">
-     <div className="font-weight-bold text-center font-weight-bold"><h2>オーダー入力</h2></div>
+     <div className="font-weight-bold text-center font-weight-bold"><h2 className="order-title">オーダー入力</h2></div>
      <div className="border border-top mb-1"></div>
      <div className="data-input">
        <Drower parentData={addData} />

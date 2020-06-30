@@ -53,7 +53,7 @@ const Drower2 = (props)=>{
            <option key={'drink'+i} value={value.name + ',' + value.price + ',' + value.category}>{value.name}</option>
          ))}
        </select>
-       <input type="submit" value="追加" className="btn btn-primary" />
+       <input type="submit" value="追加" className="btn btn-primary search-button" />
      </form>
    </div>
   );

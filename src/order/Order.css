@@ -372,10 +372,11 @@
   }
   .no_order{
     font-size: 16px;
+    margin-top: 14%;
     
   }
   .order-add-button{
-    margin-top: 1%;
+    margin-top: 0%;
   }
   
   .Main-Accounting{
@@ -404,6 +405,15 @@
   .uriage{
     margin-bottom: 5%;
   }
+  .order-title{   /*ドロワータイトル*/
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 3%;
+  }
+   .search-button{  /*検索ぼたん*/
+    width: 90%;
+    margin-left: 5%;
+  }
  
 } 
 @media (max-width: 767px) and (min-height: 800px){  /* iphonxシリーズ縦*/
@@ -417,6 +427,7 @@
     padding: 2%;
     width: 90%
   }
+  
   #oderOpen{
     top: 22vh;
     left:0%;
@@ -425,7 +436,7 @@
   }
   #orderModal{
     width: 75%;
-    height: 35%;
+    height: 45%;
     top: 2%;
     left:15%;
   }

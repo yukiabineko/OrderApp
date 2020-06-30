@@ -21,16 +21,6 @@ const Main =()=>{
     dateObjectCheck ();
     let data = JSON.parse(localStorage.getItem('dates').slice());
     
-     //当日データない場合作成
-
-    if(!data[today]){
-      data[today] = {};
-      data[today].uriage = 0;
-      data[today].number = 0;
-      data[today].created = new Date();
-      localStorage.setItem('dates',JSON.stringify(data));
-    }
-   
   let week = [ "日", "月", "火", "水", "木", "金", "土" ];
  
   let array = [];
