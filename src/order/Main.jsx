@@ -294,36 +294,38 @@ const Main = ()=>{
         }
         
        <div className="row">
-         <div className="col-md-10 offset-1 table_area mb-3">
+        
            {state.data.length === 0 ? 
-             <div className="text-center text-primary h4 font-weight-bold no_order">まだオーダーがありません。</div> 
+            <div className="col-md-10 offset-1 table_area-empty mb-3">
+              <div className="text-center text-primary h4 font-weight-bold no_order">まだオーダーがありません。</div> 
+             </div>
+
              :
-            <div>
-            
-            <table className="table table-bordered itemtable3">
-                <thead>
-                  <tr>
-                    <th className="bg-primary text-white font-weight-bold w-75">商品名</th>
-                    <th className="bg-primary text-white font-weight-bold"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {state.data.map((value,i)=>(
+
+            <div className="col-md-10 offset-1 table_area mb-3">
+              <table className="table table-bordered itemtable3">
+                  <thead>
                     <tr>
-                    <td className="font-weight-bold bg-white"> 
-                      <label>{value.name}<span className="text-danger">価格:{value.price}</span>円</label>
-                    </td>
-                    <td className="font-weight-bold bg-white">
-                      <button className="btn btn-danger" onClick={()=>modalOrderDelete(i)}>削除</button>
-                    </td>
-                  </tr>
-                  ))}
-                </tbody>
-            </table>
-            
-          </div>
+                      <th className="bg-primary text-white font-weight-bold w-75">商品名</th>
+                      <th className="bg-primary text-white font-weight-bold"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {state.data.map((value,i)=>(
+                      <tr>
+                      <td className="font-weight-bold bg-white"> 
+                        <label>{value.name}<span className="text-danger">価格:{value.price}</span>円</label>
+                      </td>
+                      <td className="font-weight-bold bg-white">
+                        <button className="btn btn-danger" onClick={()=>modalOrderDelete(i)}>削除</button>
+                      </td>
+                    </tr>
+                    ))}
+                  </tbody>
+              </table>
+           </div>
            }
-         </div>
+        
        </div>
        {state.data.length === 0 ? <div></div> : <div className="text-center h-20 overflow-auto">
              <button className="btn btn-primary w-25 order-add-button" onClick={AddOrder}>確定</button>

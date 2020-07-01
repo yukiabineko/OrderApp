@@ -109,6 +109,12 @@
   width: 100%;
   max-width: 90%;
 }
+.table_area-empty{
+  height: 200px;
+  background: #f0f0f0;
+  margin-bottom: 2%;
+  padding: 2%;
+}
 .table_area{
   overflow: scroll;
   height: 200px;
@@ -359,6 +365,11 @@
     overflow: scroll;
     height: 50%;
   }
+  .table_area-empty{
+    margin-left: 8%;
+    width: 85%;
+    height: 200px;
+  }
   .table_area{
     margin-left: 8%;
     width: 85%;
@@ -372,7 +383,7 @@
   }
   .no_order{
     font-size: 16px;
-    margin-top: 14%;
+    margin-top: 18%;
     
   }
   .order-add-button{
@@ -506,8 +517,18 @@
   .payoff-modal{
     height: 200px;
   }
+  .table_area-empty{
+    margin-left: 8%;
+    width: 85%;
+    height: 250px;
+  }
   .table_area{
-    height: 180px;
+    height: 400px;
+  }
+  .no_order{
+    font-size: 16px;
+    margin-top: 16%;
+    
   }
   /*お釣りボタン*/
 
@@ -528,9 +549,19 @@
     left: 25%;
     margin-bottom: 14%;
   }
+  .table_area-empty{
+    margin-left: 8%;
+    width: 85%;
+    height: 350px;
+  }
   .table_area{
     height: 280px;
     margin-bottom: 14%;
+  }
+  .no_order{
+    font-size: 16px;
+    margin-top: 28%;
+    
   }
   #AcoountingModal{
     width: 50%;
@@ -558,8 +589,18 @@
     height: 450px;
 
   }
+  .table_area-empty{
+    margin-left: 8%;
+    width: 85%;
+    height: 345px;
+  }
   .table_area{
     margin-bottom: 15%;
+  }
+  .no_order{
+    font-size: 28px;
+    margin-top: 20%;
+    
   }
   .payoff-modal{
     height:  28vh;
