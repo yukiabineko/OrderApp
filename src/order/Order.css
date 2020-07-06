@@ -90,6 +90,20 @@
   z-index: 9999;
   transition: 0.7s ease-in-out;
 }
+.panel-closeButton{  /*追加モーダルの削除ボタン*/
+  color: white;
+  border: none;
+  background: none;
+  font-weight: bold;
+  margin-left: 45%;
+  margin-top: 20%;
+}
+.panel-closeButton:hover{
+  color: yellow;
+}
+.panel-closeButton-phone{ /*追加モーダルの削除ボタンphone*/
+  display: none;
+}
 #ordercheck:checked ~ #orderBack{
   display: block;
 }
@@ -100,6 +114,10 @@
 #ordercheck:checked ~ #orderModal{
   transform: translateY(0%);
   transition: 0.3s ease-in-out;
+  
+}
+#ordercheck:checked ~ .panel-closeButton-phone{
+  display: block;
 }
 .main-area{
   margin-top: 1vh;
@@ -256,7 +274,7 @@
   }
   
 }
-@media (min-height: 1024px) { /* ipadたて　*/
+@media (min-height: 1024px) { /* ipadシリーズたて　*/
   .table_area{
     height: 200px;
   }
@@ -271,6 +289,9 @@
     font-size: 18px;
    
   }
+  .panel-closeButton{/*追加モーダルの削除ボタン*/
+    margin-left: 40%;
+  }  
 }
 @media (max-width: 767px){               /*スマホ縦*/
   .main-area{
@@ -324,6 +345,24 @@
     z-index: 9999;
     transform: translateY(-200%);
     transition: 0.3s ease-in-out;
+  }
+  .panel-closeButton{/*追加モーダルの削除ボタン*/
+    margin-left: 0%;
+    margin-top: -1%;
+    color: red;
+    border-radius: 6px;
+    width: 100%;
+    padding: 2% 5%;
+    display: none;
+  }  
+  .panel-closeButton-phone{ /*追加モーダルの削除ボタンphone*/
+    position: fixed;
+    top: 2%;
+    left: 0%;
+    z-index: 999;
+    background: none;
+    color: white;
+    border: none;
   }
   #AcoountingModal{
     width: 85%;
@@ -475,10 +514,14 @@
     margin-top: 10%;
      margin-left: -22%;
   }
-  
+  .no_order{
+    
+    margin-top: 12%;
+    
+  }
   
 }
-@media screen and (max-width: 1023px) and (min-width: 768px){
+@media screen and (min-height: 1023px) and (max-width: 768px){ /*macbook pro拡大、ipad 無印縦*/
   
   .Main-wait{
     overflow: scroll;
@@ -490,6 +533,9 @@
   .itemTable2 tbody{
     height: 400px;
   } 
+  #orderModal{
+    height: 420px;
+  }
   #oderOpen{
     top: 17%;
   }
@@ -520,14 +566,14 @@
   .table_area-empty{
     margin-left: 8%;
     width: 85%;
-    height: 250px;
+    height: 320px;
   }
   .table_area{
-    height: 400px;
+    height: 240px;
   }
   .no_order{
     font-size: 16px;
-    margin-top: 16%;
+    margin-top: 20%;
     
   }
   /*お釣りボタン*/
@@ -574,6 +620,10 @@
     margin-bottom: 12%;
     margin-top: 10%;
   }
+  .panel-closeButton{/*追加モーダルの削除ボタン*/
+    margin-left: 42%;
+    
+  }  
 }
 @media screen and (min-width:1366px){
   #oderOpen{
@@ -610,4 +660,157 @@
     margin-top: 5%;
     margin-left: -5%;
   }
+  
+}
+@media (min-height: 1025px){ /* ipad pro 13inchiシリーズ縦*/
+  #oderOpen{
+    top: 13%;
+   
+  }
+  .order-row{
+    top: 14%;
+  }
+  .no_order{
+    margin-top: 8%;
+  }
+  #orderModal{
+    height: 460px;
+  }
+  .main-area{
+    margin-top: 3vh;
+  }
+
+} 
+@media (max-width:768px) and (min-height:1024px){ /*ipad無印たて*/
+  #oderOpen{
+    top: 16%;
+   
+  }
+  .order-row{
+    top: 17%;
+  }
+  .main-area{
+    margin-top: 3%;
+  }
+}
+@media (min-width:667px) and (max-height:375px){ /*iphone6 7 8 SE横*/
+  #oderOpen{
+    top: 62%;
+   
+  }
+  .order-row{
+    top: 65%;
+    left: 6%;
+  }
+  #orderModal{
+    left: 48%;
+    width: 300px;
+    height: 300px;
+  }
+  #orderArea{
+    height: 100%;
+    width: 300px;
+    top:0;
+    left: 0;
+  }
+  .data-input{
+    height: 290px;
+  }
+  .accounding-btn{
+    width: 5m;
+    height: 5em;
+  }
+  .panel-closeButton{/*追加モーダルの削除ボタン*/
+    display: block;
+    margin-left: 0%;
+    margin-top: 10%;
+    color: white;
+  }  
+}
+@media (min-width:812px) and (max-height:375px){ /*iphoneX 横*/
+  #oderOpen{
+    top:  43%;
+   
+  }
+  #orderModal{
+    top: 5%;
+  }
+  .order-row{
+    top: 47%;
+    left: 36%;
+  }
+  .table_area{
+    height: 120px;
+  }
+  .table_area-empty{
+    height: 200px;
+  }
+  .itemtable3 tdody td, .itemtable3 thead th{
+    height: 20px;
+  }
+  .accounding-btn{
+    width: 5m;
+    height: 5em;
+  }
+  .panel-closeButton{/*追加モーダルの削除ボタン*/
+    display: block;
+    margin-left: 40%;
+    margin-top: 10%;
+  }  
+
+}
+@media (min-width:1366px) and (min-height:1024px){ /*ipad pro 13 横*/
+  #oderOpen{
+    top:  15%;
+   
+  }
+  .order-row{
+    top: 18%;
+  }
+  .no_order{
+    margin-top: 6%;
+  }
+  .table_area{
+    height: 260px;
+  }
+  #orderModal{
+    height: 450px;
+  }
+}
+@media (min-width:1366px) and (max-height:1023px){ /*macbook pro 13拡大*/
+  #oderOpen{
+    top:  21%;
+   
+  }
+  .order-row{
+    top: 22%;
+  }
+  .no_order{
+    margin-top: 10%;
+  }
+  .table_area{
+    height: 260px;
+  }
+  #orderModal{
+    height: 450px;
+  }
+  .main-area{
+    margin: 3.5%;
+  }
+  .no-check-accounthing{
+    margin-top: 3.5%;
+  }
+}
+@media (min-width:1366px) and (max-height:768px){ /*macbook pro 13通常*/
+  #oderOpen{
+    top:  25%;
+   
+  }
+  .order-row{
+    top: 25%;
+  }
+  .no_order{
+    margin-top: 15%;
+  }
+  
 }

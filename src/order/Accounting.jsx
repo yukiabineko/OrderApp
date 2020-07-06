@@ -24,7 +24,7 @@ const Accounting = (props)=>{
 
   }
   const rightView =(event)=>{
-    event.preventDefault();
+    
     let f = event.target.checked
     setState({
       box: f ?'on' : ''

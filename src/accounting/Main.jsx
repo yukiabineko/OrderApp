@@ -3,7 +3,7 @@ import { setDay, dateObjectCheck } from '../data/Time';
 import { connect } from 'react-redux';
 import './Accounting.css';
 import { useState } from 'react';
-
+import axios from 'axios';
 
 const Thstyle={width: '10%'};
 
@@ -16,11 +16,23 @@ const viewMenu={
   marginBottom: '1%'
 };
 
-
 const Main =()=>{
   const[state, setState] = useState({
-    flag: true    /* テーブル表示非表示フラグ*/
+    flag: true,    /* テーブル表示非表示フラグ*/
+    data: {}      /* 天気情報*/
   })
+  axios.get('//yukiabineko.sakura.ne.jp/apiData.php').then((response)=>{
+    let data = response.data;
+    let weather = state.data;
+    weather['today'] = data['forecasts'][0]['telop'];
+    weather['tomorrow'] = data['forecasts'][1]['telop'];
+    weather['imageToday'] = data['forecasts'][0]['image']['url'];
+    weather['imageTomorrow'] = data['forecasts'][1]['image']['url'];
+    setState({
+      flag: state.flag,
+      data: weather
+    })
+ });
   dateObjectCheck ();
   let data = JSON.parse(localStorage.getItem('dates').slice());
     
@@ -49,7 +61,42 @@ const Main =()=>{
   }
   return(
     <div className="row">
-      <div className="col-md-10 offset-1  mt-5 bg-light shadow pb-3">
+      <div className="col-md-10 offset-1  mt-5 mb-5 bg-light shadow pb-3">
+        {/* pc */}
+        
+          <table className="table font-weight-bold bg-white mt-4 mb-5 border weather-pc">
+            <tbody>
+              <tr>
+                <td className="text-primary">天気情報</td>
+                <td>本日天気</td>
+                <td><img src={state.data.imageToday} /></td>
+                <td>{state.data.today}</td>
+                <td>明日天気</td>
+                <td><img src={state.data.imageTomorrow} /></td>
+                <td>{state.data.tomorrow}</td>
+              </tr>
+            </tbody>
+          </table>
+
+           {/* phone */}
+
+           <table className="table font-weight-bold bg-white mt-4 mb-5 border weather-phone">
+            <tbody>
+              <tr>
+                <td className="text-primary text-center border" colSpan="3">天気情報</td>
+              </tr>
+              <tr>
+                <td>本日天気</td>
+                <td><img src={state.data.imageToday} /></td>
+                <td>{state.data.today}</td>
+              </tr>
+              <tr>
+                <td>明日天気</td>
+                <td><img src={state.data.imageTomorrow} /></td>
+                <td>{state.data.tomorrow}</td>
+              </tr>
+            </tbody>
+          </table>
         <div className="text-center h3 font-weight-bold mt-3 mb-5">[売上げ管理]</div>
         {array.length === 0 ?
         <div className="text-center font-weight-bold text-danger p-5 h4">データがありません。</div>

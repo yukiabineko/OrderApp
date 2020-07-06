@@ -10,7 +10,7 @@ import Accounting from './Accounting';
 import DrinkButton from './DrinkButton';
 import FoodButton from './FoodButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartPlus, faDollarSign, faFileSignature } from '@fortawesome/free-solid-svg-icons'
+import { faCartPlus, faDollarSign, faFileSignature, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import PayoffArea from './PayoffArea';
 import ChangeMoney from './ChangeMoney';
 
@@ -23,8 +23,6 @@ const Main = ()=>{
   let today = setDay();
   dateObjectCheck ();
     
-    
-     
   let saleObject = showTodayAccounting().uriage;
   
 
@@ -281,8 +279,13 @@ const Main = ()=>{
         </div>
         </div>
     </div>
+    <button  className="panel-closeButton-phone" onClick={drowerClose}>
+      <FontAwesomeIcon icon={faTimesCircle} size="2x"/><br/>閉じる
+    </button>
      <div id="orderModal" className="pb-5">
-        <div className="text-center h4 font-weight-bold mt-2 mb-2">[商品オーダーパネル]</div>
+        <div className="text-center h4 font-weight-bold mt-2 mb-2">
+          [商品オーダーパネル]
+        </div>
         <div className="border-top mb-3"></div>
         {state.data.length === 0 ?
          '' 
@@ -290,7 +293,7 @@ const Main = ()=>{
          <div className="mb-3 round font-weight-bold">
           <span className="bg-dark text-white p-2 rounded-left ml-2"><FontAwesomeIcon icon={faDollarSign} size="lg" />合計金額:</span>
           <span className="text-warning bg-dark p-2 rounded-right">{modalViewPrice}円</span>
-       </div>
+         </div>
         }
         
        <div className="row">
@@ -298,6 +301,7 @@ const Main = ()=>{
            {state.data.length === 0 ? 
             <div className="col-md-10 offset-1 table_area-empty mb-3">
               <div className="text-center text-primary h4 font-weight-bold no_order">まだオーダーがありません。</div> 
+              
              </div>
 
              :
@@ -329,9 +333,15 @@ const Main = ()=>{
        </div>
        {state.data.length === 0 ? <div></div> : <div className="text-center h-20 overflow-auto">
              <button className="btn btn-primary w-25 order-add-button" onClick={AddOrder}>確定</button>
-           </div>   
+             
+           </div>
+              
            }
+          <button  className="panel-closeButton" onClick={drowerClose}>
+             <FontAwesomeIcon icon={faTimesCircle} size="2x"/><br/>閉じる
+          </button>
      </div>
+     
      {/***会計用モーダル */}
 
 
