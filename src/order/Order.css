@@ -358,7 +358,7 @@
   .panel-closeButton-phone{ /*追加モーダルの削除ボタンphone*/
     position: fixed;
     top: 2%;
-    left: 0%;
+    left: -1%;
     z-index: 999;
     background: none;
     color: white;
@@ -719,6 +719,31 @@
   .accounding-btn{
     width: 5m;
     height: 5em;
+  }
+  .panel-closeButton{/*追加モーダルの削除ボタン*/
+    display: block;
+    margin-left: 0%;
+    margin-top: 10%;
+    color: white;
+  }  
+  #AcoountingModal{
+    height: 300px;
+  }
+  #changeModal{
+    height: 250px;
+  }
+}
+@media (min-width:736px) and (max-height:414px){ /*iphone6 7 8 plus横*/
+  #orderModal{
+    left: 48%;
+    width: 300px;
+    height: 300px;
+  }
+  #orderArea{
+    height: 100%;
+    width: 300px;
+    top:0;
+    left: 0;
   }
   .panel-closeButton{/*追加モーダルの削除ボタン*/
     display: block;
