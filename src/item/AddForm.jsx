@@ -57,7 +57,7 @@ const AddForm = (props)=>{
     childCloseMenu();
   }
   return(
-    <div>
+    <div className="item-form-area">
       <div className="text-right text-dark  mb-1 mt-5">
         <button onClick={childCloseMenu} className="text-danger closeButton" style={buttonStyle}>
           <FontAwesomeIcon icon={faTimesCircle} size="2x"/>
