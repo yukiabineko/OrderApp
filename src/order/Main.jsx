@@ -233,6 +233,39 @@ const Main = ()=>{
       right: check
     })
   }
+  //確定したオーダーリストのアイテム削除(各アイテムの個別ボタンにより)
+  const deleteAccountingItem =(number)=>{
+    let thisData = state.items[state.waitNO].slice();
+    let price = thisData[number].price;
+    accountingPrice-=price;
+    thisData.splice(number, 1);
+    let stateItems = state.items.slice();
+    let thiswaitNo = state.waitNO;
+    if(thisData.length >0){         //空ではない場合場合リスト(items)から該当配列更新
+      stateItems[state.waitNO] = thisData;
+    }
+    else{                             //空になった場合大元のリスト(items)から該当配列削除
+      stateItems.splice(state.waitNO,1);
+      thiswaitNo =0;
+      accountingPrice = 0;　　　　      //当該配列のデータがなくなったため要素０に戻す。
+      if(stateItems.length>0){　　　　　//items最初の要素のプライスを合計する。
+        let firstItems = stateItems[0];
+        for(let i=0; i<firstItems.length; i++){
+          accountingPrice += Number(firstItems[i].price);
+        }
+      }
+    }
+    setState({
+      data: state.data,
+      items: stateItems,
+      waitNO: thiswaitNo,                
+      changeMoney: state.changeMoney,                    
+      todaySale: state.todaySale,
+      itemPoint: state.itemPoint,
+      right: state.right
+    })
+  
+  }
   /******************************************* JSX ************************************************************************************ */
   return(
    <div　className="mt-5">
@@ -374,6 +407,7 @@ const Main = ()=>{
              totalPrice={accountingPrice}
              parentRight={rightAria}
              checkStatus={state.right}
+             parentDeleteItem={deleteAccountingItem}
           /></div>
         {/*.....*/}
         
@@ -398,6 +432,7 @@ const Main = ()=>{
              totalPrice={accountingPrice}
              parentRight={rightAria}
              checkStatus={state.right}
+             parentDeleteItem={deleteAccountingItem}
           /></div>
       </div>
     }

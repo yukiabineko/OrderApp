@@ -825,6 +825,9 @@
   .no-check-accounthing{
     margin-top: 3.5%;
   }
+  .item-tables{
+    height: 250px;
+  }
 }
 @media (min-width:1366px) and (max-height:768px){ /*macbook pro 13通常*/
   #oderOpen{
@@ -836,6 +839,9 @@
   }
   .no_order{
     margin-top: 15%;
+  }
+  .item-tables{
+    height: 250px;
   }
   
 }

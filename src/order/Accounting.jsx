@@ -40,6 +40,14 @@ const Accounting = (props)=>{
        /*main.style.overflow = 'hidden';*/
     }
   }
+  //親コンポーネントに削除アイテム番号送信
+
+  const deleteOrderItem =(number)=>{
+    const result = window.confirm('削除してもよろしいでしょうか？');
+    if(result){
+      props.parentDeleteItem(number);
+    }
+  }
   return(
     <div class="accouding-main">
       <div className="text-right">
@@ -65,20 +73,21 @@ const Accounting = (props)=>{
         <div className="item-tables bg-light" >
           <table className="table table-bordered mt-3 itemtable2">
           <thead>
-            <tr>
-              <th className="bg-dark text-center text-white"></th>
+            <tr>  
               <th className="bg-dark text-center text-white">商品名</th>
               <th className="bg-dark text-center text-white">価格</th>
+              <th className="bg-dark text-center text-white"></th>
             </tr>
           </thead>
           <tbody>
           
             {props.viewData[props.waitno].map((value,i)=>(
               <tr>
-                <td className="font-weight-bold text-center bg-white align-middle h4">{i+1}</td>
-                <td className="font-weight-bold text-center bg-white align-middle h4">{value.name}</td>
+                <td className="font-weight-bold text-center bg-white align-middle h4 w-50">{value.name}</td>
                 <td className="font-weight-bold text-center bg-white align-middle h4 text-danger">{value.price}</td>
-                
+                <td className="font-weight-bold text-center bg-white align-middle h4">
+                  <button className="btn btn-danger btn-block" onClick={()=>deleteOrderItem(i)}>削除</button>
+                </td>
               </tr>
             ))
           }
