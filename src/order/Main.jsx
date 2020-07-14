@@ -24,11 +24,24 @@ const Main = ()=>{
   dateObjectCheck ();
     
   let saleObject = showTodayAccounting().uriage;
+  let dateItem = JSON.parse(localStorage.getItem('orders'));               //保存データ
+  let itemObject = dateItem ? dateItem[today] : []
+  if(dateItem && (today === Object.keys(dateItem))){
+    localStorage.removeItem('orders');
+  }
+  else if(dateItem && !(today === Object.keys(dateItem))){
+    globalItems = itemObject;
+    if(accountingPrice ===0){
+      globalItems[0].forEach((value)=>{
+        accountingPrice += Number(value.price);
+      });
+    }
+  }
   
 
   const[state, setState] = useState({
     data: [],   //追加中のオーダーリスト
-    items: [],  //オーダー待ちリスト
+    items: itemObject,  //オーダー待ちリスト
     waitNO: 0,  //オーダー待ちNO
     changeMoney: 0,  //お釣り
     todaySale: saleObject ? Number(saleObject) : 0,    //本日売上げ
@@ -65,12 +78,14 @@ const Main = ()=>{
   const AddOrder = ()=>{
     globalItems.push(itemArray);　//複数のオーダー格納
     itemArray = [];　　　　　　　　　//個々のオーダー初期化
-
+    let saveData = {};            //記録用オブジェクト
+    saveData[today] = [];
     let stateItems = state.items.slice();
     stateItems.splice(0);                //更新するためステート空にする。
 
     globalItems.forEach((value)=>{　　　//複数オーダー配列ステート格納
       stateItems.push(value);
+      saveData[today].push(value);
     })
     let newdata = state.data.slice();    //モーダル内のデータ管理
     newdata.splice(0);
@@ -83,6 +98,9 @@ const Main = ()=>{
       itemPoint: state.itemPoint,
       right: state.right
     });
+    localStorage.setItem('orders', JSON.stringify(saveData));            //当日オーダー状況保存
+    
+  
     modalViewPrice = 0;       //モーダルの価格覧リセット
 
     totalAccounting(0);  //会計エリア合計
@@ -109,6 +127,7 @@ const Main = ()=>{
        itemPoint: state.itemPoint,
        right: state.right
       })
+      
   }
   //オーダー待ちエリア個別削除処理
 
@@ -264,6 +283,12 @@ const Main = ()=>{
       itemPoint: state.itemPoint,
       right: state.right
     })
+    let saveData = {};            //記録用オブジェクト
+    saveData[today] = [];
+    stateItems.forEach((value)=>{
+      saveData[today].push(value);
+    })   
+    localStorage.setItem('orders', JSON.stringify(saveData));            //当日オーダー状況保存
   
   }
   /******************************************* JSX ************************************************************************************ */

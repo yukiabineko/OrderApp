@@ -60,7 +60,7 @@ const Wait = (props)=>{
             </tbody>
           </table>
           <div className="text-light">
-            <label className="text-dark font-weight-bold mr-2">{'受付時間:' + val[0].date.getHours() + '時' + val[0].date.getMinutes() +'分' }</label>
+            <label className="text-dark font-weight-bold mr-2">{'受付時間:' + new Date(val[0].date).getHours() + '時' + new Date(val[0].date).getMinutes() +'分' }</label>
             <button className="btn btn-danger mb-2" onClick={()=>waitOrderDelete(i)}>削除する</button>
           </div>
           <div className="border-top  pt-4 pb-4"></div>
