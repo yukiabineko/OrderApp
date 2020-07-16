@@ -63,18 +63,17 @@ const Main =()=>{
     const localData = JSON.parse(localStorage.getItem('dates'));    //売り上げデータ
     const keyArray = Object.keys(localData);                        //キー一覧
     const keyCount = keyArray.length;                               //日付キー数
-    const csvArray = [];                                            //出力用配列
-    csvArray.push("日付, 売り上げ金額,売り上げ点数\n");
+    let csvString = "日付,売り上げ金額,売り上げ点数\n";                //出力用文字列
     for(let i=0; i< keyCount; i++){
-      csvArray.push( 
+      csvString +=
         keyArray[i]
          + "," +
         localData[keyArray[i]]["uriage"]
-        + "," +
+         + "," +
         localData[keyArray[i]]["number"] +"\n"
-       );
     }
-    let blob = new Blob(csvArray, {"type" : "text/csv"});
+    var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+    let blob = new Blob([bom,csvString], {"type" : "text/csv"});
     document.getElementById('csv_download').href = window.URL.createObjectURL(blob);
 
   }
@@ -127,7 +126,7 @@ const Main =()=>{
               <span className="text-danger ml-3 accouting-money-label">{textAccounting}</span>円
               <div className="button-center"></div>
               <button className=" btn btn-danger  reset-bt" onClick={deleteAccounting}>リセット</button>
-              <a href="#" id="csv_download" className=" btn btn-success csv-bt" onClick={csvExport}>CSV出力</a>
+              <a href="#" id="csv_download" download="売り上げ.csv" className=" btn btn-success csv-bt" onClick={csvExport}>CSV出力</a>
            </div>
            <table className="table table-bordered">
           <thead>
