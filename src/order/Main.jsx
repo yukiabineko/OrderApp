@@ -26,17 +26,24 @@ const Main = ()=>{
   let saleObject = showTodayAccounting().uriage;
   let dateItem = JSON.parse(localStorage.getItem('orders'));               //保存データ
   let itemObject = dateItem ? dateItem[today] : []
-  if(dateItem && (today === Object.keys(dateItem))){
-    localStorage.removeItem('orders');
-  }
-  else if(dateItem && !(today === Object.keys(dateItem))){
+  if(dateItem && (today == Object.keys(dateItem))){
+    
     globalItems = itemObject;
-    if(accountingPrice ===0){
+    if(accountingPrice ===0 && globalItems.length>0){
       globalItems[0].forEach((value)=>{
         accountingPrice += Number(value.price);
       });
     }
+    
   }
+  else if(dateItem && !(today == Object.keys(dateItem))){
+    dateItem = [];
+    localStorage.removeItem('orders');
+    globalItems.splice();
+    document.location.reload();
+
+  }
+  
   
 
   const[state, setState] = useState({

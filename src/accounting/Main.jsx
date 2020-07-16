@@ -59,6 +59,26 @@ const Main =()=>{
       flag: false
     })
   }
+  const csvExport =()=>{ //csv出力処理
+    const localData = JSON.parse(localStorage.getItem('dates'));    //売り上げデータ
+    const keyArray = Object.keys(localData);                        //キー一覧
+    const keyCount = keyArray.length;                               //日付キー数
+    const csvArray = [];                                            //出力用配列
+    csvArray.push("日付, 売り上げ金額,売り上げ点数\n");
+    for(let i=0; i< keyCount; i++){
+      csvArray.push( 
+        keyArray[i]
+         + "," +
+        localData[keyArray[i]]["uriage"]
+        + "," +
+        localData[keyArray[i]]["number"]
+       );
+    }
+    let blob = new Blob(csvArray, {"type" : "text/csv"});
+    document.getElementById('csv_download').href = window.URL.createObjectURL(blob);
+
+  }
+
   return(
     <div className="row">
       <div className="col-md-10 offset-1  mt-5 mb-5 bg-light shadow pb-3">
@@ -104,8 +124,10 @@ const Main =()=>{
         <div>
            <div className="viewTitle" >本日現在売上げ:</div>
             <div className="viewMenu">
-              <span className="text-danger ml-3">{textAccounting}</span>円
-              <button className=" btn btn-danger ml-5" onClick={deleteAccounting}>リセット</button>
+              <span className="text-danger ml-3 accouting-money-label">{textAccounting}</span>円
+              <div className="button-center"></div>
+              <button className=" btn btn-danger  reset-bt" onClick={deleteAccounting}>リセット</button>
+              <a href="#" id="csv_download" className=" btn btn-success csv-bt" onClick={csvExport}>CSV出力</a>
            </div>
            <table className="table table-bordered">
           <thead>

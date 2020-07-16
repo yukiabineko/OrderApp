@@ -20,6 +20,15 @@
 .weather-phone{
   display: none;
 }
+.button-center{
+  display: none;
+}
+.reset-bt{
+  margin-left: 5%;
+}
+.csv-bt{
+  margin-left: 1%;
+}
 @media (max-width: 767px){
   .viewTitle{
     font-size: 16px;
@@ -37,5 +46,21 @@
   }
   .weather-phone{
     display: table;
+  }
+  
+}
+@media screen and (max-width: 767px){
+  .button-center{
+    display: block;
+  }
+  .reset-bt{
+    margin-top: 5%;
+    margin-left: -50%;
+    width: 150%;
+  }
+  .csv-bt{
+    margin-top: 2%;
+    margin-left: -50%;
+    width: 150%;
   }
 }
