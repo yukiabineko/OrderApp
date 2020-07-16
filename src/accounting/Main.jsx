@@ -71,7 +71,7 @@ const Main =()=>{
          + "," +
         localData[keyArray[i]]["uriage"]
         + "," +
-        localData[keyArray[i]]["number"]
+        localData[keyArray[i]]["number"] +"\n"
        );
     }
     let blob = new Blob(csvArray, {"type" : "text/csv"});
