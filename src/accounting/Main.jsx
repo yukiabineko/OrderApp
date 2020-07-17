@@ -78,9 +78,7 @@ const Main =()=>{
     document.getElementById('csv_download').href = window.URL.createObjectURL(blob);
 
   }
-  const pdfExport =()=>{
-    
-  }
+  
 
   return(
     <div className="row">
