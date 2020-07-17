@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './Accounting.css';
 import { useState } from 'react';
 import axios from 'axios';
+import { PdfExport } from './Pdf.js';
 
 const Thstyle={width: '10%'};
 
@@ -77,6 +78,9 @@ const Main =()=>{
     document.getElementById('csv_download').href = window.URL.createObjectURL(blob);
 
   }
+  const pdfExport =()=>{
+    
+  }
 
   return(
     <div className="row">
@@ -127,6 +131,7 @@ const Main =()=>{
               <div className="button-center"></div>
               <button className=" btn btn-danger  reset-bt" onClick={deleteAccounting}>リセット</button>
               <a href="#" id="csv_download" download="売り上げ.csv" className=" btn btn-success csv-bt" onClick={csvExport}>CSV出力</a>
+              <button className=" btn btn-primary  reset-bt" onClick={PdfExport}>PDF</button>
            </div>
            <table className="table table-bordered">
           <thead>
