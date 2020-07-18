@@ -44,7 +44,7 @@ for( let v of table_head ){
   var table_body = [];
   for(let i=0; i<keyCount; i++){
   table_body.push([keyArray[i], obj[keyArray[i]]["uriage"], obj[keyArray[i]]["number"]]);
-  if(i == keyCount-1){
+  if(i === keyCount-1){
     table_body.push([keyArray[i], obj[keyArray[i]]["uriage"] + " (未確定)", obj[keyArray[i]]["number"] + " (未確定)"]);
   }
 }
@@ -63,8 +63,9 @@ table_content["table"]["body"].push(tr);
 pdfMake.createPdf(
 {
     content: [{
-    text: "売り上げ確認表\n\n",fontSize: 35,alignment:'center',bold: 'Courier-Bold',},
-    {text: "作成日　"+ makeDay, alignment:'right'},
+    text: "売り上げ確認表\n\n",fontSize: 35,alignment:'center'},
+    {text: "作成日　"+ makeDay, alignment:'right',bold: true},
+    {text: "日々の売り上げ確認です。当日の情報は現時点の情報が表示されます。\n",bold: true},
     table_content,
     {text: "\n計"+ keyCount+ "件",alignment:'right'}
     ],

@@ -29,6 +29,9 @@
 .csv-bt{
   margin-left: 1%;
 }
+.pdf-bt{
+  margin-left: 1%;
+}
 @media (max-width: 767px){
   .viewTitle{
     font-size: 16px;
@@ -62,5 +65,14 @@
     margin-top: 2%;
     margin-left: -50%;
     width: 150%;
+  }
+  .pdf-bt{
+    margin-top: 2%;
+    margin-left: -50%;
+    width: 150%;
+  }
+  .accouting-money-label{
+    display: block;
+    margin-top: 2%;
   }
 }

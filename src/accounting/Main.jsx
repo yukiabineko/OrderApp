@@ -125,11 +125,11 @@ const Main =()=>{
         <div>
            <div className="viewTitle" >本日現在売上げ:</div>
             <div className="viewMenu">
-              <span className="text-danger ml-3 accouting-money-label">{textAccounting}</span>円
+              <span className="ml-3 accouting-money-label"><span className="text-danger">{textAccounting}</span>円</span>
               <div className="button-center"></div>
               <button className=" btn btn-danger  reset-bt" onClick={deleteAccounting}>リセット</button>
               <a href="#" id="csv_download" download="売り上げ.csv" className=" btn btn-success csv-bt" onClick={csvExport}>CSV出力</a>
-              <button className=" btn btn-primary  reset-bt" onClick={PdfExport}>PDF</button>
+              <button className=" btn btn-primary  pdf-bt" onClick={PdfExport}>PDF出力</button>
            </div>
            <table className="table table-bordered">
           <thead>

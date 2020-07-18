@@ -26,7 +26,7 @@ const Main = ()=>{
   let saleObject = showTodayAccounting().uriage;
   let dateItem = JSON.parse(localStorage.getItem('orders'));               //保存データ
   let itemObject = dateItem ? dateItem[today] : []
-  if(dateItem && (today == Object.keys(dateItem))){
+  if(dateItem && (today === Object.keys(dateItem)[0])){
     
     globalItems = itemObject;
     if(accountingPrice ===0 && globalItems.length>0){
@@ -36,7 +36,7 @@ const Main = ()=>{
     }
     
   }
-  else if(dateItem && !(today == Object.keys(dateItem))){
+  else if(dateItem && !(today === Object.keys(dateItem)[0])){
     dateItem = [];
     localStorage.removeItem('orders');
     globalItems.splice();
