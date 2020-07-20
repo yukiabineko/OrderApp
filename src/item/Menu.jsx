@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
+import { xlsmemo } from '../data/Store';
 import './Main.css';
 import Item from './Item';
 import Item2 from './Item2';
@@ -57,7 +58,8 @@ const Menu = (props)=>{
         var output = "";
         output = to_json(wb);
         console.log(output);
-        alert(JSON.stringify(output));
+        let action = xlsmemo(output);
+        props.dispatch(action);
     };
     reader.readAsArrayBuffer(f);
    }

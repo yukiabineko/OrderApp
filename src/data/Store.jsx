@@ -19,6 +19,8 @@ export const foodReducer = (state = init_data, action)=>{
       return editReducer(state, action);
     case 'FIND':
        return findReducer(state, action);
+    case 'EXCEL':
+    return excelReducer(state, action);
     default:
       return state;
   }
@@ -109,6 +111,21 @@ const findReducer =(state, action)=>{
     fdata: fdata,
   }
 }
+/*excelインポート*/
+
+const excelReducer =(state, action)=>{
+  let newdata = state.data.slice();
+  let arr = action.array['Sheet1'];
+  for(let i=0; i<arr.length; i++){
+    newdata.push({name: arr[i]["商品名"], price: arr[i]["価格"], category: arr[i]["カテゴリー"]});
+  }
+  return{
+    data: newdata,
+    message: 'Excelインポートしました。',
+    mode: 'default',
+    fdata: [],
+  }
+}
 
 /*********************************************************************************************************************** */
 /*export 追加*/
@@ -148,6 +165,14 @@ export  const searchmemo =(data,categoryId)=>{
     type: 'FIND',
     id: categoryId,
     param: data
+  }
+}
+/*export excel データ*/
+
+export  const xlsmemo =(array)=>{
+  return{
+    type: 'EXCEL',
+    array: array
   }
 }
 export default createStore(foodReducer);
