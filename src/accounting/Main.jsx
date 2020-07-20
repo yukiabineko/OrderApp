@@ -5,6 +5,7 @@ import './Accounting.css';
 import { useState } from 'react';
 import axios from 'axios';
 import { PdfExport } from './Pdf.js';
+import { excelExport } from './Excel.js';
 
 const Thstyle={width: '10%'};
 
@@ -60,6 +61,7 @@ const Main =()=>{
       flag: false
     })
   }
+  /*
   const csvExport =()=>{ //csv出力処理
     const localData = JSON.parse(localStorage.getItem('dates'));    //売り上げデータ
     const keyArray = Object.keys(localData);                        //キー一覧
@@ -78,8 +80,8 @@ const Main =()=>{
     document.getElementById('csv_download').href = window.URL.createObjectURL(blob);
 
   }
-  
-
+  */
+ 
   return(
     <div className="row">
       <div className="col-md-10 offset-1  mt-5 mb-5 bg-light shadow pb-3">
@@ -128,7 +130,7 @@ const Main =()=>{
               <span className="ml-3 accouting-money-label"><span className="text-danger">{textAccounting}</span>円</span>
               <div className="button-center"></div>
               <button className=" btn btn-danger  reset-bt" onClick={deleteAccounting}>リセット</button>
-              <a href="#" id="csv_download" download="売り上げ.csv" className=" btn btn-success csv-bt" onClick={csvExport}>CSV出力</a>
+              <a href="#" id="csv_download" download="売り上げ.csv" className=" btn btn-success csv-bt" onClick={excelExport}>Exel出力</a>
               <button className=" btn btn-primary  pdf-bt" onClick={PdfExport}>PDF出力</button>
            </div>
            <table className="table table-bordered">
