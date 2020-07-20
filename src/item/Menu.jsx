@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import './Main.css';
 import Item from './Item';
 import Item2 from './Item2';
-
-
+import  XLSX from 'xlsx';
 
 
 const Menu = (props)=>{
@@ -33,10 +32,65 @@ const Menu = (props)=>{
    props.fdata.map((value, i)=>(
     <Item2 key={value.message} value={value} index={i} parent={(num)=>parentModal(num)} />
   ))
-  
+  //excel入力
+
+  const doChange = (e)=>{
+    handleFile(e);
+  }
+  // ファイル選択時のメイン処理
+  const handleFile =(e)=>{
+    var files = e.target.files;
+    var f = files[0];
+
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        var data = e.target.result;
+        var wb;
+        var arr = fixdata(data);
+        wb = XLSX.read(btoa(arr), {
+            type: 'base64',
+            cellDates: true,
+        });
+
+        var output = "";
+        output = to_json(wb);
+        console.log(output);
+        alert(JSON.stringify(output));
+    };
+    reader.readAsArrayBuffer(f);
+   }
+    // ファイルの読み込み
+    const fixdata =(data)=>{
+      var o = "",
+      l = 0,
+      w = 10240;
+      for (; l < data.byteLength / w; ++l) o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w,
+          l * w + w)));
+      o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w)));
+      return o;
+   }
+   // ワークブックのデータをjsonに変換
+   const to_json =(workbook)=>{
+    var result = {};
+    workbook.SheetNames.forEach(function (sheetName) {
+        var roa = XLSX.utils.sheet_to_json(
+            workbook.Sheets[sheetName],
+            {
+                raw: true,
+            });
+        if (roa.length > 0) {
+            result[sheetName] = roa;
+        }
+    });
+    return result;
+   }
+  /***********************************jsx********************************************* */
   return(
     <div>
-      <p>{props.message}</p>
+      <div className="custom-file">
+       <input type="file" id="customFile" onChange={doChange} />
+      </div>
+
       {props.mode === 'default'? 
         props.data.length === 0 ? 
         <div className="bg-secondary text-light p-5">データがありません。</div>
