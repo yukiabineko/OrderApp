@@ -4,6 +4,7 @@ import './Main.css';
 import Item from './Item';
 import Item2 from './Item2';
 import  XLSX from 'xlsx';
+import bsCustomFileInput from 'bs-custom-file-input'
 
 
 const Menu = (props)=>{
@@ -36,6 +37,7 @@ const Menu = (props)=>{
 
   const doChange = (e)=>{
     handleFile(e);
+    bsCustomFileInput.init();
   }
   // ファイル選択時のメイン処理
   const handleFile =(e)=>{
@@ -87,9 +89,13 @@ const Menu = (props)=>{
   /***********************************jsx********************************************* */
   return(
     <div>
-      <div className="custom-file">
-       <input type="file" id="customFile" onChange={doChange} />
-      </div>
+      <div class="form-group">
+        <label for="inputFile">Excelで商品追加</label>
+        <div className="custom-file">
+          <input type="file" className="custom-file-input" id="inputFile" onChange={doChange} />
+          <label className="custom-file-label" for="inputFile" data-browse="参照">Excelファイルを選択ください。</label>
+        </div>
+     </div>
 
       {props.mode === 'default'? 
         props.data.length === 0 ? 
