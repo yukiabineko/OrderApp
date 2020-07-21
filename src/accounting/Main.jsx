@@ -19,8 +19,11 @@ const viewMenu={
 };
 
 const Main =()=>{
+  let obj = JSON.parse(localStorage.getItem('dates'));
+ 
+ 
   const[state, setState] = useState({
-    flag: true,    /* テーブル表示非表示フラグ*/
+    flag: obj? true : false,   /* テーブル表示非表示フラグ*/
     data: {}      /* 天気情報*/
   })
   axios.get('//yukiabineko.sakura.ne.jp/apiData.php').then((response)=>{
@@ -35,31 +38,39 @@ const Main =()=>{
       data: weather
     })
  });
-  dateObjectCheck ();
-  let data = JSON.parse(localStorage.getItem('dates').slice());
+  
+  
     
   let week = [ "日", "月", "火", "水", "木", "金", "土" ];
  
   let array = [];
   let today = setDay();
+  let textAccounting = 0;
   if(state.flag === true){
+    let data = JSON.parse(localStorage.getItem('dates').slice());
     for(let i=0; i<Object.keys(data).length; i++){
       let key = Object.keys(data)[i];
       let arrayItem = data[key];
       arrayItem['day'] = key; 
       array.push(arrayItem);
      }
+     textAccounting = data[today].uriage;
   }
-  const textAccounting = data[today].uriage;
+ 
   
   const deleteAccounting =()=>{
     if (window.confirm("削除しますか？")) { 
       localStorage.removeItem('dates');
       array = [];
+      let weatherData = {};
+    
+      setState({
+        flag: false,
+        data: weatherData
+      });
+      document.location.reload();
     }
-    setState({
-      flag: false
-    })
+  
   }
   /*
   const csvExport =()=>{ //csv出力処理
@@ -121,8 +132,8 @@ const Main =()=>{
             </tbody>
           </table>
         <div className="text-center h3 font-weight-bold mt-3 mb-5">[売上げ管理]</div>
-        {array.length === 0 ?
-        <div className="text-center font-weight-bold text-danger p-5 h4">データがありません。</div>
+        {state.flag ===false ?
+        <div className="text-center font-weight-bold text-danger p-5 h4">データがありません。</div> 
         : 
         <div>
            <div className="viewTitle" >本日現在売上げ:</div>
@@ -130,7 +141,7 @@ const Main =()=>{
               <span className="ml-3 accouting-money-label"><span className="text-danger">{textAccounting}</span>円</span>
               <div className="button-center"></div>
               <button className=" btn btn-danger  reset-bt" onClick={deleteAccounting}>リセット</button>
-              <a href="#" id="csv_download"  className=" btn btn-success csv-bt" onClick={excelExport}>Exel出力</a>
+              <button className=" btn btn-success csv-bt" onClick={excelExport}>Exel出力</button>
               <button className=" btn btn-primary  pdf-bt" onClick={PdfExport}>PDF出力</button>
            </div>
            <table className="table table-bordered">

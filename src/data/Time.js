@@ -16,7 +16,7 @@ export const dateObjectCheck = ()=>{
       obj[setDay()].created = new Date();
       localStorage.setItem('dates',JSON.stringify(obj));
     }
-    else{
+    /*else{
       //当日データない場合作成
       if(!data[today]){
         data[today] = {};
@@ -25,7 +25,7 @@ export const dateObjectCheck = ()=>{
         data[today].created = new Date();
         localStorage.setItem('dates',JSON.stringify(data));
       }
-    }
+    }*/
 }
 
 export const showTodayAccounting =()=>{
