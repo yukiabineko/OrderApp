@@ -37,8 +37,18 @@ const Menu = (props)=>{
   //excel入力
 
   const doChange = (e)=>{
-    handleFile(e);
-    bsCustomFileInput.init();
+    let files = e.target.files
+    let filename = files[0].name;
+    let pos = filename.lastIndexOf('.');
+    if (pos === -1) alert('不正です。');
+    let extension = filename.slice(pos + 1);
+    if(extension === "xlsx" || extension === "xls" || extension === "xlw" || extension ==="csv"){
+      handleFile(e);
+      bsCustomFileInput.init();
+    }
+    else{
+     alert("xlsx, xls, xlw, csv形式のファイルを使用ください。");
+    }
   }
   // ファイル選択時のメイン処理
   const handleFile =(e)=>{
@@ -92,9 +102,9 @@ const Menu = (props)=>{
   return(
     <div>
       <div class="form-group">
-        <label for="inputFile">Excelで商品追加</label>
+        <label for="inputFile">Excelで商品追加<span className="text-danger">(xlsx,xls,xlw,csv形式)</span></label>
         <div className="custom-file">
-          <input type="file" className="custom-file-input" id="inputFile" onChange={doChange} />
+          <input type="file" className="custom-file-input" id="inputFile" name="file" onChange={doChange} />
           <label className="custom-file-label" for="inputFile" data-browse="参照">Excelファイルを選択ください。</label>
         </div>
      </div>

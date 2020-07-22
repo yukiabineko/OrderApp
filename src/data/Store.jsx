@@ -115,10 +115,17 @@ const findReducer =(state, action)=>{
 
 const excelReducer =(state, action)=>{
   let newdata = state.data.slice();
-  let arr = action.array['Sheet1'];
-  for(let i=0; i<arr.length; i++){
-    newdata.push({name: arr[i]["商品名"], price: arr[i]["価格"], category: arr[i]["カテゴリー"]});
+  let sheetKey = Object.keys(action.array);
+  
+  for(let k =0; k<sheetKey.length; k++){
+    let arr = action.array[sheetKey[k]];
+    for(let i=0; i<arr.length; i++){
+      let keys = Object.keys(arr[0]); //配列内キー
+      //３要素が記入されたレコードのみ登録
+      if(Object.keys(arr[i]).length === 3) newdata.push({name: arr[i][keys[0]], price: arr[i][keys[1]], category: arr[i][keys[2]]});
+    }
   }
+  
   return{
     data: newdata,
     message: 'Excelインポートしました。',
