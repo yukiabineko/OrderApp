@@ -41,8 +41,12 @@ const Item = (props)=>{
   //削除機能
 
   const delItem = (num)=>{
-    let action = deletememo(num);
-    props.dispatch(action);
+    let result = window.confirm('削除しますか？');
+    if(result){
+      let action = deletememo(num);
+      props.dispatch(action);
+    }
+    
   }
   const afterOpenModal =()=> {
    
