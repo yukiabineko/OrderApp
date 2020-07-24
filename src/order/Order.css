@@ -834,27 +834,31 @@
     height: 250px;
   }
   
+  
 }
 
-@media (min-width:1030px) and (max-height:834px){ /*ipad pro 10.5 横*/
+@media (min-width:834px) and (max-height:1112px){ /*ipad pro 10.5 縦*/
   #oderOpen{
-    top:  25vh
+    top:  18%;
   }
   .order-row{
-    left: 35%;
-    top: 24vh;
+    left: 33%;
+    top: 18%;
   }
 }
 @media (min-width:765px) and (max-height:1030px){ /*ipad無印たて*/
   #oderOpen{
-    top: 20%;
+    top: 21%;
    
   }
   .order-row{
-    top: 20%;
+    top: 22%;
     left: 40%;
   }
   .main-area{
+    margin-top: 3%;
+  }
+  .no-check-accounthing{
     margin-top: 3%;
   }
 }
@@ -865,5 +869,17 @@
   .order-row{
     left: 33%;
     top: 18.5%;
+  }
+}
+@media (min-width:1030px) and (max-height:765px){ /*ipad pro 10.5 縦*//*macbook pro 13通常*/
+  #oderOpen{
+    top:  28%;
+  }
+  .order-row{
+    left: 33%;
+    top: 28%;
+  }
+  .main-area{
+    margin-top: 5%;
   }
 }

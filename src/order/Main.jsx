@@ -22,6 +22,7 @@ var accountingPrice = 0;  //オーダー金額
 const Main = ()=>{
   let today = setDay();
   dateObjectCheck ();
+  let keyNO = 0;
     
   let saleObject = showTodayAccounting().uriage;
   let dateItem = JSON.parse(localStorage.getItem('orders'));               //保存データ
@@ -139,18 +140,27 @@ const Main = ()=>{
   //オーダー待ちエリア個別削除処理
 
   const sendWaitOderDelete = (i)=>{
-    let stateItems = state.items.slice();
-    stateItems.splice(i, 1);
-    setState({
-      data: state.data, 
-      items: stateItems, 
-      waitNO: 0,       //一度最初のオーダーに戻す。
-      todaySale: state.todaySale,
-      itemPoint: state.itemPoint,
-      right: state.right
-    });
-    globalItems.splice(i, 1);
-    totalAccounting(0);  //会計エリア合計
+    let result = window.confirm('このオーダーを削除しますか？');
+    if(result){
+      let stateItems = state.items.slice();
+      let localData = JSON.parse(localStorage.getItem('orders'));
+      let newData = localData[setDay()];
+      newData.splice(i,1);
+      localStorage.setItem('orders',JSON.stringify(localData));
+      
+      stateItems.splice(i, 1);
+      setState({
+        data: state.data, 
+        items: stateItems, 
+        waitNO: 0,       //一度最初のオーダーに戻す。
+        todaySale: state.todaySale,
+        itemPoint: state.itemPoint,
+        right: state.right
+      });
+      globalItems.splice(i, 1);
+      totalAccounting(0);  //会計エリア合計
+      
+    }
   }
   ////会計エリア合計処理
 
@@ -316,10 +326,10 @@ const Main = ()=>{
      <div className="text-center text-dark h4 font-weight-bold mb-1 mt-1 mb-5 drower-title">オーダー詳細</div>
     
      <input type="checkbox" id="ordercheck" />&nbsp;
-     <label for="ordercheck" className="h5 ml-4" id="oderOpen">
+     <label htmlFor="ordercheck" className="h5 ml-4" id="oderOpen">
        <FontAwesomeIcon icon={faCartPlus} size="2x" /> 新規オーダー
      </label>
-     <label for="ordercheck" className="text-primary h3" id="orderBack"></label>
+     <label htmlFor="ordercheck" className="text-primary h3" id="orderBack"></label>
      <label className="text-primary h3" id="orderBack2"></label>
      <div className="row order-row">
         <div className="left"> 合計金額:</div>
@@ -381,7 +391,7 @@ const Main = ()=>{
                   </thead>
                   <tbody>
                     {state.data.map((value,i)=>(
-                      <tr>
+                      <tr key={i}>
                       <td className="font-weight-bold bg-white"> 
                         <label>{value.name}<span className="text-danger">価格:{value.price}</span>円</label>
                       </td>
@@ -434,6 +444,7 @@ const Main = ()=>{
         <div className="row main-area">
         <div className="col-md-7 pt-2 ml-5 Main-Accounting mt-4 border-top">
           <Accounting 
+             key={"ac"+ keyNO++}
              viewData={state.items} 
              waitno={state.waitNO}
              totalPrice={accountingPrice}
@@ -445,6 +456,7 @@ const Main = ()=>{
         
         <div className="col-md-4 bg-light border-left pt-2 Main-wait mt-4 border-top">
           <Wait 
+            key={"wt"+ keyNO++}
             orderData={state.items} 
             sendParentDelete={sendWaitOderDelete}
             sendParentAccounting={sendAccounting}>
@@ -459,6 +471,7 @@ const Main = ()=>{
     <div className="row mt-5 ">
       <div className="col-md-10 offset-1 no-check-accounthing Main-Accounting  border-top">
       <Accounting 
+             key={"ac2"+ keyNO++}
              viewData={state.items} 
              waitno={state.waitNO}
              totalPrice={accountingPrice}

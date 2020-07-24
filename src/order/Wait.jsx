@@ -24,7 +24,7 @@ const Wait = (props)=>{
        <div className="bg-secondary text-center text-white h5 font-weight-bold p-5 ml-1 mt-3">オーダーなし</div>
        : 
        props.orderData.map((val,i)=>(
-         <div> 
+         <div key={i}> 
           <span>
             <button className="btn btn-success mr-2" onClick={()=>accountingNoSend(i)}>会計する</button>
             <label className="text-dark font-weight-bold mr-2">{'注文NO:' + (i+1)}</label>
@@ -37,8 +37,8 @@ const Wait = (props)=>{
               </tr>
             </thead>
             <tbody>
-              {val.map((value)=>(
-                <tr>
+              {val.map((value, i)=>(
+                <tr key={i}>
                   {value.category === '軽食'? 
                    <td className="text-center bg-white font-weight-bold">
                      <FontAwesomeIcon icon={faHamburger} size="2x"/><p></p>

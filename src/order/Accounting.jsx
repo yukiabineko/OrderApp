@@ -48,7 +48,7 @@ const Accounting = (props)=>{
     }
   }
   return(
-    <div class="accouding-main">
+    <div className="accouding-main">
       <div className="text-right">
         <input type="checkbox" checked={state.box} onChange={rightView} />一覧表示
       </div>
@@ -81,7 +81,7 @@ const Accounting = (props)=>{
           <tbody>
           
             {props.viewData[props.waitno].map((value,i)=>(
-              <tr>
+              <tr key={i}>
                 <td className="font-weight-bold text-center bg-white align-middle h4 w-50">{value.name}</td>
                 <td className="font-weight-bold text-center bg-white align-middle h4 text-danger">{value.price}</td>
                 <td className="font-weight-bold text-center bg-white align-middle h4">
