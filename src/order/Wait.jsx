@@ -26,7 +26,7 @@ const Wait = (props)=>{
        props.orderData.map((val,i)=>(
          <div key={i}> 
           <span>
-            <button className="btn btn-success mr-2" onClick={()=>accountingNoSend(i)}>会計する</button>
+            <button className="btn btn-success mr-2" onClick={()=>accountingNoSend(i)}>会計切替</button>
             <label className="text-dark font-weight-bold mr-2">{'注文NO:' + (i+1)}</label>
           </span>
           <table className="table table-bordered mb-2 mt-1">

@@ -845,7 +845,11 @@
     left: 33%;
     top: 18%;
   }
+  .wait_area{
+    height: 50vh;
+  }
 }
+
 @media (min-width:765px) and (max-height:1030px){ /*ipad無印たて*/
   #oderOpen{
     top: 21%;
