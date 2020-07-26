@@ -42,12 +42,11 @@ for( let v of table_head ){
   };
   table_content["table"]["body"][0] = head_tr;
   var table_body = [];
-  for(let i=0; i<keyCount; i++){
-  table_body.push([keyArray[i], obj[keyArray[i]]["uriage"], obj[keyArray[i]]["number"]]);
-  if(i === keyCount-1){
-    table_body.push([keyArray[i], obj[keyArray[i]]["uriage"] + " (未確定)", obj[keyArray[i]]["number"] + " (未確定)"]);
+  for(let i=0; i<keyCount-1; i++){
+    table_body.push([keyArray[i], obj[keyArray[i]]["uriage"], obj[keyArray[i]]["number"]]);
   }
-}
+  table_body.push([keyArray[keyCount-1], obj[keyArray[keyCount-1]]["uriage"] + " (未確定)", obj[keyArray[keyCount-1]]["number"] + " (未確定)"]);
+  
 
 for( let a of table_body ){
   var tr = [];
