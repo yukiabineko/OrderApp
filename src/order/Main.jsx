@@ -259,6 +259,7 @@ const Main = ()=>{
     totalAccounting(0);                     //精算エリアの合計を要素１のtotalに      
   }
   const rightAria = (check)=>{
+  
     setState({
       data: state.data,
       items: state.items,

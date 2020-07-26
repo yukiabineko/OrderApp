@@ -12,7 +12,7 @@ const st ={
 
 const Accounting = (props)=>{
   const[state, setState] = useState({
-    box: 'on'
+    box: props.checkStatus
   });
   const pareantOpenModal = ()=>{
     let modal = document.getElementById('AcoountingModal');
