@@ -16,7 +16,7 @@ const Wait = (props)=>{
   return(
     <div className="mt-1">
       <h3 className="text-center text-success font-weight-bold mt-4 mb-4">
-        <FontAwesomeIcon icon={faClipboardList} /> オーダー待ち覧
+        <FontAwesomeIcon icon={faClipboardList} /> 会計待ち一覧
       </h3>
       <div className="wait_area">
       {props.orderData.length === 0 ?
@@ -32,8 +32,8 @@ const Wait = (props)=>{
           <table className="table table-bordered mb-2 mt-1">
             <thead>
               <tr>
-                <td className="bg-primary text-white text-center ">カテゴリー</td>
-                <td className="bg-primary text-white text-center w-75">名前</td>
+                <td className="bg-primary text-white text-center align-middle">分類</td>
+                <td className="bg-primary text-white text-center w-75 align-middle">名前</td>
               </tr>
             </thead>
             <tbody>

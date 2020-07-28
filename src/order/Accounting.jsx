@@ -2,11 +2,15 @@ import React from 'react';
 import './Order.css';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCashRegister } from '@fortawesome/free-solid-svg-icons'
+import { faCashRegister, faPlayCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
 
 const st ={
   marginBottom: '1.5vh'
+}
+const buttonStyle={
+  border:'none',
+  background: 'none'
 }
 
 
@@ -47,6 +51,13 @@ const Accounting = (props)=>{
       props.parentDeleteItem(number);
     }
   }
+  //アイテム追加ボタン
+
+  const getaddItem =()=>{
+    let addModal = document.getElementById('addModal');
+    addModal.style.transform ="translatey(0%)";
+    document.getElementById('orderBack2').style.display = "block";
+  }
   return(
     <div className="accouding-main">
       <div className="text-right">
@@ -73,8 +84,14 @@ const Accounting = (props)=>{
           <table className="table table-bordered mt-3 itemtable2">
           <thead>
             <tr>  
-              <th className="bg-dark text-center text-white">商品名</th>
-              <th className="bg-dark text-center text-white">価格</th>
+              <th className="bg-dark text-left text-white align-middle">
+                <button style={buttonStyle} className="text-warning" onClick={getaddItem}>
+                 <FontAwesomeIcon icon={faPlusCircle}/>&thinsp; 
+                  <label className="add-label mr-5">商品追加</label>
+                </button>
+                商品名
+              </th>
+              <th className="bg-dark text-center text-white align-middle">価格</th>
               <th className="bg-dark text-center text-white"></th>
             </tr>
           </thead>

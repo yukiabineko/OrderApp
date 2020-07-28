@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus, faDollarSign, faFileSignature, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import PayoffArea from './PayoffArea';
 import ChangeMoney from './ChangeMoney';
+import AreaAdd from './AreaAdd';
 
 var itemArray =[];  　　　　//選択された時に追加する配列
 var globalItems = [];　　　//上の配列を追加する配列
@@ -30,6 +31,7 @@ const Main = ()=>{
   if(dateItem && (today === Object.keys(dateItem)[0])){
     
     globalItems = itemObject;
+   
     if(accountingPrice ===0 && globalItems.length>0){
       globalItems[0].forEach((value)=>{
         accountingPrice += Number(value.price);
@@ -48,13 +50,14 @@ const Main = ()=>{
   
 
   const[state, setState] = useState({
-    data: [],   //追加中のオーダーリスト
-    items: itemObject,  //オーダー待ちリスト
-    waitNO: 0,  //オーダー待ちNO
-    changeMoney: 0,  //お釣り
+    data: [],                                          //追加中のオーダーリスト
+    items: itemObject,                                 //オーダー待ちリスト
+    waitNO: 0,                                         //オーダー待ちNO
+    changeMoney: 0,                                    //お釣り
     todaySale: saleObject ? Number(saleObject) : 0,    //本日売上げ
-    itemPoint: 0,     //買い上げ点数
-    right: true
+    itemPoint: 0,                                      //買い上げ点数
+    right: true,                                       //右エリア
+    thisItemAdd: false                                 //会計エリアオーダー追加フラグ
   
   });
   //ドロワーを閉じる
@@ -76,7 +79,8 @@ const Main = ()=>{
         waitNO: state.waitNO, 
         changeMoney: state.changeMoney,
         todaySale: state.todaySale,
-        right: state.right
+        right: state.right,
+        thisItemAdd: state.thisItemAdd
       });
     modalViewPrice += Number(data.price);  //モーダル表示価格
 
@@ -104,7 +108,8 @@ const Main = ()=>{
       changeMoney: state.changeMoney,
       todaySale: state.todaySale,
       itemPoint: state.itemPoint,
-      right: state.right
+      right: state.right,
+      thisItemAdd: state.thisItemAdd
     });
     localStorage.setItem('orders', JSON.stringify(saveData));            //当日オーダー状況保存
     
@@ -133,7 +138,8 @@ const Main = ()=>{
        changeMoney: state.changeMoney,
        todaySale: state.todaySale,
        itemPoint: state.itemPoint,
-       right: state.right
+       right: state.right,
+       thisItemAdd: state.thisItemAdd
       })
       
   }
@@ -155,7 +161,8 @@ const Main = ()=>{
         waitNO: 0,       //一度最初のオーダーに戻す。
         todaySale: state.todaySale,
         itemPoint: state.itemPoint,
-        right: state.right
+        right: state.right,
+        thisItemAdd: state.thisItemAdd
       });
       globalItems.splice(i, 1);
       totalAccounting(0);  //会計エリア合計
@@ -182,7 +189,8 @@ const Main = ()=>{
       waitNO: i,changeMoney: state.changeMoney,
       todaySale: state.todaySale,
       itemPoint: state.itemPoint,
-      right: state.right
+      right: state.right,
+      thisItemAdd: state.thisItemAdd
     });
     totalAccounting(i);  //会計エリア合計
    
@@ -197,7 +205,8 @@ const Main = ()=>{
       changeMoney: change,
       todaySale: state.todaySale,
       itemPoint: state.itemPoint,
-      right: state.right
+      right: state.right,
+      thisItemAdd: state.thisItemAdd
    })  
   }
    //お釣りのリセット
@@ -210,7 +219,8 @@ const Main = ()=>{
       changeMoney: 0,
       todaySale: state.todaySale,
       itemPoint: state.itemPoint,
-      right: state.right
+      right: state.right,
+      thisItemAdd: state.thisItemAdd
     });
 
   }
@@ -254,7 +264,8 @@ const Main = ()=>{
       changeMoney: state.changeMoney,                    
       todaySale: price,
       itemPoint: itemPoint,
-      right: state.right      
+      right: state.right,
+      thisItemAdd: state.thisItemAdd      
     });
     totalAccounting(0);                     //精算エリアの合計を要素１のtotalに      
   }
@@ -267,7 +278,8 @@ const Main = ()=>{
       changeMoney: state.changeMoney,                    
       todaySale: state.todaySale,
       itemPoint: state.itemPoint,
-      right: check
+      right: check,
+      thisItemAdd: state.thisItemAdd
     })
   }
   //確定したオーダーリストのアイテム削除(各アイテムの個別ボタンにより)
@@ -299,7 +311,8 @@ const Main = ()=>{
       changeMoney: state.changeMoney,                    
       todaySale: state.todaySale,
       itemPoint: state.itemPoint,
-      right: state.right
+      right: state.right,
+      thisItemAdd: state.thisItemAdd
     })
     let saveData = {};            //記録用オブジェクト
     saveData[today] = [];
@@ -308,6 +321,44 @@ const Main = ()=>{
     })   
     localStorage.setItem('orders', JSON.stringify(saveData));            //当日オーダー状況保存
   
+  }
+  //オーダーエリアに追加
+  const orderAreaAdd =(obj)=>{
+  
+    let thisData = state.items[state.waitNO].slice();
+    accountingPrice += Number(obj["price"]);
+    
+    //該当オーダーに追加
+    thisData.push({
+      name: obj["name"],
+      price: obj["price"],
+      category: obj["category"],
+      date: new Date()
+    });
+    let stateItems = state.items.slice();
+    stateItems[state.waitNO] = thisData;　　　//オーダー全体に反映
+    alert(JSON.stringify(stateItems));
+
+    //ステート更新
+    setState({
+      data: state.data,
+      items: stateItems,
+      waitNO: state.waitNO,                
+      changeMoney: state.changeMoney,                    
+      todaySale: state.todaySale,
+      itemPoint: state.itemPoint,
+      right: state.right,
+      thisItemAdd: state.thisItemAdd
+    })
+
+
+    let saveData = {};            //記録用オブジェクト
+    saveData[today] = [];
+    stateItems.forEach((value)=>{
+      saveData[today].push(value);
+    })   
+    localStorage.setItem('orders', JSON.stringify(saveData));            //当日オーダー状況
+   
   }
   /******************************************* JSX ************************************************************************************ */
   return(
@@ -437,7 +488,10 @@ const Main = ()=>{
        parentOderDelete={deletOrderData}
        />
      </div>
-
+     {/**アイテム追加アイテム */}
+     <div id="addModal">
+        <AreaAdd orderNo={state.waitNO} parentThisOrderAdd={orderAreaAdd} />
+    </div>
 
 
      {/*** メインエリア ****/}
