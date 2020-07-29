@@ -144,24 +144,26 @@ const Main =()=>{
               <button className=" btn btn-success csv-bt" onClick={excelExport}>Exel出力</button>
               <button className=" btn btn-primary  pdf-bt" onClick={PdfExport}>PDF出力</button>
            </div>
-           <table className="table table-bordered">
-          <thead>
-            <th className="bg-dark text-center text-white" style={Thstyle}>日付</th>
-            <th className="bg-dark text-center text-white" style={Thstyle}>曜日</th>
-            <th className="bg-dark text-center text-white">売り上げ金額</th>
-            <th className="bg-dark text-center text-white">売上げ点数</th>
-          </thead>
-          <tbody>
-            {array.map((value)=>(
-              <tr>
-               <td className="font-weight-bold text-center">{value.day}</td>
-               <td className="font-weight-bold text-center">{week[new Date(value.created).getDay()]}</td>
-               <td className="font-weight-bold text-center">{value.uriage}</td>
-               <td className="font-weight-bold text-center">{value.number}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+           <div className="accouting-table-div">
+           <table className="table table-bordered itemtable-accounting">
+              <thead>
+                <th className="bg-dark text-center text-white" style={Thstyle}>日付</th>
+                <th className="bg-dark text-center text-white" style={Thstyle}>曜日</th>
+                <th className="bg-dark text-center text-white">売り上げ金額</th>
+                <th className="bg-dark text-center text-white">売上げ点数</th>
+              </thead>
+              <tbody>
+                {array.map((value)=>(
+                  <tr>
+                  <td className="font-weight-bold text-center">{value.day}</td>
+                  <td className="font-weight-bold text-center">{week[new Date(value.created).getDay()]}</td>
+                  <td className="font-weight-bold text-center">{value.uriage}</td>
+                  <td className="font-weight-bold text-center">{value.number}</td>
+                  </tr>
+                ))}
+              </tbody>
+          </table>
+         </div>
         </div>
 
         }

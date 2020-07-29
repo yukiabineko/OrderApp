@@ -252,6 +252,16 @@ const Main = ()=>{
        data[today] = {uriage: price, number: itemPoint, created: new Date()};
     }
     localStorage.setItem('dates',JSON.stringify(data));
+
+    //ローカルデータも削除
+    let localDatas = JSON.parse(localStorage.getItem('orders'))[setDay()];
+    localDatas.splice(state.waitNO,1);
+    
+    //ローカルデータ更新
+  　let obj = {}
+    obj[setDay()] = localDatas;
+    localStorage.setItem('orders', JSON.stringify(obj));
+
   
     
    newitems.splice(state.waitNO, 1);
