@@ -3,10 +3,24 @@ import { createStore } from "redux";
 
 
 const init_data = {
-  data:[{name: 'コーヒー',price: '350', category: '飲み物' },{name: 'トースト',price: '250', category: '軽食' }],
+  data:[
+    {name: 'コーヒー',price: '350', category: '飲み物' },
+    {name: 'トースト',price: '250', category: '軽食' },
+    {name: '紅茶',price: '300', category: '飲み物' },
+    {name: 'チーズケーキ',price: '450', category: '軽食' },
+    {name: 'ミルク',price: '300', category: '飲み物' },
+
+  ],
   message: 'おはようございます。',
-  mode: 'default',
-  fdata: []
+  mode: 'find',
+  fdata:[
+    {name: 'コーヒー',price: '350', category: '飲み物' },
+    {name: 'トースト',price: '250', category: '軽食' },
+    {name: '紅茶',price: '300', category: '飲み物' },
+    {name: 'チーズケーキ',price: '450', category: '軽食' },
+    {name: 'ミルク',price: '300', category: '飲み物' },
+
+  ],
 }
 
 export const foodReducer = (state = init_data, action)=>{
@@ -20,7 +34,9 @@ export const foodReducer = (state = init_data, action)=>{
     case 'FIND':
        return findReducer(state, action);
     case 'EXCEL':
-    return excelReducer(state, action);
+       return excelReducer(state, action);
+    case 'PAGE':
+    return pageReducer(state, action);
     default:
       return state;
   }
@@ -134,6 +150,25 @@ const excelReducer =(state, action)=>{
   }
 }
 
+/*ページネーション*/
+
+const pageReducer =(state, action)=>{
+  let newData = state.data.slice();
+  if(action.num == 1){
+    newData = newData.slice(0,5);
+   }
+   else{
+    newData = newData.slice((action.num-1)*5, action.num*5);
+   }
+   return{
+    data: state.data,
+    message: '',
+    mode: 'page',
+    fdata: newData,
+  }
+
+}
+
 /*********************************************************************************************************************** */
 /*export 追加*/
 
@@ -182,4 +217,18 @@ export  const xlsmemo =(array)=>{
     array: array
   }
 }
+/*export pagination データ*/
+
+export  const pagememo =(num, first, last)=>{
+  
+  return{
+    type: 'PAGE',
+    num: num,
+    first: first,
+    last: last
+  }
+}
+
+
+
 export default createStore(foodReducer);

@@ -6,6 +6,7 @@ import Item from './Item';
 import Item2 from './Item2';
 import  XLSX from 'xlsx';
 import bsCustomFileInput from 'bs-custom-file-input'
+import Pagination from './Pagination';
 
 
 const Menu = (props)=>{
@@ -23,7 +24,6 @@ const Menu = (props)=>{
    props.fdata.map((value, i)=>(
     <Item key={value.message} value={value} index={i} parent={(num)=>parentModal(num)} />
   ))
-
 
   let items2 = props.mode === 'default' ?
    props.data.map((value, i)=>(
@@ -182,6 +182,7 @@ const Menu = (props)=>{
           </table>
       </div>
       }
+      <Pagination />
     </div>
   );
 }
