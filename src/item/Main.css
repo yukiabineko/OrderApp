@@ -57,6 +57,9 @@ button:focus {
   overflow: scroll;
   height: 500px;
 }
+.list-area{
+  overflow-y: scroll;
+}
 .list-pc{
   display: table;
   width: 100%;
@@ -66,6 +69,9 @@ button:focus {
 }
 .paginations{
   text-align: center;
+}
+.custom-file{
+  z-index: 0;
 }
 /**********************************************************************************************************/
 @media screen and (min-height: 1024px){

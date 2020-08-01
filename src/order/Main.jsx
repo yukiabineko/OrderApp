@@ -373,7 +373,6 @@ const Main = ()=>{
   /******************************************* JSX ************************************************************************************ */
   return(
    <div　className="mt-5">
-     
      <div className="text-right text-white uriage">
        <span className="bg-dark p-2 rounded-pill font-weight-bold">
          <FontAwesomeIcon icon={faFileSignature} size="lg" />
@@ -384,7 +383,6 @@ const Main = ()=>{
            </span>
       </span>
     </div>
-    
      <div className="text-center text-dark h4 font-weight-bold mb-1 mt-1 mb-5 drower-title">オーダー詳細</div>
     
      <input type="checkbox" id="ordercheck" />&nbsp;

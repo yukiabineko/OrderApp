@@ -9,8 +9,12 @@ import bsCustomFileInput from 'bs-custom-file-input'
 import Pagination from './Pagination';
 
 
+
 const Menu = (props)=>{
   const childRef = useRef();
+  let localCount = props.data.length;
+  console.log(localCount);
+  
 
   let parentModal = (num)=>{
      childRef.current.openModal();
@@ -182,7 +186,11 @@ const Menu = (props)=>{
           </table>
       </div>
       }
-      <Pagination />
+      {localCount >5?
+       <Pagination />
+       : 
+       ''}
+     
     </div>
   );
 }
