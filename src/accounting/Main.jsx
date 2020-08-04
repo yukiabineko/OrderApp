@@ -1,5 +1,6 @@
 import React from 'react';
 import { setDay, dateObjectCheck } from '../data/Time';
+import { hideData } from './hide.js';
 import { connect } from 'react-redux';
 import './Accounting.css';
 import { useState } from 'react';
@@ -26,7 +27,7 @@ const Main =()=>{
     flag: obj? true : false,   /* テーブル表示非表示フラグ*/
     data: {}      /* 天気情報*/
   })
-  axios.get('//yukiabineko.sakura.ne.jp/apiData.php').then((response)=>{
+  /* axios.get('//yukiabineko.sakura.ne.jp/apiData.php').then((response)=>{
     let data = response.data;
     let weather = state.data;
     weather['today'] = data['forecasts'][0]['telop'];
@@ -38,7 +39,21 @@ const Main =()=>{
       data: weather
     })
  });
-  
+ */ 
+
+axios.get('https://api.openweathermap.org/data/2.5/forecast?q=Kōfu&units=metric&exclude=daily&lang=ja&APPID=' + hideData()).then((response)=>{
+  let data = response.data;
+  let weather = state.data;
+      weather['today'] = data['list'][0]['weather'][0]['description'];
+      weather['imageToday'] = "https://openweathermap.org/img/wn/" + data['list'][0]['weather'][0]['icon'] +".png";
+      weather['tomorrow'] = data['list'][7]['weather'][0]['description'];
+      weather['imageTomorrow'] = "https://openweathermap.org/img/wn/" + data['list'][7]['weather'][0]['icon'] +".png";
+    setState({
+    flag: state.flag,
+    data: weather
+  })
+});
+
   
     
   let week = [ "日", "月", "火", "水", "木", "金", "土" ];
