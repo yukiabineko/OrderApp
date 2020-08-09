@@ -347,7 +347,7 @@ const Main = ()=>{
     });
     let stateItems = state.items.slice();
     stateItems[state.waitNO] = thisData;　　　//オーダー全体に反映
-    alert(JSON.stringify(stateItems));
+    (JSON.stringify(stateItems));
 
     //ステート更新
     setState({

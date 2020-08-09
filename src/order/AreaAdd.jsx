@@ -74,6 +74,7 @@ const AreaAdd = (props)=>{
           break;
       }
   }
+  
   return(
     <div>
       <div className="text-right h2 overflow-hidden">
@@ -123,7 +124,7 @@ const AreaAdd = (props)=>{
         </div>
       </div>
       <div className="text-center mt-5">
-          <button className="btn btn-secondary w-25">閉じる</button>
+          <button className="btn btn-secondary w-25" onClick={closebutton}>閉じる</button>
       </div>
 
     </div>
