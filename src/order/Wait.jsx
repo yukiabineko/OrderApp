@@ -15,7 +15,7 @@ const Wait = (props)=>{
   }
   return(
     <div className="mt-1">
-      <h3 className="text-center text-success font-weight-bold mt-4 mb-4">
+      <h3 className="text-center text-primary font-weight-bold mt-4 mb-4">
         <FontAwesomeIcon icon={faClipboardList} /> 会計待ち一覧
       </h3>
       <div className="wait_area">
@@ -26,14 +26,14 @@ const Wait = (props)=>{
        props.orderData.map((val,i)=>(
          <div key={i}> 
           <span>
-            <button className="btn btn-success mr-2" onClick={()=>accountingNoSend(i)}>会計切替</button>
+            <button className="btn btn-primary mr-2" onClick={()=>accountingNoSend(i)}>会計切替</button>
             <label className="text-dark font-weight-bold mr-2">{'注文NO:' + (i+1)}</label>
           </span>
           <table className="table table-bordered mb-2 mt-1">
             <thead>
               <tr>
-                <td className="bg-primary text-white text-center align-middle">分類</td>
-                <td className="bg-primary text-white text-center w-75 align-middle">名前</td>
+                <td className="bg-dark text-white text-center font-weight-bold align-middle">分類</td>
+                <td className="bg-dark text-white text-center font-weight-bold w-75 align-middle">名前</td>
               </tr>
             </thead>
             <tbody>

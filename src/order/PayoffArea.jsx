@@ -62,7 +62,7 @@ const PayoffArea = (props)=>{
 
 
       <div className="row mt-3">
-          <div className="col-md-10 offset-1 bg-white shadow p-3 payoff-modal">
+          <div className="col-md-10 offset-1 bg-white shadow  payoff-modal">
             <form onSubmit={sendEarnings}>
               <div className="form-group ">
                 <label>お預かり金額</label>
@@ -74,7 +74,7 @@ const PayoffArea = (props)=>{
                 value={state.inputPrice}
                 required placeholder="金額を入力ください。" />
               </div>
-              <div className="text-center">
+              <div className="text-center mt-5">
                 <input type="submit" className="btn btn-success mr-3" value="精算する" />
                 <button className="btn btn-danger" onClick={closeModal}>取り消し</button>
               </div>
