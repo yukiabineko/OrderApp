@@ -101,9 +101,15 @@ const Item = (props)=>{
     let price = state.price === undefined ?props.value.price : state.price
     let category = state.category === undefined ?props.value.category : state.category
 
-    let action = editmemo(props.index, name, price, category);
-    props.dispatch(action);
-    closeModal();
+    if(state.name !="" && state.price !="" && state.category !=""){
+      let action = editmemo(props.index, name, price, category);
+      props.dispatch(action);
+      closeModal();
+    }
+    else{
+       alert('未入力項目があります。')
+    }
+   
   }
   return(
   
@@ -159,7 +165,7 @@ const Item = (props)=>{
                   <div className="form-group mb-5">
                    <label>カテゴリー</label>
                    <select className="form-control" value={state.category ==null ?props.value.category : state.category} onChange={doChange} name="category">
-                      <option></option>
+                      <option value="">--選択してください--</option>
                       <option value="飲み物">飲み物</option>
                       <option value="軽食">軽食</option>
                    </select>

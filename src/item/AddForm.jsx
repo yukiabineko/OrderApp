@@ -49,16 +49,20 @@ const AddForm = (props)=>{
   }
   const doSubmit = (event)=>{
     event.preventDefault();
-    let action = addmemo(state.name, state.price, state.category);
-    props.dispatch(action);
-    setState({
-      name: '',
-      price: '',
-      category: ''
-    });
-    childCloseMenu();
-    
-    
+    if(state.name !="" && state.price !="" && state.category !=""){
+      let action = addmemo(state.name, state.price, state.category);
+      props.dispatch(action);
+      setState({
+        name: '',
+        price: '',
+        category: ''
+      });
+      childCloseMenu();
+    }
+    else{
+      alert('未入力項目があります。');
+    }
+   
   }
   return(
     <div className="item-form-area">
@@ -77,11 +81,12 @@ const AddForm = (props)=>{
              </div>
              <div className="form-group">
                <label>価格</label>
-               <input type="number" name="price" className="form-control" onChange={doChange} value={state.price} />
+               <input type="number" name="price" className="form-control" onChange={doChange} value={state.price} min="1" step="1" />
              </div>
              <div className="form-group">
                <label>カテゴリー</label>
                <select name="category" className="form-control" onChange={doChange} value={state.category} >
+                  <option value="">--選択してください--</option>
                   <option value="飲み物">飲み物</option>
                   <option value="軽食">軽食</option>
                </select>
