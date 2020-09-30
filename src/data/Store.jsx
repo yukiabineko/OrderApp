@@ -12,7 +12,11 @@ const init_data = {
 
   ],
   message: 'おはようございます。',
-  mode: 'find',
+  mode: 'default',
+  num: 1,
+  firstpage:0,
+  lastpage:5,
+  pageNation: true,
   fdata:[
     {name: 'コーヒー',price: '350', category: '飲み物' },
     {name: 'トースト',price: '250', category: '軽食' },
@@ -36,7 +40,11 @@ export const foodReducer = (state = init_data, action)=>{
     case 'EXCEL':
        return excelReducer(state, action);
     case 'PAGE':
-    return pageReducer(state, action);
+      return pageReducer(state, action);
+    case 'DATA':
+      return dataReducer(state, action);
+    case 'NUMBER':
+      return numberReducer(state, action);
     default:
       return state;
   }
@@ -56,37 +64,99 @@ const addReducer = (state, action)=>{
     data: newData,
     message: '追加しました。',
     mode: 'default',
-    fdata: []
+    num: state.num,
+    firstpage:0,
+    lastpage:5,
+    pageNation: true,
+    fdata: newData
   }
 }
 
 /*削除*/
 
 const deleteReducer = (state, action)=>{
-  let newData = state.data.slice();
-  newData.splice(action.index, 1);
-  return{
-    data: newData,
-    message: '削除しました。',
-    mode: 'default',
-    fdata: []
+  if(state.mode === 'find'){
+    let findData = state.fdata.slice();
+    let newData = state.data.slice();
+    for(let i=0; i<state.data.length; i++){
+      if(findData[action.index].name === state.data[i].name){
+         newData.splice(i,1);
+      }
+    }
+    findData.splice(action.index,1);
+    return{
+      data: newData,
+      message: '削除しました。',
+      mode: 'default',
+      num: state.num,
+      firstpage:0,
+      lastpage:5,
+      pageNation: true,
+      fdata: findData
+    }
   }
+  else{
+    let newData = state.data.slice();
+    newData.splice(action.index, 1);
+    return{
+      data: newData,
+      message: '削除しました。',
+      mode: 'default',
+      num: state.num,
+      firstpage:0,
+      lastpage:5,
+      pageNation: true,
+      fdata: state.fdata
+    }
+  }
+  
 }
 
 /*編集*/
 
 const editReducer = (state, action)=>{
-  let editData = state.data.slice();
-  let i = action.id;
-  editData[i].name = action.name;
-  editData[i].price = action.price;
-  editData[i].category = action.category
-  return{
-    data: editData,
-    message: '編集しました。',
-    mode: 'default',
-    fdata: []
+  if(state.mode === 'find'){
+     let fdata = state.fdata.slice();
+     let data = state.data.slice();
+     for(let i=0; i<data.length; i++){
+       if(data[i].name === fdata[action.id].name){
+        data[i].name = action.name;
+        data[i].price = action.price;
+        data[i].category = action.category
+       }
+     }
+     fdata[action.id].name = action.name;
+     fdata[action.id].price = action.price;
+     fdata[action.id].category = action.category
+     return{
+      data: data,
+      message: '編集しました。',
+      num: state.num,
+      mode: state.mode,
+      firstpage:0,
+      lastpage:5,
+      pageNation: true,
+      fdata: fdata
+    }
   }
+  else{
+    let editData = state.data.slice();
+    let i = action.id;
+    editData[i].name = action.name;
+    editData[i].price = action.price;
+    editData[i].category = action.category
+    return{
+      data: editData,
+      message: '編集しました。',
+      num: state.num,
+      mode: state.mode,
+      firstpage:0,
+      lastpage:5,
+      pageNation: true,
+      fdata: state.fdata
+    }
+  }
+  
 }
 /*検索*/
 
@@ -124,6 +194,10 @@ const findReducer =(state, action)=>{
     data: state.data,
     message: '検索しました。',
     mode: 'find',
+    num: 1,
+    firstpage:0,
+    lastpage:5,
+    pageNation: false,
     fdata: fdata,
   }
 }
@@ -146,6 +220,10 @@ const excelReducer =(state, action)=>{
     data: newdata,
     message: 'Excelインポートしました。',
     mode: 'default',
+    num: state.num,
+    firstpage:0,
+    lastpage:5,
+    pageNation: true,
     fdata: [],
   }
 }
@@ -153,21 +231,70 @@ const excelReducer =(state, action)=>{
 /*ページネーション*/
 
 const pageReducer =(state, action)=>{
+  
+  let number;
   let newData = state.data.slice();
   if(action.num == 1){
     newData = newData.slice(0,5);
+    number= 1;
    }
    else{
     newData = newData.slice((action.num-1)*5, action.num*5);
+    //number 1の時
+    number = (action.num-1)*5;
    }
+   
    return{
     data: state.data,
     message: '',
-    mode: 'page',
+    mode: 'find',
+    num: number,
+    firstpage: action.first,
+    lastpage: action.last,
+    pageNation: true,
     fdata: newData,
   }
 
 }
+/*ローカルストレージステートセット*/
+
+const dataReducer =(state, action)=>{
+  let newData = state.data.slice(0,5);
+  newData.splice(0);
+  action.json.forEach((value)=>{
+     newData.push(value);
+  });
+  let setData = newData.splice(0,5);
+   return{
+    data: setData,
+    message: '',
+    mode: 'find',
+    num: state.num,
+    firstpage:0,
+    lastpage:5,
+    pageNation: true,
+    fdata: setData
+  }
+
+}
+/*number set*/
+
+const numberReducer =(state, action)=>{
+  
+   return{
+    data: state.data,
+    message: '',
+    mode: 'find',
+    num: action.num,
+    firstpage:0,
+    lastpage:5,
+    pagination: true,
+    fdata: state.fdata
+  }
+
+}
+
+
 
 /*********************************************************************************************************************** */
 /*export 追加*/
@@ -219,15 +346,35 @@ export  const xlsmemo =(array)=>{
 }
 /*export pagination データ*/
 
-export  const pagememo =(num, first, last)=>{
+export  const pagememo =(num, first, last, send)=>{
   
   return{
     type: 'PAGE',
     num: num,
     first: first,
-    last: last
+    last: last,
+    sendNum: send
   }
 }
+/*export ローカルデータ*/
+
+export  const dataSet =(json)=>{
+  
+  return{
+    type: 'DATA',
+    json: json
+  }
+}
+/*export pagenumberデータ*/
+
+export  const NumberSet =(num)=>{
+  
+  return{
+    type: 'NUNBER',
+    num: num
+  }
+}
+
 
 
 

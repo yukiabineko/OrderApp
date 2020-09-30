@@ -1,42 +1,71 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
-import { xlsmemo } from '../data/Store';
+import { xlsmemo, dataSet } from '../data/Store';
 import './Main.css';
 import Item from './Item';
 import Item2 from './Item2';
 import  XLSX from 'xlsx';
 import bsCustomFileInput from 'bs-custom-file-input'
 import Pagination from './Pagination';
+import { useState } from 'react';
+import FindForm from './FindForm';
 
 
 
 const Menu = (props)=>{
+ 
   const childRef = useRef();
   let localCount = props.data.length;
-  console.log(localCount);
-  
+  let localData = JSON.parse(localStorage.getItem('persist:memo'));
+ 
+  const[state, setState] = useState({
+    num: props.num
+  })
+  /*const dataSetting = ()=>{
+    
+    if(localData){
+      let sendData = JSON.parse(localData.data);
+      let action = dataSet(sendData);
+      props.dispatch(action);
+    }
+    setState({
+      num: props.num
+    })
+  }
+   /*useState(dataSetting);*/
+  /*alert(state.localCount);*/
+
+  //子コンポーネントから変更更新//
+  const numberChange =(num)=>{
+    setState({
+      num: num
+    });
+  }
 
   let parentModal = (num)=>{
      childRef.current.openModal();
   }
-  let items = props.mode === 'default' ?
-   props.data.map((value, i)=>(
-     <Item key={value.message} value={value} index={i} parent={(num)=>parentModal(num)} />
+
+  let status = (state.num-1)*5;
+
+  let items = props.mode === 'default' ?   //pc
+   props.data.slice(0,5).map((value,i)=>(
+     <Item key={value.message} value={value} index={i} parent={(num)=>parentModal(num)}  />
      
    ))
    :
-   props.fdata.map((value, i)=>(
-    <Item key={value.message} value={value} index={i} parent={(num)=>parentModal(num)} />
+   props.fdata.slice(0,5).map((value,i)=>(
+    <Item key={value.message} value={value} index={i} parent={(num)=>parentModal(num)}  />
   ))
 
-  let items2 = props.mode === 'default' ?
-   props.data.map((value, i)=>(
-     <Item2 key={value.message} value={value} index={i} parent={(num)=>parentModal(num)} />
+  let items2 = props.mode === 'default' ?    //phone
+   props.data.slice(0,5).map((value, i)=>(
+     <Item2 key={value.message} value={value} index={status++} parent={(num)=>parentModal(num)} />
      
    ))
    :
-   props.fdata.map((value, i)=>(
-    <Item2 key={value.message} value={value} index={i} parent={(num)=>parentModal(num)} />
+   props.fdata.slice(0,5).map((value, i)=>(
+    <Item2 key={value.message} value={value} index={status++} parent={(num)=>parentModal(num)} />
   ))
   //excel入力
 
@@ -102,9 +131,16 @@ const Menu = (props)=>{
     });
     return result;
    }
+   const numberSetting = (num)=>{
+     setState({
+       num
+     })
+   }
   /***********************************jsx********************************************* */
   return(
     <div>
+      <FindForm parentNumber={(num)=>numberSetting(num)} />
+          <br/><br/>
       <div class="form-group">
         <label for="inputFile">Excelで商品追加<span className="text-danger">(xlsx,xls,xlw,csv形式)</span></label>
         <div className="custom-file">
@@ -186,8 +222,8 @@ const Menu = (props)=>{
           </table>
       </div>
       }
-      {localCount >5?
-       <Pagination />
+      {localCount > 5 && props.pageNation? 
+       <Pagination parentSend={(num)=>numberChange(num)} />
        : 
        ''}
      

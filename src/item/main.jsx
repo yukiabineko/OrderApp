@@ -27,8 +27,7 @@ const Main = ()=>{
           <div id="content" className="mt-5">
             <AddForm  parentCloseMenu={closeMenu}/>
           </div>
-          <FindForm />
-          <br/><br/>
+          
           <Menu />
         </div>
       </div>

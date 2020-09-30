@@ -48,7 +48,6 @@ const Drower2 = (props)=>{
          飲物:
        </label>
        <select className="form-control mr-3 w-50" onChange={addItem}   >
-         <option></option>
          {drinks.map((value,i)=>(
            <option key={'drink'+i} value={value.name + ',' + value.price + ',' + value.category}>{value.name}</option>
          ))}

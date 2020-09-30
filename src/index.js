@@ -12,8 +12,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 const set_parame ={
   key: 'memo',
   storage: storage,
-  blacklist:['message', 'fdata', 'mode'],
-  whitelist: ['data']
+  blacklist:['message', 'mode'],
+  whitelist: ['data','fdata']
 }
 let per = persistReducer(set_parame, foodReducer);
 let store = createStore(per);

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { pagememo } from '../data/Store';
+import { pagememo, NumberSet } from '../data/Store';
+import { withRouter } from 'react-router';
 
 const style1={
   background: "#4689FF",
@@ -18,14 +19,15 @@ const Pagination = (props)=>{
    
   const[state, setState] = useState({                                          /*ステート設定*/
     data: [baseData[0], baseData[1],baseData[2], baseData[3],baseData[4]],
-    first: 0,                                                                  /*ページ起点　*/
-    last:5                                                                     /*ページ終点　*/
+    first: props.firstpage,                                                                  /*ページ起点　*/
+    last: props.lastpage,                                                                     /*ページ終点　*/
+    sendNum: 0
   });
 
   //全ページ数
   let buttonNumbers = [];
 
-  for(let i=0; i<baseData.length; i++){
+  for(let i=0; i<baseData.length; i++){   //全データから５の倍数で区切り
     if(i%5 == 0){
       buttonNumbers.push(i/5+1);
     }
@@ -61,24 +63,28 @@ const changes =(num)=>{
   }
   
    if(num == 1){
-    newData = newData.slice(0,5);
+    newData = newData.slice(0,4);
    }
    else{
     newData = newData.slice((num-1)*5,num*5);
    }
    return newData;
 }
+
 //ボタンクリック
 
 const doClick =(num)=>{
-  let action = pagememo(num, state.first, state.last);
+  let action = pagememo(num, state.first, state.last, num);
+  
   props.dispatch(action);
   let newData = changes(num);
+  props.parentSend(num);
    
    setState({
      data:newData,
      first: state.first,
-     last: state.last
+     last: state.last,
+     sendNum: num
    })
   
 }
@@ -130,4 +136,4 @@ const doPrev =()=>{
     </div>
   );
 }
-export default connect((state)=>state)(Pagination);
+export default  withRouter(connect((state=>state))(Pagination))

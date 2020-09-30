@@ -33,6 +33,11 @@ const Drower = (props)=>{
     if(!(state.name ==='')){ 
       props.parentData({name: state.name, price: state.price, category: state.category});
     }
+    setState({
+      name: '',
+      price: '',
+      category: ''
+    })
     
   }
 
@@ -50,7 +55,6 @@ const Drower = (props)=>{
             軽食:&nbsp;
           </label>
           <select className="form-control mr-3 w-50" onChange={addItem} >
-            <option></option>
             {foods.map((value,i)=>(
               <option key={'food'+i}  value={value.name + ',' + value.price + ',' + value.category}>{value.name}</option>
             ))}

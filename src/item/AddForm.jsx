@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { addmemo } from '../data/Store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { withRouter } from 'react-router';
+
 
 const buttonStyle={
   border: 'none'
@@ -12,7 +14,7 @@ const AddForm = (props)=>{
   const [state, setState] = useState({
     name: '',
     price: '',
-    category: ''
+    category: '飲み物'
   });
   const childCloseMenu = ()=>{
     props.parentCloseMenu();
@@ -55,6 +57,8 @@ const AddForm = (props)=>{
       category: ''
     });
     childCloseMenu();
+    
+    
   }
   return(
     <div className="item-form-area">
@@ -69,7 +73,7 @@ const AddForm = (props)=>{
 
              <div className="form-group">
                <label>商品名</label>
-               <input type="text" name="name" className="form-control" onChange={doChange} value={state.name} />
+               <input type="text" name="name" className="form-control" onChange={doChange} value={state.name} required />
              </div>
              <div className="form-group">
                <label>価格</label>
@@ -78,7 +82,6 @@ const AddForm = (props)=>{
              <div className="form-group">
                <label>カテゴリー</label>
                <select name="category" className="form-control" onChange={doChange} value={state.category} >
-                  <option></option>
                   <option value="飲み物">飲み物</option>
                   <option value="軽食">軽食</option>
                </select>
@@ -93,4 +96,4 @@ const AddForm = (props)=>{
     </div>
   );
 }
-export default connect((state)=>state)(AddForm);
+export default  withRouter(connect((state=>state))(AddForm))

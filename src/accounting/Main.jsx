@@ -7,6 +7,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { PdfExport } from './Pdf.js';
 import { excelExport } from './Excel.js';
+import { pagememo } from '../data/Store';
 
 const Thstyle={width: '10%'};
 
@@ -19,10 +20,14 @@ const viewMenu={
   marginBottom: '1%'
 };
 
-const Main =()=>{
+const Main =(props)=>{
   let obj = JSON.parse(localStorage.getItem('dates'));
  
- 
+  const resetNumber = ()=>{
+    let action = pagememo(1,5,10);
+    props.dispatch(action);
+  }
+  useState(resetNumber);
   const[state, setState] = useState({
     flag: obj? true : false,   /* テーブル表示非表示フラグ*/
     data: {}      /* 天気情報*/

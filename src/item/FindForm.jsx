@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux'; 
-import { searchmemo } from '../data/Store';
+import { pagememo, searchmemo } from '../data/Store';
+import { withRouter } from 'react-router';
 
 const FindForm = (props)=>{
  
@@ -23,13 +24,21 @@ const FindForm = (props)=>{
 
   const sendData = (event)=>{
     event.preventDefault();
+   
     let action = searchmemo(state.params, state.number);  //検索ワードパラメーターと検索カテゴリー
     props.dispatch(action);
+    numberSend();
+    
     setState({
       number: 0,
       params: ''
     })
+  
   }
+  const numberSend = ()=>{
+    props.parentNumber(1);
+  }
+  
   return(
     <div className="row">
       <div className="col-md-11 offset-1 p-3  border-secondary">
@@ -98,4 +107,4 @@ const FindForm = (props)=>{
     </div>
   )
 }
-export default connect((state)=>state)(FindForm);
+export default  withRouter(connect((state=>state))(FindForm))

@@ -1,6 +1,7 @@
 import React from 'react';
 import './Order.css';
 import { setDay, dateObjectCheck, showTodayAccounting} from '../data/Time';
+import {NumberSet,pagememo} from '../data/Store';
 import { connect } from 'react-redux';
 import Drower from './Drower';
 import { useState } from 'react';
@@ -20,7 +21,7 @@ var globalItems = [];　　　//上の配列を追加する配列
 var modalViewPrice = 0    //モーダル内合計金額
 var accountingPrice = 0;  //オーダー金額
 
-const Main = ()=>{
+const Main = (props)=>{
   let today = setDay();
   dateObjectCheck ();
   let keyNO = 0;
@@ -46,9 +47,11 @@ const Main = ()=>{
     document.location.reload();
 
   }
-  
-  
-
+  const resetNumber = ()=>{
+    let action = pagememo(1,0,5);
+    props.dispatch(action);
+  }
+  useState(resetNumber);
   const[state, setState] = useState({
     data: [],                                          //追加中のオーダーリスト
     items: itemObject,                                 //オーダー待ちリスト
@@ -549,4 +552,4 @@ const Main = ()=>{
   );
 }
 
-export default connect()(Main);
+export default connect((state)=>state)(Main);
