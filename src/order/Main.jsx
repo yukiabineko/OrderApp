@@ -401,7 +401,7 @@ const Main = (props)=>{
 
      {/*. ドロワーのエリアView..*/}
      <div id="orderArea">
-     <div className="font-weight-bold text-center font-weight-bold"><h2 className="order-title">オーダー入力</h2></div>
+     <div className="font-weight-bold text-center font-weight-bold"><h5 className="order-title font-weight-bold mt-1">オーダー入力</h5></div>
      <div className="border border-top mb-1"></div>
      <div className="data-input">
        <Drower parentData={addData} />
@@ -421,21 +421,24 @@ const Main = (props)=>{
       <FontAwesomeIcon icon={faTimesCircle} size="2x"/><br/>閉じる
     </button>
      <div id="orderModal" className="pb-5">
-        <div className="text-center h4 font-weight-bold mt-2 mb-2">
+        <div className="text-center h5 font-weight-bold mt-3 mb-2">
           [商品オーダーパネル]
         </div>
         <div className="border-top mb-3"></div>
-        {state.data.length === 0 ?
-         '' 
-         : 
-         <div className="mb-3 round font-weight-bold">
-          <span className="bg-dark text-white p-2 rounded-left ml-2"><FontAwesomeIcon icon={faDollarSign} size="lg" />合計金額:</span>
-          <span className="text-warning bg-dark p-2 rounded-right">{modalViewPrice}円</span>
-         </div>
-        }
+        
         
        <div className="row">
-        
+       <div className="col-md-10 offset-1 mb-2">
+        {state.data.length === 0 ?
+          '' 
+          : 
+          <div className="mb-1  round font-weight-bold">
+            <span className="bg-dark text-white p-2 rounded-left"><FontAwesomeIcon icon={faDollarSign} size="lg" />合計金額:</span>
+            <span className="text-warning bg-dark p-2 rounded-right">{modalViewPrice}円</span>
+          </div>
+          }
+       </div>
+       
            {state.data.length === 0 ? 
             <div className="col-md-10 offset-1 table_area-empty mb-3">
               <div className="text-center text-primary h4 font-weight-bold no_order">まだオーダーがありません。</div> 

@@ -15,9 +15,9 @@ const style2={
 /***************************************************************************************************************** */
 
 const Pagination = (props)=>{
-  const baseData = props.data;                                                  /*ベースのreduxデータ*/
+  const baseData = props.data;                                                               /*ベースのreduxデータ*/
    
-  const[state, setState] = useState({                                          /*ステート設定*/
+  const[state, setState] = useState({                                                        /*ステート設定*/
     data: [baseData[0], baseData[1],baseData[2], baseData[3],baseData[4]],
     first: props.firstpage,                                                                  /*ページ起点　*/
     last: props.lastpage,                                                                     /*ページ終点　*/

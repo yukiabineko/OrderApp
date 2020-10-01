@@ -986,3 +986,17 @@
   height: 100%;
   padding-bottom: 22%;
 }
+.table_area-empty{
+  background: #fff;
+}
+.no_order{
+
+  vertical-align: middle;
+}
+.panel-closeButton{
+  margin-top: 15%;
+}
+.itemtable3 thead tr th{
+  height: 10px;
+  background-color: rebeccapurple;
+}
