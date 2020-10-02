@@ -11,7 +11,7 @@ const init_data = {
     {name: 'ミルク',price: '300', category: '飲み物' },
 
   ],
-  message: 'おはようございます。',
+  message: '',
   mode: 'default',
   num: 1,
   firstpage:0,

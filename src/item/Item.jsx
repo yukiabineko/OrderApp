@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { deletememo } from '../data/Store';
 import { editmemo } from '../data/Store';
 import Modal from 'react-modal';
+import { pageButtonColorSet } from './buttonReset';
 
 
 Modal.setAppElement('#root') //任意のアプリを設定する　create-react-appなら#root
@@ -45,6 +46,7 @@ const Item = (props)=>{
     if(result){
       let action = deletememo(num);
       props.dispatch(action);
+      pageButtonColorSet();
     }
     
   }
@@ -105,6 +107,7 @@ const Item = (props)=>{
       let action = editmemo(props.index, name, price, category);
       props.dispatch(action);
       closeModal();
+      pageButtonColorSet();
     }
     else{
        alert('未入力項目があります。')

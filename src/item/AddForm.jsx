@@ -4,6 +4,7 @@ import { addmemo } from '../data/Store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { withRouter } from 'react-router';
+import { pageButtonColorSet } from './buttonReset';
 
 
 const buttonStyle={
@@ -57,7 +58,9 @@ const AddForm = (props)=>{
         price: '',
         category: ''
       });
-      childCloseMenu();
+      childCloseMenu();       
+      pageButtonColorSet();
+      
     }
     else{
       alert('未入力項目があります。');

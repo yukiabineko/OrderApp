@@ -124,9 +124,9 @@ const doPrev =()=>{
           '' 
            : 
           num ===1 ?
-          <button id={"bt"+num} key={num} style={style1} className="btn bt border mr-2" onClick={()=>doClick(num)}>{num}</button>
+          <button id={"bt"+num} key={num} style={style1} className="btn bt border mr-2 pageBtn" onClick={()=>doClick(num)}>{num}</button>
           :
-          <button id={"bt"+num} key={num} style={style2} className="btn bt border mr-2" onClick={()=>doClick(num)}>{num}</button>
+          <button id={"bt"+num} key={num} style={style2} className="btn bt border mr-2 pageBtn" onClick={()=>doClick(num)}>{num}</button>
           
         ))}
         {buttonNumbers.length >5 && state.last<buttonNumbers.length?

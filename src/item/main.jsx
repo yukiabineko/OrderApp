@@ -6,13 +6,23 @@ import AddForm from './AddForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
-const Main = ()=>{
+const Main = (props)=>{
   const closeMenu = ()=>{
    let check = document.getElementById('drower');
    check.checked = false;
   }
   return(
     <div>
+      <div className="row">
+        <div className="col-md-8 offset-2">
+         {props.message === ''? ''
+           :
+           <div className="alert alert-success mt-5">{props.message}</div>
+          }
+         
+        </div>
+      </div>
+      
       <div className="text-center text-dark h1 mb-3 mt-5">商品一覧</div>
       
       <div className="row item-row">
@@ -33,4 +43,4 @@ const Main = ()=>{
     </div>
   );
 }
-export default connect()(Main)
+export default connect((state)=>state)(Main)
