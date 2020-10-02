@@ -1,7 +1,7 @@
 import React from 'react';
 import './Order.css';
 import { setDay, dateObjectCheck, showTodayAccounting} from '../data/Time';
-import {NumberSet,pagememo} from '../data/Store';
+import {pagememo} from '../data/Store';
 import { connect } from 'react-redux';
 import Drower from './Drower';
 import { useState } from 'react';

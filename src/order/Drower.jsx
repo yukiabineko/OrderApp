@@ -3,29 +3,32 @@ import './Order.css';
 import { connect } from 'react-redux';
 import { foodData } from '../data/Search';
 import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHamburger } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHamburger } from '@fortawesome/free-solid-svg-icons';
 
 const Drower = (props)=>{
   const[state, setState] = useState({
     name: '',
     price: '',
-    category:  ''
+    category:  '',
+    disabledFood: false
   })
   const foods = foodData(props.data);
   //ステートに追加
 
   const addItem = (event)=>{
     let data = event.target.value;
-    let name = data.split(',')[0];
-    let price = data.split(',')[1];
-    let category = data.split(',')[2];
-    setState({
-      name: name,
-      price: price,
-      category: category
-    })
-
+    if(data !==""){
+      let name = data.split(',')[0];
+      let price = data.split(',')[1];
+      let category = data.split(',')[2];
+      setState({
+        name: name,
+        price: price,
+        category: category
+      })
+    }
+    
   }
   //親コンポーネントに送信
   const sendData = (event)=>{
@@ -55,6 +58,7 @@ const Drower = (props)=>{
             軽食:&nbsp;
           </label>
           <select className="form-control mr-3 w-50" onChange={addItem} >
+            <option value="" disabled={state.disabledFood}>選択してください。</option>
             {foods.map((value,i)=>(
               <option key={'food'+i}  value={value.name + ',' + value.price + ',' + value.category}>{value.name}</option>
             ))}

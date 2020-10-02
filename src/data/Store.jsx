@@ -234,7 +234,7 @@ const pageReducer =(state, action)=>{
   
   let number;
   let newData = state.data.slice();
-  if(action.num == 1){
+  if(action.num === 1){
     newData = newData.slice(0,5);
     number= 1;
    }

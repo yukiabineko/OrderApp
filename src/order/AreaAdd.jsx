@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './Order.css';
 import { connect } from 'react-redux';
 import { foodData,drinkData } from '../data/Search';
-import { setDay } from '../data/Time';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -25,14 +24,17 @@ const AreaAdd = (props)=>{
   const foods = foodData(props.data);
   const drinks = drinkData(props.data);
   const[state, setState] = useState({
-    foodnumber: 0,
-    drinknumber:0
+    foodnumber: "",
+    drinknumber: "",
+    disabledfood :false,
+    disableddrink: false
   });
   
   const closebutton = ()=>{
     let addModal = document.getElementById('addModal');
     addModal.style.transform ="translatey(-150%)";
     document.getElementById('orderBack2').style.display = "none";
+    
   }
   //stateチェンジ
   const addselectChange = (e)=>{
@@ -40,13 +42,17 @@ const AreaAdd = (props)=>{
        case "food":
          setState({
           foodnumber: e.target.value,
-          drinknumber: state.drinknumber
+          drinknumber: state.drinknumber,
+          disabledfood: true,
+          disableddrink: state.disableddrink
          });
          break;
       case "drink":
       setState({
         foodnumber: state.foodnumber,
-        drinknumber: e.target.value
+        drinknumber: e.target.value,
+        disabledfood: state.disabledfood,
+        disableddrink: true
       });
       break;
 
@@ -62,17 +68,28 @@ const AreaAdd = (props)=>{
     let thisdrink = drinks[state.drinknumber];
     switch (e.target.name) {
       case "food":
-        props.parentThisOrderAdd(thisfood);
-        closebutton();
+        if(thisfood !=null){
+          props.parentThisOrderAdd(thisfood);
+          closebutton();
+        
+        }
         break;
       case "drink":
-        props.parentThisOrderAdd(thisdrink);
-        closebutton();
-      break;
-
-        default:
+        if(thisdrink !=null){
+          props.parentThisOrderAdd(thisdrink);
+          closebutton();
+        
+        }
+        break;
+      default:
           break;
       }
+      setState({
+        foodnumber: "",
+        drinknumber: "",
+        disabledfood: false,
+        disableddrink: false
+      })
   }
   
   return(
@@ -94,6 +111,7 @@ const AreaAdd = (props)=>{
             <tr>
               <td style={td1} >
                 <select name="food" className="form-control" onChange={addselectChange}>
+                  <option value="" disabled={state.disabledfood}>--選択してください。--</option>
                   {foods.map((value,i)=>(
                     <option key={i} value={i}>{value.name}</option>
                   ))}
@@ -111,6 +129,7 @@ const AreaAdd = (props)=>{
             <tr>
               <td style={td1} >
                 <select name="drink" className="form-control" onChange={addselectChange}>
+                  <option value=""  disabled={state.disableddrink}>--選択してください。--</option>
                   {drinks.map((value,i)=>(
                     <option key={i} value={i}>{value.name}</option>
                   ))}

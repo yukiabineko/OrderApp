@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import './Main.css';
 import Menu from './Menu';
 import AddForm from './AddForm';
-import FindForm from './FindForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 

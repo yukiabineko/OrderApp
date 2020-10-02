@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux'; 
-import { pagememo, searchmemo } from '../data/Store';
+import { searchmemo } from '../data/Store';
 import { withRouter } from 'react-router';
 
 const FindForm = (props)=>{

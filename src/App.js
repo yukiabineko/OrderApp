@@ -8,7 +8,7 @@ import OrderMain from './order/Main';
 import AcoountingMain from './accounting/Main';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faShoppingBag, faFileAlt, faListAlt, faMapPin, faBaby, faBars } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faShoppingBag, faFileAlt, faListAlt,faBars } from '@fortawesome/free-solid-svg-icons'
 
 const st ={
   zIndex: '9'

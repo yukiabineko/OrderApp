@@ -49,7 +49,7 @@ const AddForm = (props)=>{
   }
   const doSubmit = (event)=>{
     event.preventDefault();
-    if(state.name !="" && state.price !="" && state.category !=""){
+    if(state.name !=="" && state.price !=="" && state.category !==""){
       let action = addmemo(state.name, state.price, state.category);
       props.dispatch(action);
       setState({

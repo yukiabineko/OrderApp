@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
-import { xlsmemo, dataSet } from '../data/Store';
+import { xlsmemo } from '../data/Store';
 import './Main.css';
 import Item from './Item';
 import Item2 from './Item2';
@@ -16,7 +16,7 @@ const Menu = (props)=>{
  
   const childRef = useRef();
   let localCount = props.data.length;
-  let localData = JSON.parse(localStorage.getItem('persist:memo'));
+  
  
   const[state, setState] = useState({
     num: props.num

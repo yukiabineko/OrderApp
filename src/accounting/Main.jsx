@@ -1,5 +1,5 @@
 import React from 'react';
-import { setDay, dateObjectCheck } from '../data/Time';
+import { setDay } from '../data/Time';
 import { hideData } from './hide.js';
 import { connect } from 'react-redux';
 import './Accounting.css';
@@ -12,19 +12,19 @@ import { pagememo } from '../data/Store';
 const Thstyle={width: '10%'};
 
 
-const viewMenu={
+/*const viewMenu={
   float: 'right',
   fontWeight: 'bold',
   fontSize:'26px',
   width: '70%',
   marginBottom: '1%'
-};
+};*/
 
 const Main =(props)=>{
   let obj = JSON.parse(localStorage.getItem('dates'));
  
   const resetNumber = ()=>{
-    let action = pagememo(1,5,10);
+    let action = pagememo(1,0,5);
     props.dispatch(action);
   }
   useState(resetNumber);

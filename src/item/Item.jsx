@@ -101,7 +101,7 @@ const Item = (props)=>{
     let price = state.price === undefined ?props.value.price : state.price
     let category = state.category === undefined ?props.value.category : state.category
 
-    if(state.name !="" && state.price !="" && state.category !=""){
+    if(state.name !=="" && state.price !=="" && state.category !==""){
       let action = editmemo(props.index, name, price, category);
       props.dispatch(action);
       closeModal();

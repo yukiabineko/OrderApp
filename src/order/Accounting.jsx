@@ -2,7 +2,7 @@ import React from 'react';
 import './Order.css';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCashRegister, faPlayCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCashRegister, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
 
 const st ={
@@ -34,7 +34,7 @@ const Accounting = (props)=>{
       box: f ?'on' : ''
     })
     
-    props. parentRight(f);
+    props.parentRight(f);
     if(f && props.viewData.length >0){
       /*main.style.overflow = 'hidden';*/
       

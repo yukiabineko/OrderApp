@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { pagememo, NumberSet } from '../data/Store';
+import { pagememo } from '../data/Store';
 import { withRouter } from 'react-router';
 
 const style1={
@@ -28,7 +28,7 @@ const Pagination = (props)=>{
   let buttonNumbers = [];
 
   for(let i=0; i<baseData.length; i++){   //全データから５の倍数で区切り
-    if(i%5 == 0){
+    if(i%5 === 0){
       buttonNumbers.push(i/5+1);
     }
   }
@@ -46,7 +46,7 @@ const changes =(num)=>{
   for(let i=0; i<viewButton.length; i++){
    
     let bt = document.getElementById("bt"+viewButton[i]);
-    if(viewButton[i] == num){
+    if(viewButton[i] === num){
       bt.style.background="#4689FF";
       bt.style.color ="#fff";
     }
@@ -62,7 +62,7 @@ const changes =(num)=>{
     newData.push(baseData[i]);
   }
   
-   if(num == 1){
+   if(num === 1){
     newData = newData.slice(0,4);
    }
    else{

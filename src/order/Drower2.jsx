@@ -11,22 +11,25 @@ const Drower2 = (props)=>{
   const[state, setState] = useState({
     name: '',
     price: '',
-    category: ''
+    category: '',
+    disabledDrink: false
   })
   const drinks = drinkData(props.data);
   //ステートに追加
 
   const addItem = (event)=>{
     let data = event.target.value;
-    let name = data.split(',')[0];
-    let price = data.split(',')[1];
-    let category = data.split(',')[2];
-    setState({
-      name: name,
-      price: price,
-      category: category
-    })
-
+    if(data !==""){
+      let name = data.split(',')[0];
+      let price = data.split(',')[1];
+      let category = data.split(',')[2];
+      setState({
+        name: name,
+        price: price,
+        category: category,
+        disabledDrink: true
+      })
+    }
   }
   //親コンポーネントに送信
   const sendData = (event)=>{
@@ -48,6 +51,7 @@ const Drower2 = (props)=>{
          飲物:
        </label>
        <select className="form-control mr-3 w-50" onChange={addItem}   >
+         <option value="" disabled={state.disabledDrink}>選択してください。</option>
          {drinks.map((value,i)=>(
            <option key={'drink'+i} value={value.name + ',' + value.price + ',' + value.category}>{value.name}</option>
          ))}
