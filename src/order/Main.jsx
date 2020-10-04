@@ -412,15 +412,15 @@ const Main = (props)=>{
        
         <p className="h5 mb-5">ボタンで入力</p>
         <div className="row btArea">
-          <div className="col-md-6 offset-1"><DrinkButton sendDrinkData={addData} /></div>
-          <div className="col-md-5 border-left"><FoodButton sendFoodData={addData} /></div>
+          <div className="col-md-6"><DrinkButton sendDrinkData={addData} /></div>
+          <div className="col-md-6 border-left"><FoodButton sendFoodData={addData} /></div>
         </div>
         </div>
     </div>
-    <button  className="panel-closeButton-phone" onClick={drowerClose}>
+    {/*<button  className="" onClick={drowerClose}>
       <FontAwesomeIcon icon={faTimesCircle} size="2x"/><br/>閉じる
-    </button>
-     <div id="orderModal" className="pb-5">
+  </button> */}
+     <div id="orderModal" className="">
         <div className="text-center h5 font-weight-bold mt-3 mb-2">
           [商品オーダーパネル]
         </div>

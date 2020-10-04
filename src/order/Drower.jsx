@@ -61,7 +61,7 @@ const Drower = (props)=>{
             軽食:&nbsp;
           </label>
           <select className="form-control mr-3 w-50" onChange={addItem} >
-            <option value="" disabled={state.disabledFood}>選択してください。</option>
+            <option value="" disabled={state.disabledFood}>商品選択</option>
             {foods.map((value,i)=>(
               <option key={'food'+i}  value={value.name + ',' + value.price + ',' + value.category}>{value.name}</option>
             ))}

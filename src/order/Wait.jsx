@@ -47,7 +47,7 @@ const Wait = (props)=>{
                   : 
                   <td className="text-center bg-white font-weight-bold">
                      <FontAwesomeIcon icon={faCoffee} size="2x"/><p></p>
-                     <label>{value.category}</label>
+                     <label>飲物</label>
                   </td>
                   }
                 
