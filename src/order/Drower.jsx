@@ -25,7 +25,9 @@ const Drower = (props)=>{
       setState({
         name: name,
         price: price,
-        category: category
+        category: category,
+        disabledFood: true
+
       })
     }
     
@@ -39,7 +41,8 @@ const Drower = (props)=>{
     setState({
       name: '',
       price: '',
-      category: ''
+      category: '',
+      disabledFood: true
     })
     
   }

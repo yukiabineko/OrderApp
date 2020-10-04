@@ -12,6 +12,9 @@ const buttonStyle={
   border:'none',
   background: 'none'
 }
+const th ={
+  width:'60%'
+}
 
 
 const Accounting = (props)=>{
@@ -84,7 +87,7 @@ const Accounting = (props)=>{
           <table className="table table-bordered mt-3 itemtable2">
           <thead>
             <tr>  
-              <th className="bg-dark text-left text-white align-middle">
+              <th className="bg-dark text-left text-white align-middle" style={th}>
                 <button style={buttonStyle} className="text-warning" onClick={getaddItem}>
                  <FontAwesomeIcon icon={faPlusCircle}/>&thinsp; 
                   <label className="add-label mr-5">商品追加</label>

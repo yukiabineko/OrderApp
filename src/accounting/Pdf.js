@@ -71,7 +71,7 @@ pdfMake.createPdf(
     defaultStyle:{
     font: 'GenShin'//ここでデフォルトのスタイル名を指定しています。
     }
-  }).download("ファイル名.pdf");
+  }).download("売り上げ.pdf");
 };
 
  

@@ -132,7 +132,7 @@ const editReducer = (state, action)=>{
       data: data,
       message: '編集しました。',
       num: state.num,
-      mode: state.mode,
+      mode: 'default',
       firstpage:0,
       lastpage:5,
       pageNation: true,

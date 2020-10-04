@@ -36,8 +36,13 @@ const Drower2 = (props)=>{
     event.preventDefault();
     if(!(state.name ==='')){ 
       props.parentData({name: state.name, price: state.price, category: state.category});
-      
     }
+    setState({
+      name: '',
+      price: '',
+      category: '',
+      disabledDrink: true
+    })
     
   }
 

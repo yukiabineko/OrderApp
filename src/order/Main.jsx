@@ -412,8 +412,8 @@ const Main = (props)=>{
        
         <p className="h5 mb-5">ボタンで入力</p>
         <div className="row btArea">
-          <div className="col-md-6"><DrinkButton sendDrinkData={addData} /></div>
-          <div className="col-md-6 border-left"><FoodButton sendFoodData={addData} /></div>
+          <div className="col-md-6 offset-1"><DrinkButton sendDrinkData={addData} /></div>
+          <div className="col-md-5 border-left"><FoodButton sendFoodData={addData} /></div>
         </div>
         </div>
     </div>
@@ -441,7 +441,7 @@ const Main = (props)=>{
        
            {state.data.length === 0 ? 
             <div className="col-md-10 offset-1 table_area-empty mb-3">
-              <div className="text-center text-primary h4 font-weight-bold no_order">まだオーダーがありません。</div> 
+              <div className="text-center text-primary h6 font-weight-bold no_order">まだオーダーがありません。</div> 
               
              </div>
 

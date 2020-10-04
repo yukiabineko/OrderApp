@@ -117,7 +117,7 @@ const Item = (props)=>{
   return(
   
       <tr>
-        <td className="text-center bg-white">{props.index}</td>
+        <td className="text-center bg-white">{props.index+1}</td>
         <td className="text-center bg-white">{props.value.name}</td>
         <td className="text-center bg-white">{props.value.price}</td>
         <td className="text-center bg-white">{props.value.category}</td>
