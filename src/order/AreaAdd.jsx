@@ -71,6 +71,7 @@ const AreaAdd = (props)=>{
         if(thisfood !=null){
           props.parentThisOrderAdd(thisfood);
           closebutton();
+          document.getElementById('foodUpdateSelect').options[0].selected = true;
         
         }
         break;
@@ -78,6 +79,7 @@ const AreaAdd = (props)=>{
         if(thisdrink !=null){
           props.parentThisOrderAdd(thisdrink);
           closebutton();
+          document.getElementById('drinkUpdateSelect').options[0].selected = true;
         
         }
         break;
@@ -110,7 +112,7 @@ const AreaAdd = (props)=>{
           <table style={table}>
             <tr>
               <td style={td1} >
-                <select name="food" className="form-control" onChange={addselectChange}>
+                <select name="food" className="form-control" onChange={addselectChange} id="foodUpdateSelect">
                   <option value="" disabled={state.disabledfood}>--選択してください。--</option>
                   {foods.map((value,i)=>(
                     <option key={i} value={i}>{value.name}</option>
@@ -128,7 +130,7 @@ const AreaAdd = (props)=>{
           <table style={table}>
             <tr>
               <td style={td1} >
-                <select name="drink" className="form-control" onChange={addselectChange}>
+                <select name="drink" className="form-control" onChange={addselectChange} id="drinkUpdateSelect">
                   <option value=""  disabled={state.disableddrink}>--選択してください。--</option>
                   {drinks.map((value,i)=>(
                     <option key={i} value={i}>{value.name}</option>

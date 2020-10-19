@@ -37,6 +37,7 @@ const Drower = (props)=>{
     event.preventDefault();
     if(!(state.name ==='')){ 
       props.parentData({name: state.name, price: state.price, category: state.category});
+      document.getElementById('foodPlusSelect').options[0].selected = true;
     }
     setState({
       name: '',
@@ -60,7 +61,7 @@ const Drower = (props)=>{
             <FontAwesomeIcon icon={faHamburger}className="mr-1" size="lg"/>
             軽食:&nbsp;
           </label>
-          <select className="form-control mr-3 w-50" onChange={addItem} >
+          <select className="form-control mr-3 w-50" onChange={addItem} id="foodPlusSelect" >
             <option value="" disabled={state.disabledFood}>商品選択</option>
             {foods.map((value,i)=>(
               <option key={'food'+i}  value={value.name + ',' + value.price + ',' + value.category}>{value.name}</option>
