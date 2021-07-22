@@ -24,7 +24,7 @@
     "react-scripts": "^3.4.1",
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
-    "xlsx": "^0.16.4"
+    "xlsx": "^0.17.0"
   },
   "scripts": {
     "start": "react-scripts start",
